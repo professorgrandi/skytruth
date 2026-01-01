@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>SkyTruth - Onion Terminal - Monitoraggio Scie Chimiche e Traffico Aereo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SkyTruth - Monitoraggio anonimo scie chimiche e traffico aereo. Dati, video e registrazioni audio sulle scie chimiche e traffico aereo globale.">
+    <meta name="keywords" content="skytruth, scie chimiche, chemtrails, traffico aereo, ads-b, monitoraggio, anonimo, onion, tor, geoingegneria, aerosol">
+    <meta name="robots" content="index, follow">
+
+    <!-- Onion Service Metadata -->
+    <meta name="onion-location" content="http://64chdrfe7bonndpbgyzizxelgkyk37fufwzltpkivwyivcv2md5j4byd.onion">
+    <link rel="canonical" href="http://64chdrfe7bonndpbgyzizxelgkyk37fufwzltpkivwyivcv2md5j4byd.onion">
+
+    <!-- Meta multilingua per scie chimiche -->
+    <meta name="keywords" lang="it" content="scie chimiche, chemtrails, geoingegneria, aerosol, irrorazione, cielo, aerei, traffico aereo">
+    <meta name="keywords" lang="en" content="chemtrails, chemical trails, geoengineering, aerosol, spraying, sky, airplanes, air traffic">
+    <meta name="keywords" lang="es" content="estelas químicas, chemtrails, geoingeniería, aerosol, fumigación, cielo, aviones, tráfico aéreo">
+    <meta name="keywords" lang="fr" content="chemtrails, traînées chimiques, géo-ingénierie, aérosols, pulvérisation, ciel, avions, trafic aérien">
+    <meta name="keywords" lang="de" content="Chemtrails, chemische Spuren, Geoengineering, Aerosole, Sprühung, Himmel, Flugzeuge, Luftverkehr">
+    <meta name="keywords" lang="ru" content="химтрейлы, химические следы, геоинженерия, аэрозоли, распыление, небо, самолеты, воздушное движение">
+    <meta name="keywords" lang="pt" content="chemtrails, trilhas químicas, geoengenharia, aerossóis, pulverização, céu, aviões, tráfego aéreo">
+    <meta name="keywords" lang="cn" content="化学轨迹, 化学尾迹, 地球工程, 气溶胶, 喷洒, 天空, 飞机, 空中交通">
+    <meta name="keywords" lang="jp" content="ケムトレイル, 化学トレイル, 地球工学, エアロゾル, 散布, 空, 飛行機, 航空交通">
+    <meta name="keywords" lang="ar" content="الشيمتريل, الآثار الكيميائية, الهندسة الجيولوجية, الهباء الجوي, الرش, السماء, الطائرات, حركة الطيران">
+    
+    <!-- Meta description multilingua -->
+    <meta name="description" lang="it" content="SkyTruth - Monitoraggio anonimo scie chimiche e traffico aereo. Dati reali sulle chemtrails, video e analisi del traffico aereo globale.">
+    <meta name="description" lang="en" content="SkyTruth - Anonymous monitoring of chemtrails and air traffic. Real data on chemical trails, videos and analysis of global air traffic.">
+    <meta name="description" lang="es" content="SkyTruth - Monitoreo anónimo de estelas químicas y tráfico aéreo. Datos reales sobre chemtrails, videos y análisis del tráfico aéreo global.">
+    <meta name="description" lang="fr" content="SkyTruth - Surveillance anonyme des chemtrails et du trafic aérien. Données réelles sur les traînées chimiques, vidéos et analyse du trafic aérien mondial.">
+    <meta name="description" lang="de" content="SkyTruth - Anonyme Überwachung von Chemtrails und Luftverkehr. Echtzeitdaten zu chemischen Spuren, Videos und Analyse des globalen Luftverkehrs.">
+    <meta name="description" lang="ru" content="SkyTruth - Анонимный мониторинг химтрейлов и воздушного движения. Реальные данные о химических следах, видео и анализ глобального воздушного трафика.">
+    <meta name="description" lang="pt" content="SkyTruth - Monitoramento anônimo de chemtrails e tráfego aéreo. Dados reais sobre trilhas químicas, vídeos e análise do tráfego aéreo global.">
+    <meta name="description" lang="cn" content="SkyTruth - 化学轨迹和空中交通的匿名监控。关于化学尾迹的真实数据、视频和全球空中交通分析。">
+    <meta name="description" lang="jp" content="SkyTruth - ケムトレイルと航空交通の匿名モニタリング。化学トレイルに関する実データ、ビデオ、全球航空交通分析。">
+    <meta name="description" lang="ar" content="SkyTruth - مراقبة مجهولة للشيمتريل وحركة الطيران. بيانات حقيقية عن الآثار الكيميائية، مقاطع فيديو وتحليل لحركة الطيران العالمية.">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body { 
+            font-family: 'Courier New', monospace; 
+            background: #000000;
+            color: #00ff00;
+            margin: 0;
+            padding: 15px;
+            line-height: 1.4;
+        }
+        
+        .terminal {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #00ff00;
+            padding: 15px;
+            position: relative;
+            min-height: 80vh;
+        }
+        
+        .header { 
+            text-align: center; 
+            border-bottom: 1px solid #00ff00;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .site-title {
+            font-size: clamp(20px, 5vw, 28px);
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
+            margin: 10px 0;
+            font-weight: bold;
+            word-break: break-word;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+        
+        .onion-badge {
+            background: #ff6600;
+            color: #000000;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: clamp(11px, 2.5vw, 13px);
+            font-weight: bold;
+            margin: 5px 0;
+            display: inline-block;
+        }
+        
+        .language-flags {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .language-flags span {
+            font-size: clamp(14px, 3vw, 18px);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .language-flags span:hover {
+            transform: scale(1.2);
+        }
+        
+        .subtitle {
+            color: #00ffff;
+            font-size: clamp(12px, 2.5vw, 14px);
+            margin: 8px 0;
+            word-break: break-word;
+        }
+        
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .menu a {
+            color: #00ff00;
+            text-decoration: none;
+            border: 1px solid #00ff00;
+            padding: 5px 10px;
+            font-size: clamp(10px, 2vw, 12px);
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+        
+        .menu a:hover {
+            background: #00ff00;
+            color: #000000;
+        }
+        
+        .content {
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        @media (min-width: 768px) {
+            .content {
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 30px;
+            }
+        }
+        
+        .text-content {
+            flex: 1;
+            width: 100%;
+            min-width: 0;
+            text-align: center;
+        }
+        
+        .prompt {
+            color: #00ff00;
+            margin: 5px 0;
+            word-break: break-word;
+        }
+        
+        .blink {
+            animation: blink 1s infinite;
+        }
+        
+        .footer {
+            text-align: center;
+            border-top: 1px solid #00ff00;
+            padding-top: 15px;
+            margin-top: 30px;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+        
+        .counter {
+            color: #ff6600;
+            font-weight: bold;
+            font-size: clamp(12px, 2.5vw, 14px);
+            margin: 10px 0;
+        }
+        
+        .contact {
+            color: #00ffff;
+            margin: 5px 0;
+            font-size: clamp(11px, 2vw, 13px);
+        }
+        
+        .copyright {
+            color: #888;
+            font-size: clamp(10px, 1.8vw, 12px);
+            margin-top: 10px;
+            line-height: 1.3;
+        }
+        
+        .onion-address {
+            font-size: clamp(12px, 2.5vw, 14px);
+            word-break: break-all;
+            margin: 10px 0;
+            padding: 5px;
+            color: #00ffff;
+            font-weight: bold;
+        }
+        
+        .status-indicators {
+            margin: 15px 0;
+            text-align: left;
+            display: inline-block;
+        }
+        
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <div class="header">
+            <div class="site-title" data-translate="title">SKYTRUTH TERMINAL</div>
+            <div class="header-top">
+                <div class="onion-badge" data-translate="onion_service">SERVIZIO ONION</div>
+                <div class="language-flags">
+                    <span onclick="changeLanguage('it')" title="Italiano">🇮🇹</span>
+                    <span onclick="changeLanguage('ru')" title="Russian">🇷🇺</span>
+                    <span onclick="changeLanguage('cn')" title="Chinese">🇨🇳</span>
+                    <span onclick="changeLanguage('pt')" title="Portuguese">🇵🇹</span>
+                    <span onclick="changeLanguage('jp')" title="Japanese">🇯🇵</span>
+                    <span onclick="changeLanguage('ar')" title="Arabic">🇸🇦</span>
+                    <span onclick="changeLanguage('fr')" title="French">🇫🇷</span>
+                    <span onclick="changeLanguage('de')" title="German">🇩🇪</span>
+                    <span onclick="changeLanguage('es')" title="Spanish">🇪🇸</span>
+                    <span onclick="changeLanguage('en')" title="English">🇺🇸</span>
+                </div>
+            </div>
+            <div class="subtitle" data-translate="subtitle">MONITORAGGIO DEL VERO TRAFFICO AEREO</div>
+            <div class="menu">
+                <a href="index.html" data-translate="home">CASA</a>
+                <a href="collegamenti.html" data-translate="links">COLLEGAMENTI</a>
+                <a href="registrazioni_video.html" data-translate="videos">REGISTRAZIONI VIDEO</a>
+                <a href="ricezione_dati.html" data-translate="data">RICEZIONE DATI</a>
+                <a href="tabelle_comparative.html" data-translate="tables">TABELLE COMPARATIVE</a>
+                <a href="contatti_anonimi.html" data-translate="contacts">CONTATTI ANONIMI</a>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="text-content">
+                <div class="prompt">root@skytruth:~# welcome.sh</div>
+                <div data-translate="welcome1">> INIZIALIZZAZIONE SISTEMA DI MONITORAGGIO CIELO</div>
+                <div data-translate="welcome2">> DATI REALI - TRAFFICO AEREO - VIDEO - AUDIO</div>
+                <div data-translate="welcome3">> LE TRADUZIONI FUNZIONANO SOLO SE ATTIVI JAVASCRIPT</div>
+<!-- 
+                <br>
+                <div class="status-indicators">
+                    <div>> ✅ <span data-translate="system">SISTEMA OPERATIVO</span></div>
+                    <div>> 📡 <span data-translate="reception">RICEZIONE DATI</span></div>
+                    <div>> 🔒 <span data-translate="secure">CONNESSIONE SICURA</span></div>
+                </div>
+-->                
+        <div style="font-family: monospace; white-space: pre; font-size: 10px; line-height: 1; color: #00ffff; text-align: center; margin: 20px 0;">
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⣿⣿⠀⠀⢀⣠⣤⣶⣶⣶⣶⣶⣶⣶⣦⣤⣀⠀⠀⠀⠀⠀⢀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⡔⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢟⣫⣯⣷⣾⣿⣿⣿⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣷⡙⢿⣿⣿⣿⣿⣿⣿⡿⢋⣵⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣙⠿⠿⠿⢟⣫⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⢹⣿⣿⣿⣿⣿⣿⣿⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢀⣤⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⢸⣿⣿⣿⡏⠉⠙⢿⣿⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⣿⡿⡍⠳⣄⡀⢀⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢿⣿⢿⡄⠸⡿⢄⠛⣘⢠⣼⣿⣿⣿⣿⣿⣧⡀⠀⠀⠀⠀
+⠀⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡞⣼⡻⡄⠳⡤⠽⠾⠿⠿⠿⢛⣻⣿⣿⣿⣷⡀⠀⠀⠀
+⠀⠀⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣾⣿⣿⣄⠙⢶⣶⣶⣶⣿⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀
+⠀⠀⠀⠀⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠛⠉⢉⣁⣀⣀⣀⣀⣀⣉⡉⠙⠛⠻⢿⣿⣿⣿⣿⣿⣯⣻⣍⡲⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄⠀⠀
+⠀⢀⡀⣶⣤⣌⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠋⣁⣤⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⣤⣈⠛⢿⣿⣿⣿⣿⣿⣷⣾⣿⣿⣿⣿⣿⡿⠟⠛⠛⠁⠀⠀
+⣰⣿⣿⣿⣿⣿⣿⣿⣝⢿⣿⣿⣿⣿⣿⣿⣟⣡⣶⠿⢛⣛⣉⣭⣭⣤⣤⡴⠶⠶⠶⠶⢲⣴⣤⠭⠭⡭⣟⠻⠦⣝⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⢉⣀⣠⣶⣿⣆⠀⠀
+⠹⣿⣿⣿⣿⣿⣿⣙⠻⣿⣮⣛⠿⣿⣿⣿⣫⣵⡶⠟⣛⣋⣭⣭⣶⣶⣶⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣾⣮⣽⣿⣿⣿⠿⠟⠛⠉⢀⣴⣿⣿⣿⣿⣿⣿⣶⡀
+⠀⠈⠙⠋⠁⠀⠈⠉⠛⠳⣭⣛⢷⣦⣸⣿⣯⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⣿⠀⠀⠀⣀⣴⣾⣿⣿⣿⣿⡟⣿⣿⣿⣿⡇
+⠀⠀⠀⠀⠀⠀⢀⣠⣾⣿⣿⠿⠿⢿⣹⣿⣧⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢸⡏⣀⣴⣾⣿⣿⠿⠛⠉⠀⠀⠀⠈⠛⠛⠉⠀
+⠀⠀⠀⠀⢀⣴⠿⠛⠋⠁⠀⠀⠀⢀⣯⢿⣿⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⣿⠣⣟⡻⠟⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⢀⣀⣴⣾⣿⠈⡿⣿⠃⠀⠀⠀⠈⠉⠛⠻⠿⣿⣿⣿⣿⣿⠿⠛⠉⠉⠀⠈⠉⠛⣿⣽⡟⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢀⣠⣤⣶⣾⣿⣿⣿⣿⣿⣀⣼⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⣹⡟⣻⣿⡃⠀⠀⠀⠀⠀⠀⠀⠀⢹⣷⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢀⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⡿⢹⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⣰⣿⢣⡇⣿⣷⡀⠀⠀⠀⠀⠀⠀⠀⣼⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠟⠋⠙⠛⠻⣿⣿⣿⣿⣿⠏⠀⠈⢿⣿⣿⣿⣦⣄⣀⣀⣀⣠⣴⣿⣏⡞⢻⣸⣿⣷⣄⠀⠀⣀⣤⠴⣾⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⠃⠀⠀⠀⠈⢿⣿⣵⣾⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣶⠾⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣏⠀⠀⠀⠀⠀⣀⣼⣿⡛⢿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⠟⣡⣾⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠀⠀⢠⣶⣿⣿⣯⣿⡇⠀⢹⣿⣿⣿⣿⣷⣤⣤⣦⣶⣿⣿⣿⣿⣿⡇⠀⣿⣿⢸⣿⣶⣤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢀⣄⣠⣴⣾⣿⣟⣿⠟⠁⣿⡇⠀⣿⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⡇⢀⣿⣿⠙⢮⣛⠿⣷⣦⣄⣀⣀⣀⣠⣀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣴⣶⣶⣾⣿⣿⡿⣛⣽⠞⠋⠀⠀⠀⣿⣷⠀⣍⠇⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠉⡄⣸⣿⡿⠀⠀⠈⠙⠮⣟⠿⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⢀⣹⣿⣿⣿⢵⡿⠋⠀⠀⠀⠀⠀⠀⢿⣿⣦⣿⡷⣄⠙⠿⣿⢹⣿⣿⢼⡿⠋⣡⣶⣳⣿⣿⣿⠃⠀⠀⠀⠀⠀⠈⠿⠬⣿⣿⣿⣿⣿⣷⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠸⣿⣿⣿⣿⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣿⣿⣷⣻⢿⣶⣬⣈⣉⣉⣤⣴⣿⣻⣾⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⡿⠇⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠙⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣿⣿⣿⡇⣿⣇⣿⢹⣿⣿⣿⣿⡟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣿⣿⣿⣿⡿⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        </div>
+                <div class="onion-address">
+                    64chdrfe7bonndpbgyzizxelgkyk37fufwzltpkivwyivcv2md5j4byd.onion
+                </div>      
+           <br>
+                <div class="prompt">root@skytruth:~# <span class="blink">_</span></div>                
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="contact" data-translate="contact">CONTATTO: professor.grandi@protonmail.com</div>
+            <div class="counter" data-translate="donations">DONAZIONI XMR MONERO:</div>
+            <div class="onion-badge">45QW5EeHKzjFhwhhjB6byJdSXd7ZUR4FgELHGz1e4Mt5M3Yt6TSiXzaEHdcEeneWVX3FtCpdvt4toge3aqCvrihf38SSVGv</div>
+            <br>
+            <div class="copyright" data-translate="copyright">(c) 2025 - PROGETTO SKYTRUTH - DOCUMENTI VERI - RICERCA ANONIMA - VERITÀ NEI DATI - NON TEORIE MA FATTI</div>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            it: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "MONITORAGGIO DEL VERO TRAFFICO AEREO",
+                home: "CASA",
+                links: "COLLEGAMENTI", 
+                videos: "REGISTRAZIONI VIDEO",
+                data: "RICEZIONE DATI",
+                tables: "TABELLE COMPARATIVE",
+                contacts: "CONTATTI ANONIMI",
+                welcome1: "> INIZIALIZZAZIONE SISTEMA DI MONITORAGGIO CIELO",
+                welcome2: "> DATI REALI - TRAFFICO AEREO - VIDEO - AUDIO",
+                welcome3: "> LE TRADUZIONI FUNZIONANO SOLO SE ATTIVI JAVASCRIPT", 
+                system: "SISTEMA OPERATIVO",
+                reception: "RICEZIONE DATI", 
+                secure: "CONNESSIONE SICURA",
+                onion_service: "SERVIZIO ONION",
+                contact: "CONTATTO: professor.grandi@protonmail.com",
+                donations: "DONAZIONI XMR MONERO:",
+                copyright: "(c) 2025 - PROGETTO SKYTRUTH - DOCUMENTI VERI - RICERCA ANONIMA - VERITÀ NEI DATI - NON TEORIE MA FATTI"
+            },
+            en: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "REAL AIR TRAFFIC MONITORING",
+                home: "HOME",
+                links: "LINKS",
+                videos: "VIDEO RECORDINGS", 
+                data: "DATA RECEPTION",
+                tables: "COMPARATIVE TABLES",
+                contacts: "ANONYMOUS CONTACTS",
+                welcome1: "> SKY MONITORING SYSTEM INITIALIZATION",
+                welcome2: "> REAL DATA - AIR TRAFFIC - VIDEO - AUDIO",
+                welcome3: "> TRANSLATIONS ONLY WORK IF YOU ENABLE JAVASCRIPT",
+                system: "OPERATING SYSTEM",
+                reception: "DATA RECEPTION",
+                secure: "SECURE CONNECTION",
+                onion_service: "ONION SERVICE",
+                contact: "CONTACT: professor.grandi@protonmail.com",
+                donations: "XMR MONERO DONATIONS:",
+                copyright: "(c) 2025 - SKYTRUTH PROJECT - REAL DOCUMENTS - ANONYMOUS RESEARCH - TRUTH IN DATA - NOT THEORIES BUT FACTS"
+            },
+            es: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "MONITOREO DE TRÁFICO AÉREO REAL",
+                home: "INICIO",
+                links: "ENLACES",
+                videos: "GRABACIONES DE VIDEO", 
+                data: "RECEPCIÓN DE DATOS",
+                tables: "TABLAS COMPARATIVAS",
+                contacts: "CONTACTOS ANÓNIMOS",
+                welcome1: "> INICIALIZACIÓN DEL SISTEMA DE MONITOREO DEL CIELO",
+                welcome2: "> DATOS REALES - TRÁFICO AÉREO - VIDEO - AUDIO",
+                welcome3: "> LAS TRADUCCIONES SOLO FUNCIONAN SI ACTIVAS JAVASCRIPT", 
+                system: "SISTEMA OPERATIVO",
+                reception: "RECEPCIÓN DE DATOS",
+                secure: "CONEXIÓN SEGURA",
+                onion_service: "SERVICIO ONION",
+                contact: "CONTACTO: professor.grandi@protonmail.com",
+                donations: "DONACIONES XMR MONERO:",
+                copyright: "(c) 2025 - PROYECTO SKYTRUTH - DOCUMENTOS REALES - INVESTIGACIÓN ANÓNIMA - VERDAD EN DATOS - NO TEORÍAS SINO HECHOS"
+            },
+            fr: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "SURVEILLANCE DU TRAFIC AÉRIEN RÉEL",
+                home: "ACCUEIL",
+                links: "LIENS",
+                videos: "ENREGISTREMENTS VIDÉO", 
+                data: "RÉCEPTION DES DONNÉES",
+                tables: "TABLEAUX COMPARATIFS",
+                contacts: "CONTACTS ANONYMES",
+                welcome1: "> INITIALISATION DU SYSTÈME DE SURVEILLANCE DU CIEL",
+                welcome2: "> DONNÉES RÉELLES - TRAFIC AÉRIEN - VIDÉO - AUDIO",
+                welcome3: "> LES TRADUCTIONS FONCTIONNENT SEULEMENT SI VOUS ACTIVEZ JAVASCRIPT", 
+                system: "SYSTÈME D'EXPLOITATION",
+                reception: "RÉCEPTION DES DONNÉES",
+                secure: "CONNEXION SÉCURISÉE",
+                onion_service: "SERVICE ONION",
+                contact: "CONTACT: professor.grandi@protonmail.com",
+                donations: "DONS XMR MONERO:",
+                copyright: "(c) 2025 - PROJET SKYTRUTH - DOCUMENTS RÉELS - RECHERCHE ANONYME - VÉRITÉ DANS LES DONNÉES - PAS DE THÉORIES MAIS DES FAITS"
+            },
+            de: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "ÜBERWACHUNG DES ECHTEN LUFTVERKEHRS",
+                home: "STARTSEITE",
+                links: "VERBINDUNGEN",
+                videos: "VIDEOAUFNAHMEN", 
+                data: "DATENEMPFANG",
+                tables: "VERGLEICHTABELLEN",
+                contacts: "ANONYME KONTAKTE",
+                welcome1: "> INITIALISIERUNG DES HIMMEL-ÜBERWACHUNGSSYSTEMS",
+                welcome2: "> ECHTE DATEN - LUFTVERKEHR - VIDEO - AUDIO", 
+                welcome3: "> ÜBERSETZUNGEN FUNKTIONIEREN NUR WENN JAVASCRIPT AKTIVIERT IST",
+                system: "BETRIEBSSYSTEM",
+                reception: "DATENEMPFANG",
+                secure: "SICHERE VERBINDUNG",
+                onion_service: "ONION SERVICE",
+                contact: "KONTAKT: professor.grandi@protonmail.com",
+                donations: "SPENDEN XMR MONERO:",
+                copyright: "(c) 2025 - SKYTRUTH PROJEKT - ECHTE DOKUMENTE - ANONYME FORSCHUNG - WAHRHEIT IN DATEN - KEINE THEORIEN SONDERN FAKTEN"
+            },
+            ru: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "МОНИТОРИНГ РЕАЛЬНОГО ВОЗДУШНОГО ДВИЖЕНИЯ",
+                home: "ГЛАВНАЯ",
+                links: "ССЫЛКИ",
+                videos: "ВИДЕОЗАПИСИ", 
+                data: "ПРИЕМ ДАННЫХ",
+                tables: "СРАВНИТЕЛЬНЫЕ ТАБЛИЦЫ",
+                contacts: "АНОНИМНЫЕ КОНТАКТЫ",
+                welcome1: "> ИНИЦИАЛИЗАЦИЯ СИСТЕМЫ МОНИТОРИНГА НЕБА",
+                welcome2: "> РЕАЛЬНЫЕ ДАННЫЕ - ВОЗДУШНОЕ ДВИЖЕНИЕ - ВИДЕО - АУДИО", 
+                welcome3: "> ПЕРЕВОДЫ РАБОТАЮТ ТОЛЬКО ЕСЛИ ВКЛЮЧЕН JAVASCRIPT", 
+                system: "ОПЕРАЦИОННАЯ СИСТЕМА",
+                reception: "ПРИЕМ ДАННЫХ",
+                secure: "БЕЗОПАСНОЕ СОЕДИНЕНИЕ",
+                onion_service: "ONION СЕРВИС",
+                contact: "КОНТАКТ: professor.grandi@protonmail.com",
+                donations: "ПОЖЕРТВОВАНИЯ XMR MONERO:",
+                copyright: "(c) 2025 - ПРОЕКТ SKYTRUTH - РЕАЛЬНЫЕ ДОКУМЕНТЫ - АНОНИМНЫЕ ИССЛЕДОВАНИЯ - ПРАВДА В ДАННЫХ - НЕ ТЕОРИИ, А ФАКТЫ"
+            },
+            pt: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "MONITORAMENTO DE TRÁFEGO AÉREO REAL",
+                home: "INÍCIO",
+                links: "LIGAÇÕES",
+                videos: "GRAVAÇÕES DE VÍDEO", 
+                data: "RECEPÇÃO DE DADOS",
+                tables: "TABELAS COMPARATIVAS",
+                contacts: "CONTACTOS ANÓNIMOS",
+                welcome1: "> INICIALIZAÇÃO DO SISTEMA DE MONITORAMENTO DO CÉU",
+                welcome2: "> DADOS REAIS - TRÁFEGO AÉREO - VÍDEO - ÁUDIO", 
+                welcome3: "> AS TRADUÇÕES SÓ FUNCIONAM SE ATIVAR O JAVASCRIPT",
+                system: "SISTEMA OPERATIVO",
+                reception: "RECEPÇÃO DE DADOS",
+                secure: "CONEXÃO SEGURA",
+                onion_service: "SERVIÇO ONION",
+                contact: "CONTACTO: professor.grandi@protonmail.com",
+                donations: "DOAÇÕES XMR MONERO:",
+                copyright: "(c) 2025 - PROJETO SKYTRUTH - DOCUMENTOS REAIS - PESQUISA ANÓNIMA - VERDADE NOS DADOS - NÃO TEORIAS MAS FACTOS"
+            },
+            cn: {
+                title: "SKYTRUTH 终端",
+                subtitle: "真实空中交通监控",
+                home: "首页",
+                links: "链接",
+                videos: "视频录制", 
+                data: "数据接收",
+                tables: "比较表格",
+                contacts: "匿名联系",
+                welcome1: "> 天空监控系统初始化",
+                welcome2: "> 真实数据 - 空中交通 - 视频 - 音频", 
+                welcome3: "> 翻译仅在启用 JAVASCRIPT 时有效",
+                system: "操作系统",
+                reception: "数据接收",
+                secure: "安全连接",
+                onion_service: "ONION 服务",
+                contact: "联系: professor.grandi@protonmail.com",
+                donations: "XMR MONERO 捐款:",
+                copyright: "(c) 2025 - SKYTRUTH 项目 - 真实文件 - 匿名研究 - 数据中的真相 - 不是理论而是事实"
+            },
+            jp: {
+                title: "SKYTRUTH ターミナル",
+                subtitle: "リアル航空交通モニタリング",
+                home: "ホーム",
+                links: "リンク",
+                videos: "ビデオ録画", 
+                data: "データ受信",
+                tables: "比較表",
+                contacts: "匿名連絡先",
+                welcome1: "> 空監視システム初期化",
+                welcome2: "> リアルデータ - 航空交通 - ビデオ - オーディオ", 
+                welcome3: "> 翻訳は JAVASCRIPT を有効にした場合のみ機能します",
+                system: "オペレーティングシステム",
+                reception: "データ受信",
+                secure: "安全な接続",
+                onion_service: "オニオンサービス",
+                contact: "連絡先: professor.grandi@protonmail.com",
+                donations: "XMR モネロ寄付:",
+                copyright: "(c) 2025 - SKYTRUTH プロジェクト - リアル文書 - 匿名研究 - データにおける真実 - 理論ではなく事実"
+            },
+            ar: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "مراقبة حركة الطيران الحقيقية",
+                home: "الرئيسية",
+                links: "الروابط",
+                videos: "تسجيلات الفيديو", 
+                data: "استقبال البيانات",
+                tables: "الجداول المقارنة",
+                contacts: "جهات اتصال مجهولة",
+                welcome1: "> تهيئة نظام مراقبة السماء",
+                welcome2: "> بيانات حقيقية - حركة الطيران - فيديو - صوت", 
+                welcome3: "> الترجمة تعمل فقط إذا قمت بتشغيل JAVASCRIPT",
+                system: "نظام التشغيل",
+                reception: "استقبال البيانات",
+                secure: "اتصال آمن",
+                onion_service: "خدمة ONION",
+                contact: "الاتصال: professor.grandi@protonmail.com",
+                donations: "تبرعات XMR MONERO:",
+                copyright: "(c) 2025 - مشروع SKYTRUTH - وثائق حقيقية - بحث مجهول - الحقيقة في البيانات - ليست نظريات بل حقائق"
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Aggiorna l'attributo lang della pagina
+            document.documentElement.lang = lang;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+{
+  "id": "comparazione_session_1767272070",
+  "timestamp": "2026-01-01 13:55:23",
+  "tabella_originale": "session_1767272070",
+  "dati_reali": {
+    "id": "session_1767272070",
+    "timestamp": "2026-01-01 13:54:30",
+    "aircraft_count": 4,
+    "message_count": 4,
+    "signal_quality": "🟢 MEDIA",
+    "signal_level": 65,
+    "avg_altitude": 32412,
+    "avg_speed": 409.0,
+    "top_airline": "4d2215",
+    "aircraft_details": {
+      "4d2215": {
+        "flight": "RYR134D",
+        "type": "",
+        "altitude": 24675,
+        "speed": 409.5,
+        "lat": 40.717667,
+        "lon": 15.821411,
+        "airline": "4d2215"
+      },
+      "7100ad": {
+        "flight": "SVA207",
+        "type": "",
+        "altitude": 35975,
+        "speed": 410.2,
+        "lat": 40.533313,
+        "lon": 15.80221,
+        "airline": "7100ad"
+      },
+      "4bb210": {
+        "flight": "THY8NR",
+        "type": "",
+        "altitude": 32000,
+        "speed": 0,
+        "lat": 40.794525,
+        "lon": 15.595947,
+        "airline": "4bb210"
+      },
+      "4bab27": {
+        "flight": "THY1SQ",
+        "type": "",
+        "altitude": 37000,
+        "speed": 0,
+        "lat": 40.652161,
+        "lon": 15.559762,
+        "airline": "4bab27"
+      }
+    },
+    "duration": "VARIABILE",
+    "file_size": "1.0 MB",
+    "audio_file": "audio/recording_1767272070_adsb_messages.txt",
+    "fonte": "ARCHIVIO VOLI"
+  },
+  "dati_flightradar": {
+    "timestamp": "2026-01-01 13:54:30",
+    "total_aircraft": 1,
+    "visible_aircraft": [
+      {
+        "icao": "aircraft",
+        "lat": 0,
+        "lon": 0,
+        "altitude": 0,
+        "speed": 0,
+        "flight": "N/A",
+        "type": "N/A",
+        "airline": "UNK",
+        "visible": true
+      }
+    ],
+    "hidden_aircraft": 0,
+    "source": "Flight Radar 24 (API Reale)"
+  },
+  "differenze": {
+    "aerei_reali_totali": 4,
+    "aerei_fr_totali": 1,
+    "aerei_mancanti_fr": 4,
+    "aerei_extra_fr": 1,
+    "discrepanza_percentuale": 100.0,
+    "aerei_mancanti_lista": [
+      "4bab27",
+      "4bb210",
+      "7100ad",
+      "4d2215"
+    ],
+    "aerei_extra_lista": [
+      "aircraft"
+    ]
+  },
+  "grafico_differenze": "\n    📊 GRAFICO DIFFERENZE:\n    \n    AEREI RILEVATI: ████████████████     4 aerei\n    FLIGHT RADAR:   ████                 1 aerei\n    \n    ⚠️  AEREI NASCOSTI: 4 (100.0%)\n    🔍 DISCREPANZA: 100.0%\n    ",
+  "note_analisi": [
+    "⚠️  4 aerei reali non presenti su Flight Radar",
+    "🔍 ICAO mancanti: 4bab27, 4bb210, 7100ad, 4d2215",
+    "🔎 1 aerei su Flight Radar non rilevati da noi",
+    "🚨 ALTA DISCREPANZA: Oltre il 30% di aerei nascosti"
+  ]
+}

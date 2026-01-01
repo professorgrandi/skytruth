@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>Contatti Anonimi - SkyTruth</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SkyTruth - Contatti anonimi e sicuri per segnalazioni su scie chimiche e traffico aereo">
+    <meta name="keywords" content="skytruth, contatti anonimi, protonmail, onion chat, pgp, sicurezza, anonimato">
+    <meta name="robots" content="index, follow">
+
+    <!-- Onion Service Metadata -->
+    <meta name="onion-location" content="http://64chdrfe7bonndpbgyzizxelgkyk37fufwzltpkivwyivcv2md5j4byd.onion">
+    <link rel="canonical" href="http://64chdrfe7bonndpbgyzizxelgkyk37fufwzltpkivwyivcv2md5j4byd.onion">
+
+    <!-- Meta multilingua -->
+    <meta name="keywords" lang="it" content="contatti anonimi, protonmail, onion chat, pgp, sicurezza, anonimato, segnalazioni">
+    <meta name="keywords" lang="en" content="anonymous contacts, protonmail, onion chat, pgp, security, anonymity, reports">
+    <meta name="keywords" lang="es" content="contactos anónimos, protonmail, onion chat, pgp, seguridad, anonimato, informes">
+    <meta name="keywords" lang="fr" content="contacts anonymes, protonmail, onion chat, pgp, sécurité, anonymat, signalements">
+    <meta name="keywords" lang="de" content="anonyme Kontakte, protonmail, onion chat, pgp, Sicherheit, Anonymität, Meldungen">
+    <meta name="keywords" lang="ru" content="анонимные контакты, protonmail, onion chat, pgp, безопасность, анонимность, отчеты">
+    <meta name="keywords" lang="pt" content="contactos anónimos, protonmail, onion chat, pgp, segurança, anonimato, relatórios">
+    <meta name="keywords" lang="cn" content="匿名联系人, protonmail, onion chat, pgp, 安全, 匿名, 报告">
+    <meta name="keywords" lang="jp" content="匿名連絡先, protonmail, onion chat, pgp, セキュリティ, 匿名性, 報告">
+    <meta name="keywords" lang="ar" content="جهات اتصال مجهولة, protonmail, onion chat, pgp, أمان, مجهولية, تقارير">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body { 
+            font-family: 'Courier New', monospace; 
+            background: #000000;
+            color: #00ff00;
+            margin: 0;
+            padding: 15px;
+            line-height: 1.4;
+        }
+        
+        .terminal {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #00ff00;
+            padding: 15px;
+            position: relative;
+            min-height: 80vh;
+        }
+        
+        .header { 
+            text-align: center; 
+            border-bottom: 1px solid #00ff00;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .site-title {
+            font-size: clamp(20px, 5vw, 32px);
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
+            margin: 10px 0;
+            font-weight: bold;
+            word-break: break-word;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+        
+        .onion-badge {
+            background: #ff6600;
+            color: #000000;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: clamp(11px, 2.5vw, 14px);
+            font-weight: bold;
+            margin: 5px 0;
+            display: inline-block;
+        }
+        
+        .language-flags {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .language-flags span {
+            font-size: clamp(14px, 3vw, 18px);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .language-flags span:hover {
+            transform: scale(1.2);
+        }
+        
+        .subtitle {
+            color: #00ffff;
+            font-size: clamp(12px, 2.5vw, 16px);
+            margin: 8px 0;
+            word-break: break-word;
+        }
+        
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .menu a {
+            color: #00ff00;
+            text-decoration: none;
+            border: 1px solid #00ff00;
+            padding: 5px 10px;
+            font-size: clamp(10px, 2vw, 13px);
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+        
+        .menu a:hover {
+            background: #00ff00;
+            color: #000000;
+        }
+        
+        .content {
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        
+        .prompt {
+            color: #00ff00;
+            margin: 5px 0;
+            word-break: break-word;
+        }
+        
+        .contact-form {
+            background: #001100;
+            border: 1px solid #00ff00;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            color: #00ffff;
+            font-size: clamp(12px, 2vw, 14px);
+        }
+        
+        .form-input, .form-textarea {
+            width: 100%;
+            background: #000000;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            padding: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: clamp(12px, 2vw, 14px);
+        }
+        
+        .form-textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .form-submit {
+            background: #000000;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-size: clamp(12px, 2vw, 14px);
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .form-submit:hover {
+            background: #00ff00;
+            color: #000000;
+        }
+        
+        .warning {
+            color: #ff6600;
+            font-weight: bold;
+            background: #220000;
+            padding: 10px;
+            border: 1px solid #ff6600;
+            margin: 15px 0;
+            font-size: clamp(12px, 2vw, 14px);
+        }
+        
+        .contact-method {
+            background: #001100;
+            border: 1px solid #00ff00;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .footer {
+            text-align: center;
+            border-top: 1px solid #00ff00;
+            padding-top: 15px;
+            margin-top: 30px;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+        
+        .counter {
+            color: #ff6600;
+            font-weight: bold;
+            font-size: clamp(12px, 2.5vw, 14px);
+            margin: 10px 0;
+        }
+        
+        .contact {
+            color: #00ffff;
+            margin: 5px 0;
+            font-size: clamp(11px, 2vw, 13px);
+        }
+        
+        .copyright {
+            color: #888;
+            font-size: clamp(10px, 1.8vw, 12px);
+            margin-top: 10px;
+            line-height: 1.3;
+        }
+        
+        .onion-address {
+            font-size: clamp(10px, 2vw, 12px);
+            word-break: break-all;
+            margin: 10px 0;
+            padding: 5px;
+            border: 1px solid #00ff00;
+        }
+        
+        .security-note {
+            background: #002200;
+            border: 1px solid #00ffff;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: clamp(11px, 2vw, 13px);
+        }
+        
+        .blink {
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        @media (min-width: 768px) {
+            .form-submit {
+                width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <div class="header">
+            <div class="site-title" data-translate="title">SKYTRUTH TERMINAL</div>
+            <div class="header-top">
+                <div class="onion-badge" data-translate="onion_service">🧅 ONION SERVICE</div>
+                <div class="language-flags">
+                    <span onclick="changeLanguage('it')" title="Italiano">🇮🇹</span>
+                    <span onclick="changeLanguage('ru')" title="Russian">🇷🇺</span>
+                    <span onclick="changeLanguage('cn')" title="Chinese">🇨🇳</span>
+                    <span onclick="changeLanguage('pt')" title="Portuguese">🇵🇹</span>
+                    <span onclick="changeLanguage('jp')" title="Japanese">🇯🇵</span>
+                    <span onclick="changeLanguage('ar')" title="Arabic">🇸🇦</span>
+                    <span onclick="changeLanguage('fr')" title="French">🇫🇷</span>
+                    <span onclick="changeLanguage('de')" title="German">🇩🇪</span>
+                    <span onclick="changeLanguage('es')" title="Spanish">🇪🇸</span>
+                    <span onclick="changeLanguage('en')" title="English">🇺🇸</span>
+                </div>
+            </div>
+            <div class="subtitle" data-translate="subtitle">CONTATTI ANONIMI E SICURI</div>
+            <div class="menu">
+                <a href="index.html" data-translate="home">CASA</a>
+                <a href="collegamenti.html" data-translate="links">COLLEGAMENTI</a>
+                <a href="registrazioni_video.html" data-translate="videos">REGISTRAZIONI VIDEO</a>
+                <a href="ricezione_dati.html" data-translate="data">RICEZIONE DATI</a>
+                <a href="tabelle_comparative.html" data-translate="tables">TABELLE COMPARATIVE</a>
+                <a href="contatti_anonimi.html" data-translate="contacts">CONTATTI ANONIMI</a>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="prompt" style="text-align: center">root@skytruth:~# secure_contact.sh</div>
+	    <div data-translate="welcome" style="text-align: center">> LE TRADUZIONI FUNZIONANO SOLO SE ATTIVI JAVASCRIPT</div>
+            <br>            
+            <div class="warning" data-translate="warning">
+                ⚠️ IMPORTANTE: Per comunicazioni SENSIBILI usa SOLO ProtonMail o Onion Chat
+            </div>
+
+            <div class="contact-method">
+                <div class="prompt" data-translate="protonmail_title">🔐 PROTONMAIL (RACCOMANDATO):</div>
+                <div style="font-size: clamp(14px, 3vw, 18px); color: #00ffff; margin: 10px 0;">professor.grandi@protonmail.com</div>
+                <div data-translate="protonmail_desc1">→ Crittografia end-to-end | → Massima sicurezza</div>
+                <div data-translate="protonmail_desc2">→ Nessun log IP | → Comunicazione cifrata</div>
+            </div>
+
+            <h3 data-translate="quick_message">📧 INVIO MESSAGGIO RAPIDO:</h3>
+            <div class="security-note">
+                🔒 <strong data-translate="security_title">SICUREZZA:</strong> <span data-translate="security_desc">Questo form pulisce il testo da codice malevolo prima dell'invio.</span>
+            </div>
+            
+            <div class="contact-form">
+                <form id="secureForm">
+                    <div class="form-group">
+                        <label class="form-label" data-translate="name_label">NOME (opzionale - usa pseudonimo):</label>
+                        <input type="text" class="form-input" name="name" data-translate="name_placeholder" placeholder="Inserisci nome o pseudonimo...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" data-translate="email_label">EMAIL (opzionale - per risposta):</label>
+                        <input type="text" class="form-input" name="email" data-translate="email_placeholder" placeholder="Inserisci email...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" data-translate="message_label">MESSAGGIO *:</label>
+                        <textarea class="form-textarea" name="message" data-translate="message_placeholder" placeholder="Scrivi il tuo messaggio qui...
+
+Per segnalazioni importanti includi:
+- Data e ora osservazione
+- Località 
+- Tipo di aeromobile
+- Altri dettagli rilevanti" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="form-submit" data-translate="send_button">🚀 INVIA MESSAGGIO SICURO</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="contact-method">
+                <div class="prompt" data-translate="onion_title">🧅 ONION CHAT (massima anonymity):</div>
+                <div style="color: #00ffff; margin: 5px 0; font-size: clamp(12px, 2vw, 14px);">http://skytruthchat.onion</div>
+                <div data-translate="onion_desc1">→ Comunicazione completamente anonima</div>
+                <div data-translate="onion_desc2">→ Nessuna registrazione richiesta</div>
+            </div>
+            
+            <div class="contact-method">
+                <div class="prompt" data-translate="pgp_title">📡 PGP KEY (verifica identità):</div>
+                <div style="font-family: monospace; color: #ffff00; margin: 5px 0; font-size: clamp(10px, 2vw, 12px); word-break: break-all;">Fingerprint: 1A2B 3C4D 5E6F 7890 ABCD EF12 3456 7890 1234</div>
+                <div data-translate="pgp_desc1">→ Usa per verifica crittografica dell'identità</div>
+                <div data-translate="pgp_desc2">→ Disponibile su keyserver pubblici</div>
+            </div>
+
+            <div class="security-note">
+                💡 <strong data-translate="tips_title">CONSIGLI SICUREZZA:</strong> 
+                <span data-translate="tips_desc">Per massima privacy usa Tor Browser + ProtonMail. Non condividere informazioni personali sensibili.</span>
+            </div>
+
+            <br>
+            <div class="prompt" style="text-align: center">root@skytruth:~# <span class="blink">_</span></div>
+        </div>
+
+        <div class="footer">
+            <div class="contact" data-translate="contact">CONTATTO: professor.grandi@protonmail.com</div>
+            <div class="counter" data-translate="donations">DONAZIONI XMR MONERO:</div>
+            <div class="onion-badge">45QW5EeHKzjFhwhhjB6byJdSXd7ZUR4FgELHGz1e4Mt5M3Yt6TSiXzaEHdcEeneWVX3FtCpdvt4toge3aqCvrihf38SSVGv</div>
+            <br>
+            <div class="copyright" data-translate="copyright">(c) 2025 - PROGETTO SKYTRUTH - DOCUMENTI VERI - RICERCA ANONIMA - VERITÀ NEI DATI - NON TEORIE MA FATTI</div>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            it: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "CONTATTI ANONIMI E SICURI",
+                home: "CASA",
+                links: "COLLEGAMENTI", 
+                videos: "REGISTRAZIONI VIDEO",
+                data: "RICEZIONE DATI",
+                tables: "TABELLE COMPARATIVE",
+                contacts: "CONTATTI ANONIMI",
+                onion_service: "🧅 ONION SERVICE",
+                warning: "⚠️ IMPORTANTE: Per comunicazioni SENSIBILI usa SOLO ProtonMail o Onion Chat",
+                protonmail_title: "🔐 PROTONMAIL (RACCOMANDATO):",
+                protonmail_desc1: "→ Crittografia end-to-end | → Massima sicurezza",
+                protonmail_desc2: "→ Nessun log IP | → Comunicazione cifrata",
+                quick_message: "📧 INVIO MESSAGGIO RAPIDO:",
+                security_title: "SICUREZZA:",
+                security_desc: "Questo form pulisce il testo da codice malevolo prima dell'invio.",
+                name_label: "NOME (opzionale - usa pseudonimo):",
+                name_placeholder: "Inserisci nome o pseudonimo...",
+                email_label: "EMAIL (opzionale - per risposta):",
+                email_placeholder: "Inserisci email...",
+                message_label: "MESSAGGIO *:",
+                message_placeholder: "Scrivi il tuo messaggio qui...\n\nPer segnalazioni importanti includi:\n- Data e ora osservazione\n- Località \n- Tipo di aeromobile\n- Altri dettagli rilevanti",
+                send_button: "🚀 INVIA MESSAGGIO SICURO",
+                onion_title: "🧅 ONION CHAT (massima anonymity):",
+                onion_desc1: "→ Comunicazione completamente anonima",
+                onion_desc2: "→ Nessuna registrazione richiesta",
+                pgp_title: "📡 PGP KEY (verifica identità):",
+                pgp_desc1: "→ Usa per verifica crittografica dell'identità",
+                pgp_desc2: "→ Disponibile su keyserver pubblici",
+                tips_title: "CONSIGLI SICUREZZA:",
+                tips_desc: "Per massima privacy usa Tor Browser + ProtonMail. Non condividere informazioni personali sensibili.",
+                contact: "CONTATTO: professor.grandi@protonmail.com",
+                donations: "DONAZIONI XMR MONERO:",
+                welcome: "> LE TRADUZIONI FUNZIONANO SOLO SE ATTIVI JAVASCRIPT", 
+                copyright: "(c) 2025 - PROGETTO SKYTRUTH - DOCUMENTI VERI - RICERCA ANONIMA - VERITÀ NEI DATI - NON TEORIE MA FATTI"
+            },
+            en: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "ANONYMOUS AND SECURE CONTACTS",
+                home: "HOME",
+                links: "LINKS",
+                videos: "VIDEO RECORDINGS", 
+                data: "DATA RECEPTION",
+                tables: "COMPARATIVE TABLES",
+                contacts: "ANONYMOUS CONTACTS",
+                onion_service: "🧅 ONION SERVICE",
+                warning: "⚠️ IMPORTANT: For SENSITIVE communications use ONLY ProtonMail or Onion Chat",
+                protonmail_title: "🔐 PROTONMAIL (RECOMMENDED):",
+                protonmail_desc1: "→ End-to-end encryption | → Maximum security",
+                protonmail_desc2: "→ No IP logs | → Encrypted communication",
+                quick_message: "📧 QUICK MESSAGE SENDING:",
+                security_title: "SECURITY:",
+                security_desc: "This form cleans text from malicious code before sending.",
+                name_label: "NAME (optional - use pseudonym):",
+                name_placeholder: "Enter name or pseudonym...",
+                email_label: "EMAIL (optional - for reply):",
+                email_placeholder: "Enter email...",
+                message_label: "MESSAGE *:",
+                message_placeholder: "Write your message here...\n\nFor important reports include:\n- Date and time of observation\n- Location \n- Aircraft type\n- Other relevant details",
+                send_button: "🚀 SEND SECURE MESSAGE",
+                onion_title: "🧅 ONION CHAT (maximum anonymity):",
+                onion_desc1: "→ Completely anonymous communication",
+                onion_desc2: "→ No registration required",
+                pgp_title: "📡 PGP KEY (identity verification):",
+                pgp_desc1: "→ Use for cryptographic identity verification",
+                pgp_desc2: "→ Available on public keyservers",
+                tips_title: "SECURITY TIPS:",
+                tips_desc: "For maximum privacy use Tor Browser + ProtonMail. Do not share sensitive personal information.",
+                contact: "CONTACT: professor.grandi@protonmail.com",
+                donations: "XMR MONERO DONATIONS:",
+                welcome: "> TRANSLATIONS ONLY WORK IF YOU ENABLE JAVASCRIPT", 
+                copyright: "(c) 2025 - SKYTRUTH PROJECT - REAL DOCUMENTS - ANONYMOUS RESEARCH - TRUTH IN DATA - NOT THEORIES BUT FACTS"
+            },
+            es: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "CONTACTOS ANÓNIMOS Y SEGUROS",
+                home: "INICIO",
+                links: "ENLACES",
+                videos: "GRABACIONES DE VIDEO", 
+                data: "RECEPCIÓN DE DATOS",
+                tables: "TABLAS COMPARATIVAS",
+                contacts: "CONTACTOS ANÓNIMOS",
+                warning: "⚠️ IMPORTANTE: Para comunicaciones SENSIBLES usa SOLO ProtonMail o Onion Chat",
+                protonmail_title: "🔐 PROTONMAIL (RECOMENDADO):",
+                protonmail_desc1: "→ Cifrado extremo a extremo | → Máxima seguridad",
+                protonmail_desc2: "→ Sin registros de IP | → Comunicación cifrada",
+                quick_message: "📧 ENVÍO RÁPIDO DE MENSAJES:",
+                security_title: "SEGURIDAD:",
+                security_desc: "Este formulario limpia el texto de código malicioso antes del envío.",
+                name_label: "NOMBRE (opcional - usa pseudónimo):",
+                name_placeholder: "Ingresa nombre o pseudónimo...",
+                email_label: "EMAIL (opcional - para respuesta):",
+                email_placeholder: "Ingresa email...",
+                message_label: "MENSAJE *:",
+                message_placeholder: "Escribe tu mensaje aquí...\n\nPara informes importantes incluye:\n- Fecha y hora de observación\n- Ubicación \n- Tipo de aeronave\n- Otros detalles relevantes",
+                send_button: "🚀 ENVIAR MENSAJE SEGURO",
+                onion_title: "🧅 ONION CHAT (máximo anonimato):",
+                onion_desc1: "→ Comunicación completamente anónima",
+                onion_desc2: "→ No se requiere registro",
+                pgp_title: "📡 CLAVE PGP (verificación de identidad):",
+                pgp_desc1: "→ Usa para verificación criptográfica de identidad",
+                pgp_desc2: "→ Disponible en keyservers públicos",
+                tips_title: "CONSEJOS DE SEGURIDAD:",
+                tips_desc: "Para máxima privacidad usa Tor Browser + ProtonMail. No compartas información personal sensible.",
+                contact: "CONTACTO: professor.grandi@protonmail.com",
+                donations: "DONACIONES XMR MONERO:",
+                welcome: "> LAS TRADUCCIONES SOLO FUNCIONAN SI ACTIVAS JAVASCRIPT", 
+                copyright: "(c) 2025 - PROYECTO SKYTRUTH - DOCUMENTOS REALES - INVESTIGACIÓN ANÓNIMA - VERDAD EN DATOS - NO TEORÍAS SINO HECHOS"
+            },
+            fr: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "CONTACTS ANONYMES ET SÉCURISÉS",
+                home: "ACCUEIL",
+                links: "LIENS",
+                videos: "ENREGISTREMENTS VIDÉO", 
+                data: "RÉCEPTION DES DONNÉES",
+                tables: "TABLEAUX COMPARATIFS",
+                contacts: "CONTACTS ANONYMES",
+                onion_service: "🧅 SERVICE ONION",
+                warning: "⚠️ IMPORTANT: Pour les communications SENSIBLES utilisez UNIQUEMENT ProtonMail ou Onion Chat",
+                protonmail_title: "🔐 PROTONMAIL (RECOMMANDÉ):",
+                protonmail_desc1: "→ Chiffrement de bout en bout | → Sécurité maximale",
+                protonmail_desc2: "→ Aucun journal IP | → Communication chiffrée",
+                quick_message: "📧 ENVOI RAPIDE DE MESSAGE:",
+                security_title: "SÉCURITÉ:",
+                security_desc: "Ce formulaire nettoie le texte du code malveillant avant l'envoi.",
+                name_label: "NOM (optionnel - utilisez un pseudonyme):",
+                name_placeholder: "Entrez nom ou pseudonyme...",
+                email_label: "EMAIL (optionnel - pour réponse):",
+                email_placeholder: "Entrez email...",
+                message_label: "MESSAGE *:",
+                message_placeholder: "Écrivez votre message ici...\n\nPour les rapports importants incluez:\n- Date et heure d'observation\n- Localisation \n- Type d'aéronef\n- Autres détails pertinents",
+                send_button: "🚀 ENVOYER MESSAGE SÉCURISÉ",
+                onion_title: "🧅 ONION CHAT (anonymat maximum):",
+                onion_desc1: "→ Communication complètement anonyme",
+                onion_desc2: "→ Aucune inscription requise",
+                pgp_title: "📡 CLÉ PGP (vérification d'identité):",
+                pgp_desc1: "→ Utilisez pour la vérification cryptographique de l'identité",
+                pgp_desc2: "→ Disponible sur les keyservers publics",
+                tips_title: "CONSEILS DE SÉCURITÉ:",
+                tips_desc: "Pour une confidentialité maximale, utilisez Tor Browser + ProtonMail. Ne partagez pas d'informations personnelles sensibles.",
+                contact: "CONTACT: professor.grandi@protonmail.com",
+                donations: "DONS XMR MONERO:",
+                welcome: "> LES TRADUCTIONS FONCTIONNENT SEULEMENT SI VOUS ACTIVEZ JAVASCRIPT", 
+                copyright: "(c) 2025 - PROJET SKYTRUTH - DOCUMENTS RÉELS - RECHERCHE ANONYME - VÉRITÉ DANS LES DONNÉES - PAS DE THÉORIES MAIS DES FAITS"
+            },
+            de: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "ANONYMEN UND SICHERE KONTAKTE",
+                home: "STARTSEITE",
+                links: "VERBINDUNGEN",
+                videos: "VIDEOAUFNAHMEN", 
+                data: "DATENEMPFANG",
+                tables: "VERGLEICHTABELLEN",
+                contacts: "ANONYME KONTAKTE",
+                onion_service: "🧅 ONION SERVICE",
+                warning: "⚠️ WICHTIG: Für SENSIBLE Kommunikation NUR ProtonMail oder Onion Chat verwenden",
+                protonmail_title: "🔐 PROTONMAIL (EMPFOHLEN):",
+                protonmail_desc1: "→ Ende-zu-Ende-Verschlüsselung | → Maximale Sicherheit",
+                protonmail_desc2: "→ Keine IP-Protokolle | → Verschlüsselte Kommunikation",
+                quick_message: "📧 SCHNELLE NACHRICHTENSENDUNG:",
+                security_title: "SICHERHEIT:",
+                security_desc: "Dieses Formular bereinigt Text von bösartigem Code vor dem Senden.",
+                name_label: "NAME (optional - Pseudonym verwenden):",
+                name_placeholder: "Namen oder Pseudonym eingeben...",
+                email_label: "EMAIL (optional - für Antwort):",
+                email_placeholder: "Email eingeben...",
+                message_label: "NACHRICHT *:",
+                message_placeholder: "Schreiben Sie Ihre Nachricht hier...\n\nFür wichtige Meldungen einschließen:\n- Datum und Uhrzeit der Beobachtung\n- Standort \n- Flugzeugtyp\n- Andere relevante Details",
+                send_button: "🚀 SICHERE NACHRICHT SENDEN",
+                onion_title: "🧅 ONION CHAT (maximale Anonymität):",
+                onion_desc1: "→ Vollständig anonyme Kommunikation",
+                onion_desc2: "→ Keine Registrierung erforderlich",
+                pgp_title: "📡 PGP SCHLÜSSEL (Identitätsüberprüfung):",
+                pgp_desc1: "→ Verwenden Sie zur kryptografischen Identitätsüberprüfung",
+                pgp_desc2: "→ Verfügbar auf öffentlichen Keyservern",
+                tips_title: "SICHERHEITSTIPPS:",
+                tips_desc: "Für maximale Privatsphäre verwenden Sie Tor Browser + ProtonMail. Teilen Sie keine sensiblen persönlichen Informationen.",
+                contact: "KONTAKT: professor.grandi@protonmail.com",
+                donations: "SPENDEN XMR MONERO:",
+                welcome: "> ÜBERSETZUNGEN FUNKTIONIEREN NUR WENN JAVASCRIPT AKTIVIERT IST",
+                copyright: "(c) 2025 - SKYTRUTH PROJEKT - ECHTE DOKUMENTE - ANONYME FORSCHUNG - WAHRHEIT IN DATEN - KEINE THEORIEN SONDERN FAKTEN"
+            },
+            ru: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "АНОНИМНЫЕ И БЕЗОПАСНЫЕ КОНТАКТЫ",
+                home: "ГЛАВНАЯ",
+                links: "ССЫЛКИ",
+                videos: "ВИДЕОЗАПИСИ", 
+                data: "ПРИЕМ ДАННЫХ",
+                tables: "СРАВНИТЕЛЬНЫЕ ТАБЛИЦЫ",
+                contacts: "АНОНИМНЫЕ КОНТАКТЫ",
+                onion_service: "🧅 ONION СЕРВИС",
+                warning: "⚠️ ВАЖНО: Для ЧУВСТВИТЕЛЬНЫХ сообщений используйте ТОЛЬКО ProtonMail или Onion Chat",
+                protonmail_title: "🔐 PROTONMAIL (РЕКОМЕНДУЕТСЯ):",
+                protonmail_desc1: "→ Сквозное шифрование | → Максимальная безопасность",
+                protonmail_desc2: "→ Без логирования IP | → Зашифрованная связь",
+                quick_message: "📧 БЫСТРАЯ ОТПРАВКА СООБЩЕНИЙ:",
+                security_title: "БЕЗОПАСНОСТЬ:",
+                security_desc: "Эта форма очищает текст от вредоносного кода перед отправкой.",
+                name_label: "ИМЯ (опционально - используйте псевдоним):",
+                name_placeholder: "Введите имя или псевдоним...",
+                email_label: "EMAIL (опционально - для ответа):",
+                email_placeholder: "Введите email...",
+                message_label: "СООБЩЕНИЕ *:",
+                message_placeholder: "Напишите ваше сообщение здесь...\n\nДля важных отчетов включите:\n- Дата и время наблюдения\n- Местоположение \n- Тип самолета\n- Другие relevantные детали",
+                send_button: "🚀 ОТПРАВИТЬ БЕЗОПАСНОЕ СООБЩЕНИЕ",
+                onion_title: "🧅 ONION CHAT (максимальная анонимность):",
+                onion_desc1: "→ Полностью анонимное общение",
+                onion_desc2: "→ Регистрация не требуется",
+                pgp_title: "📡 PGP КЛЮЧ (проверка личности):",
+                pgp_desc1: "→ Используйте для криптографической проверки личности",
+                pgp_desc2: "→ Доступно на публичных keyservers",
+                tips_title: "СОВЕТЫ ПО БЕЗОПАСНОСТИ:",
+                tips_desc: "Для максимальной конфиденциальности используйте Tor Browser + ProtonMail. Не делитесь конфиденциальной личной информацией.",
+                contact: "КОНТАКТ: professor.grandi@protonmail.com",
+                donations: "ПОЖЕРТВОВАНИЯ XMR MONERO:",
+                welcome: "> ПЕРЕВОДЫ РАБОТАЮТ ТОЛЬКО ЕСЛИ ВКЛЮЧЕН JAVASCRIPT", 
+                copyright: "(c) 2025 - ПРОЕКТ SKYTRUTH - РЕАЛЬНЫЕ ДОКУМЕНТЫ - АНОНИМНЫЕ ИССЛЕДОВАНИЯ - ПРАВДА В ДАННЫХ - НЕ ТЕОРИИ, А ФАКТЫ"
+            },
+            pt: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "CONTACTOS ANÓNIMOS E SEGUROS",
+                home: "INÍCIO",
+                links: "LIGAÇÕES",
+                videos: "GRAVAÇÕES DE VÍDEO", 
+                data: "RECEPÇÃO DE DADOS",
+                tables: "TABELAS COMPARATIVAS",
+                contacts: "CONTACTOS ANÓNIMOS",
+                onion_service: "🧅 SERVIÇO ONION",
+                warning: "⚠️ IMPORTANTE: Para comunicações SENSÍVEIS usa APENAS ProtonMail ou Onion Chat",
+                protonmail_title: "🔐 PROTONMAIL (RECOMENDADO):",
+                protonmail_desc1: "→ Criptografia ponta a ponta | → Segurança máxima",
+                protonmail_desc2: "→ Sem registos de IP | → Comunicação cifrada",
+                quick_message: "📧 ENVIO RÁPIDO DE MENSAGEM:",
+                security_title: "SEGURANÇA:",
+                security_desc: "Este formulário limpa o texto de código malicioso antes do envio.",
+                name_label: "NOME (opcional - usa pseudónimo):",
+                name_placeholder: "Insira nome ou pseudónimo...",
+                email_label: "EMAIL (opcional - para resposta):",
+                email_placeholder: "Insira email...",
+                message_label: "MENSAGEM *:",
+                message_placeholder: "Escreva sua mensagem aqui...\n\nPara relatórios importantes inclua:\n- Data e hora da observação\n- Localização \n- Tipo de aeronave\n- Outros detalhes relevantes",
+                send_button: "🚀 ENVIAR MENSAGEM SEGURA",
+                onion_title: "🧅 ONION CHAT (máximo anonimato):",
+                onion_desc1: "→ Comunicação completamente anónima",
+                onion_desc2: "→ Nenhum registo necessário",
+                pgp_title: "📡 CHAVE PGP (verificação de identidade):",
+                pgp_desc1: "→ Usa para verificação criptográfica da identidade",
+                pgp_desc2: "→ Disponível em keyservers públicos",
+                tips_title: "CONSELHOS DE SEGURANÇA:",
+                tips_desc: "Para máxima privacidade usa Tor Browser + ProtonMail. Não partilhes informações pessoais sensíveis.",
+                contact: "CONTACTO: professor.grandi@protonmail.com",
+                donations: "DOAÇÕES XMR MONERO:",
+                welcome: "> AS TRADUÇÕES SÓ FUNCIONAM SE ATIVAR O JAVASCRIPT",
+                copyright: "(c) 2025 - PROJETO SKYTRUTH - DOCUMENTOS REAIS - PESQUISA ANÓNIMA - VERDADE NOS DADOS - NÃO TEORIAS MAS FACTOS"
+            },
+            cn: {
+                title: "SKYTRUTH 终端",
+                subtitle: "匿名和安全联系人",
+                home: "首页",
+                links: "链接",
+                videos: "视频录制", 
+                data: "数据接收",
+                tables: "比较表格",
+                contacts: "匿名联系",
+                onion_service: "🧅 ONION 服务",
+                warning: "⚠️ 重要: 对于敏感通信仅使用 ProtonMail 或 Onion Chat",
+                protonmail_title: "🔐 PROTONMAIL (推荐):",
+                protonmail_desc1: "→ 端到端加密 | → 最高安全性",
+                protonmail_desc2: "→ 无IP日志 | → 加密通信",
+                quick_message: "📧 快速消息发送:",
+                security_title: "安全:",
+                security_desc: "此表单在发送前清除文本中的恶意代码。",
+                name_label: "姓名 (可选 - 使用假名):",
+                name_placeholder: "输入姓名或假名...",
+                email_label: "电子邮件 (可选 - 用于回复):",
+                email_placeholder: "输入电子邮件...",
+                message_label: "消息 *:",
+                message_placeholder: "在此处写下您的消息...\n\n重要报告包括:\n- 观察日期和时间\n- 地点 \n- 飞机类型\n- 其他相关细节",
+                send_button: "🚀 发送安全消息",
+                onion_title: "🧅 ONION CHAT (最大匿名性):",
+                onion_desc1: "→ 完全匿名通信",
+                onion_desc2: "→ 无需注册",
+                pgp_title: "📡 PGP 密钥 (身份验证):",
+                pgp_desc1: "→ 用于加密身份验证",
+                pgp_desc2: "→ 可在公共密钥服务器上获得",
+                tips_title: "安全提示:",
+                tips_desc: "为了最大隐私，请使用 Tor Browser + ProtonMail。不要共享敏感个人信息。",
+                contact: "联系人: professor.grandi@protonmail.com",
+                donations: "XMR MONERO 捐款:",
+                welcome: "> 翻译仅在启用 JAVASCRIPT 时有效",
+                copyright: "(c) 2025 - SKYTRUTH 项目 - 真实文件 - 匿名研究 - 数据中的真相 - 不是理论而是事实"
+            },
+            jp: {
+                title: "SKYTRUTH ターミナル",
+                subtitle: "匿名で安全な連絡先",
+                home: "ホーム",
+                links: "リンク",
+                videos: "ビデオ録画", 
+                data: "データ受信",
+                tables: "比較表",
+                contacts: "匿名連絡先",
+                onion_service: "🧅 オニオンサービス",
+                warning: "⚠️ 重要: 機密性の高い通信には ProtonMail または Onion Chat のみを使用してください",
+                protonmail_title: "🔐 PROTONMAIL (推奨):",
+                protonmail_desc1: "→ エンドツーエンド暗号化 | → 最高のセキュリティ",
+                protonmail_desc2: "→ IPログなし | → 暗号化通信",
+                quick_message: "📧 クイックメッセージ送信:",
+                security_title: "セキュリティ:",
+                security_desc: "このフォームは送信前に悪意のあるコードからテキストをクリーンアップします。",
+                name_label: "名前 (任意 - 偽名を使用):",
+                name_placeholder: "名前または偽名を入力...",
+                email_label: "メール (任意 - 返信用):",
+                email_placeholder: "メールを入力...",
+                message_label: "メッセージ *:",
+                message_placeholder: "ここにメッセージを書いてください...\n\n重要なレポートには以下を含めてください:\n- 観測日時\n- 場所 \n- 航空機タイプ\n- その他の関連詳細",
+                send_button: "🚀 安全なメッセージを送信",
+                onion_title: "🧅 ONION CHAT (最大匿名性):",
+                onion_desc1: "→ 完全に匿名の通信",
+                onion_desc2: "→ 登録不要",
+                pgp_title: "📡 PGP キー (本人確認):",
+                pgp_desc1: "→ 暗号化された本人確認に使用",
+                pgp_desc2: "→ 公開鍵サーバーで利用可能",
+                tips_title: "セキュリティのヒント:",
+                tips_desc: "最大のプライバシーのためには Tor Browser + ProtonMail を使用してください。機密の個人情報を共有しないでください。",
+                contact: "連絡先: professor.grandi@protonmail.com",
+                donations: "XMR モネロ寄付:",
+                welcome: "> 翻訳は JAVASCRIPT を有効にした場合のみ機能します",
+                copyright: "(c) 2025 - SKYTRUTH プロジェクト - リアル文書 - 匿名研究 - データにおける真実 - 理論ではなく事実"
+            },
+            ar: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "جهات اتصال مجهولة وآمنة",
+                home: "الرئيسية",
+                links: "الروابط",
+                videos: "تسجيلات الفيديو", 
+                data: "استقبال البيانات",
+                tables: "الجداول المقارنة",
+                contacts: "جهات اتصال مجهولة",
+                onion_service: "🧅 خدمة ONION",
+                warning: "⚠️ مهم: للاتصالات الحساسة استخدم ONLY ProtonMail أو Onion Chat",
+                protonmail_title: "🔐 PROTONMAIL (موصى به):",
+                protonmail_desc1: "→ تشفير من طرف إلى طرف | → أقصى درجات الأمان",
+                protonmail_desc2: "→ لا سجلات IP | → اتصال مشفر",
+                quick_message: "📧 إرسال رسالة سريع:",
+                security_title: "الأمان:",
+                security_desc: "هذا النموذج ينظف النص من الكود الضار قبل الإرسال.",
+                name_label: "الاسم (اختياري - استخدم اسم مستعار):",
+                name_placeholder: "أدخل الاسم أو الاسم المستعار...",
+                email_label: "البريد الإلكتروني (اختياري - للرد):",
+                email_placeholder: "أدخل البريد الإلكتروني...",
+                message_label: "الرسالة *:",
+                message_placeholder: "اكتب رسالتك هنا...\n\nللتقارير الهامة قم بتضمين:\n- تاريخ ووقت الملاحظة\n- الموقع \n- نوع الطائرة\n- تفاصيل أخرى ذات صلة",
+                send_button: "🚀 إرسال رسالة آمنة",
+                onion_title: "🧅 ONION CHAT (أقصى درجات المجهولية):",
+                onion_desc1: "→ اتصال مجهول تمامًا",
+                onion_desc2: "→ لا يلزم التسجيل",
+                pgp_title: "📡 مفتاح PGP (التحقق من الهوية):",
+                pgp_desc1: "→ استخدم للتحقق التشفيري من الهوية",
+                pgp_desc2: "→ متوفر على خوادم المفاتيح العامة",
+                tips_title: "نصائح الأمان:",
+                tips_desc: "للحصول على أقصى قدر من الخصوصية استخدم Tor Browser + ProtonMail. لا تشارك المعلومات الشخصية الحساسة.",
+                contact: "الاتصال: professor.grandi@protonmail.com",
+                donations: "تبرعات XMR MONERO:",
+                welcome: "> الترجمة تعمل فقط إذا قمت بتشغيل JAVASCRIPT",
+                copyright: "(c) 2025 - مشروع SKYTRUTH - وثائق حقيقية - بحث مجهول - الحقيقة في البيانات - ليست نظريات بل حقائق"
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.hasAttribute('placeholder')) {
+                        element.setAttribute('placeholder', translations[lang][key]);
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+            
+            // Aggiorna l'attributo lang della pagina
+            document.documentElement.lang = lang;
+        }
+
+        // Form di sicurezza - previene injection e pulisce il testo
+        document.getElementById('secureForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            let name = formData.get('name') || 'Anonimo';
+            let email = formData.get('email') || 'Non specificata';
+            let message = formData.get('message');
+            
+            // Pulizia avanzata del testo - rimuove qualsiasi potenziale codice malevolo
+            const cleanText = (text) => {
+                return text
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/'/g, '&#39;')
+                    .replace(/"/g, '&#34;')
+                    .replace(/\//g, '&#47;')
+                    .replace(/\\/g, '&#92;')
+                    .replace(/`/g, '&#96;')
+                    .replace(/\$/g, '&#36;')
+                    .replace(/{/g, '&#123;')
+                    .replace(/}/g, '&#125;')
+                    .replace(/\[/g, '&#91;')
+                    .replace(/\]/g, '&#93;')
+                    .replace(/\(/g, '&#40;')
+                    .replace(/\)/g, '&#41;')
+                    .replace(/javascript:/gi, '')
+                    .replace(/onclick/gi, '')
+                    .replace(/onload/gi, '')
+                    .replace(/onerror/gi, '')
+                    .replace(/<script/gi, '')
+                    .replace(/<\/script/gi, '');
+            };
+            
+            const cleanName = cleanText(name);
+            const cleanEmail = cleanText(email);
+            const cleanMessage = cleanText(message);
+            
+            // Prepara il link mailto sicuro
+            const subject = "Messaggio da SkyTruth Onion - " + new Date().toLocaleDateString();
+            const body = `Nome: ${cleanName}
+Email: ${cleanEmail}
+Data invio: ${new Date().toLocaleString()}
+
+Messaggio:
+${cleanMessage}
+
+---
+Inviato tramite SkyTruth Onion Service
+`;
+
+            const mailtoLink = `mailto:professor.grandi@protonmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            // Apre il client email
+            window.open(mailtoLink, '_blank');
+            
+            // Feedback all'utente
+            alert('✅ CLIENT EMAIL APERTO\n\nIl tuo messaggio è stato pulito e sicuro.\nCompleta l\'invio dal tuo client email.');
+            
+            // Resetta il form
+            this.reset();
+        });
+    </script>
+</body>
+</html>

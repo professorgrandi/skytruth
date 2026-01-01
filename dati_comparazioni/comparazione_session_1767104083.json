@@ -1,0 +1,80 @@
+{
+  "id": "comparazione_session_1767104083",
+  "timestamp": "2025-12-30 15:15:12",
+  "tabella_originale": "session_1767104083",
+  "dati_reali": {
+    "id": "session_1767104083",
+    "timestamp": "2025-12-30 15:14:43",
+    "aircraft_count": 2,
+    "message_count": 2,
+    "signal_quality": "🟡 MEDIO-BASSA",
+    "signal_level": 40,
+    "avg_altitude": 36000,
+    "avg_speed": 497.0,
+    "top_airline": "a90351",
+    "aircraft_details": {
+      "a90351": {
+        "flight": "N680BA",
+        "type": "",
+        "altitude": 27000,
+        "speed": 459.8,
+        "lat": 40.652207,
+        "lon": 15.97668,
+        "airline": "a90351"
+      },
+      "4d24cf": {
+        "flight": "FJO648",
+        "type": "",
+        "altitude": 45000,
+        "speed": 534.2,
+        "lat": 40.413208,
+        "lon": 15.923462,
+        "airline": "4d24cf"
+      }
+    },
+    "duration": "VARIABILE",
+    "file_size": "5.9 MB",
+    "audio_file": "audio/recording_1767104083_adsb_messages.txt",
+    "fonte": "ARCHIVIO VOLI"
+  },
+  "dati_flightradar": {
+    "timestamp": "2025-12-30 15:14:43",
+    "total_aircraft": 1,
+    "visible_aircraft": [
+      {
+        "icao": "aircraft",
+        "lat": 0,
+        "lon": 0,
+        "altitude": 0,
+        "speed": 0,
+        "flight": "N/A",
+        "type": "N/A",
+        "airline": "UNK",
+        "visible": true
+      }
+    ],
+    "hidden_aircraft": 0,
+    "source": "Flight Radar 24 (API Reale)"
+  },
+  "differenze": {
+    "aerei_reali_totali": 2,
+    "aerei_fr_totali": 1,
+    "aerei_mancanti_fr": 2,
+    "aerei_extra_fr": 1,
+    "discrepanza_percentuale": 100.0,
+    "aerei_mancanti_lista": [
+      "a90351",
+      "4d24cf"
+    ],
+    "aerei_extra_lista": [
+      "aircraft"
+    ]
+  },
+  "grafico_differenze": "\n    📊 GRAFICO DIFFERENZE:\n    \n    AEREI RILEVATI: █████████████        2 aerei\n    FLIGHT RADAR:   ██████               1 aerei\n    \n    ⚠️  AEREI NASCOSTI: 2 (100.0%)\n    🔍 DISCREPANZA: 100.0%\n    ",
+  "note_analisi": [
+    "⚠️  2 aerei reali non presenti su Flight Radar",
+    "🔍 ICAO mancanti: a90351, 4d24cf",
+    "🔎 1 aerei su Flight Radar non rilevati da noi",
+    "🚨 ALTA DISCREPANZA: Oltre il 30% di aerei nascosti"
+  ]
+}
