@@ -1,0 +1,70 @@
+{
+  "id": "comparazione_session_1767451011",
+  "timestamp": "2026-01-03 15:37:23",
+  "tabella_originale": "session_1767451011",
+  "dati_reali": {
+    "id": "session_1767451011",
+    "timestamp": "2026-01-03 15:36:51",
+    "aircraft_count": 1,
+    "message_count": 1,
+    "signal_quality": "🟡 MEDIO-BASSA",
+    "signal_level": 40,
+    "avg_altitude": 33950,
+    "avg_speed": 379.0,
+    "top_airline": "4baa88",
+    "aircraft_details": {
+      "4baa88": {
+        "flight": "THY1FM",
+        "type": "",
+        "altitude": 33950,
+        "speed": 379.0,
+        "lat": 40.605377,
+        "lon": 15.772522,
+        "airline": "4baa88"
+      }
+    },
+    "duration": "VARIABILE",
+    "file_size": "10.7 MB",
+    "audio_file": "audio/recording_1767451011_adsb_messages.txt",
+    "fonte": "ARCHIVIO VOLI"
+  },
+  "dati_flightradar": {
+    "timestamp": "2026-01-03 15:36:51",
+    "total_aircraft": 1,
+    "visible_aircraft": [
+      {
+        "icao": "aircraft",
+        "lat": 0,
+        "lon": 0,
+        "altitude": 0,
+        "speed": 0,
+        "flight": "N/A",
+        "type": "N/A",
+        "airline": "UNK",
+        "visible": true
+      }
+    ],
+    "hidden_aircraft": 0,
+    "source": "Flight Radar 24 (API Reale)"
+  },
+  "differenze": {
+    "aerei_reali_totali": 1,
+    "aerei_fr_totali": 1,
+    "aerei_mancanti_fr": 1,
+    "aerei_extra_fr": 1,
+    "discrepanza_percentuale": 100.0,
+    "aerei_mancanti_lista": [
+      "4baa88"
+    ],
+    "aerei_extra_lista": [
+      "aircraft"
+    ]
+  },
+  "grafico_differenze": "\n    📊 GRAFICO DIFFERENZE:\n    \n    AEREI RILEVATI: ██████████           1 aerei\n    FLIGHT RADAR:   ██████████           1 aerei\n    \n    ⚠️  AEREI NASCOSTI: 1 (100.0%)\n    🔍 DISCREPANZA: 100.0%\n    ",
+  "note_analisi": [
+    "⚠️  1 aerei reali non presenti su Flight Radar",
+    "🔍 ICAO mancanti: 4baa88",
+    "🔎 1 aerei su Flight Radar non rilevati da noi",
+    "🚨 ALTA DISCREPANZA: Oltre il 30% di aerei nascosti"
+  ]
+}
