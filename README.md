@@ -7,8 +7,8 @@
 **Open-source atmospheric monitoring platform**  
 *Combining sky observation, ADS-B interception, and flight data correlation*
 
-[🌐 Website](https://professorgrandi.github.io/skytruth/){:target="_blank"} | 
-[🔧 Repository](https://github.com/professorgrandi/skytruth){:target="_blank"} |
+[🌐 Website](https://professorgrandi.github.io/skytruth/) |  
+[🔧 Repository](https://github.com/professorgrandi/skytruth) | 
 [📧 Contact](mailto:professor.grandi@protonmail.com)
 
 </div>
