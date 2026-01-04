@@ -1,0 +1,120 @@
+{
+  "id": "comparazione_session_1767185699",
+  "timestamp": "2025-12-31 13:55:34",
+  "tabella_originale": "session_1767185699",
+  "dati_reali": {
+    "id": "session_1767185699",
+    "timestamp": "2025-12-31 13:54:59",
+    "aircraft_count": 6,
+    "message_count": 6,
+    "signal_quality": "🟢 ALTA",
+    "signal_level": 85,
+    "avg_altitude": 36045,
+    "avg_speed": 476.0,
+    "top_airline": "710070",
+    "aircraft_details": {
+      "710070": {
+        "flight": "SVA207",
+        "type": "",
+        "altitude": 37975,
+        "speed": 379.0,
+        "lat": 40.759598,
+        "lon": 15.943665,
+        "airline": "710070"
+      },
+      "78112c": {
+        "flight": "CSC3804",
+        "type": "",
+        "altitude": 37000,
+        "speed": 519.2,
+        "lat": 40.577042,
+        "lon": 15.594482,
+        "airline": "78112c"
+      },
+      "8964d3": {
+        "flight": "FDB93Q",
+        "type": "",
+        "altitude": 25100,
+        "speed": 444.1,
+        "lat": 40.596176,
+        "lon": 15.646301,
+        "airline": "8964d3"
+      },
+      "4b027d": {
+        "flight": "EZS16UG",
+        "type": "",
+        "altitude": 37025,
+        "speed": 498.2,
+        "lat": 40.57933,
+        "lon": 15.62085,
+        "airline": "4b027d"
+      },
+      "4ba9cf": {
+        "flight": "THY1CC",
+        "type": "",
+        "altitude": 41000,
+        "speed": 524.2,
+        "lat": 40.717054,
+        "lon": 15.564069,
+        "airline": "4ba9cf"
+      },
+      "4bb06e": {
+        "flight": "THY1SQ",
+        "type": "",
+        "altitude": 38175,
+        "speed": 493.0,
+        "lat": 40.682648,
+        "lon": 15.496765,
+        "airline": "4bb06e"
+      }
+    },
+    "duration": "VARIABILE",
+    "file_size": "14.9 MB",
+    "audio_file": "audio/recording_1767185699_adsb_messages.txt",
+    "fonte": "ARCHIVIO VOLI"
+  },
+  "dati_flightradar": {
+    "timestamp": "2025-12-31 13:54:59",
+    "total_aircraft": 1,
+    "visible_aircraft": [
+      {
+        "icao": "aircraft",
+        "lat": 0,
+        "lon": 0,
+        "altitude": 0,
+        "speed": 0,
+        "flight": "N/A",
+        "type": "N/A",
+        "airline": "UNK",
+        "visible": true
+      }
+    ],
+    "hidden_aircraft": 0,
+    "source": "Flight Radar 24 (API Reale)"
+  },
+  "differenze": {
+    "aerei_reali_totali": 6,
+    "aerei_fr_totali": 1,
+    "aerei_mancanti_fr": 6,
+    "aerei_extra_fr": 1,
+    "discrepanza_percentuale": 100.0,
+    "aerei_mancanti_lista": [
+      "4bb06e",
+      "78112c",
+      "4b027d",
+      "710070",
+      "8964d3",
+      "4ba9cf"
+    ],
+    "aerei_extra_lista": [
+      "aircraft"
+    ]
+  },
+  "grafico_differenze": "\n    📊 GRAFICO DIFFERENZE:\n    \n    AEREI RILEVATI: █████████████████    6 aerei\n    FLIGHT RADAR:   ██                   1 aerei\n    \n    ⚠️  AEREI NASCOSTI: 6 (100.0%)\n    🔍 DISCREPANZA: 100.0%\n    ",
+  "note_analisi": [
+    "⚠️  6 aerei reali non presenti su Flight Radar",
+    "🔍 ICAO mancanti: 4bb06e, 78112c, 4b027d, 710070, 8964d3, 4ba9cf",
+    "🔎 1 aerei su Flight Radar non rilevati da noi",
+    "🚨 ALTA DISCREPANZA: Oltre il 30% di aerei nascosti"
+  ]
+}

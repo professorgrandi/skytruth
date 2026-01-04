@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>Registrazioni Video - SkyTruth</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SkyTruth - Archivio registrazioni video timelapse per monitoraggio scie chimiche e traffico aereo">
+    <meta name="keywords" content="skytruth, registrazioni video, timelapse, scie chimiche, traffico aereo, video archive">
+    <meta name="robots" content="index, follow">
+
+    <!-- Onion Service Metadata -->
+    <meta name="onion-location" content="http://64chdrfe7bonndpbgyzizxelgkyk37fufwzltpkivwyivcv2md5j4byd.onion">
+    <link rel="canonical" href="http://64chdrfe7bonndpbgyzizxelgkyk37fufwzltpkivwyivcv2md5j4byd.onion">
+
+    <!-- Meta multilingua -->
+    <meta name="keywords" lang="it" content="registrazioni video, timelapse, scie chimiche, traffico aereo, archivio video, monitoraggio cielo">
+    <meta name="keywords" lang="en" content="video recordings, timelapse, chemtrails, air traffic, video archive, sky monitoring">
+    <meta name="keywords" lang="es" content="grabaciones de video, timelapse, estelas químicas, tráfico aéreo, archivo de video, monitoreo del cielo">
+    <meta name="keywords" lang="fr" content="enregistrements vidéo, timelapse, chemtrails, trafic aérien, archive vidéo, surveillance du ciel">
+    <meta name="keywords" lang="de" content="Videoaufnahmen, Timelapse, Chemtrails, Luftverkehr, Videoarchiv, Himmelüberwachung">
+    <meta name="keywords" lang="ru" content="видеозаписи, таймлапс, химтрейлы, воздушное движение, видеоархив, мониторинг неба">
+    <meta name="keywords" lang="pt" content="gravações de vídeo, timelapse, chemtrails, tráfego aéreo, arquivo de vídeo, monitoramento do céu">
+    <meta name="keywords" lang="cn" content="视频录制, 缩时摄影, 化学轨迹, 空中交通, 视频档案, 天空监控">
+    <meta name="keywords" lang="jp" content="ビデオ録画, タイムラプス, ケムトレイル, 航空交通, ビデオアーカイブ, 空モニタリング">
+    <meta name="keywords" lang="ar" content="تسجيلات الفيديو, lapseالوقت, الشيمتريل, حركة الطيران, أرشيف الفيديو, مراقبة السماء">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body { 
+            font-family: 'Courier New', monospace; 
+            background: #000000;
+            color: #00ff00;
+            margin: 0;
+            padding: 15px;
+            line-height: 1.4;
+        }
+        
+        .terminal {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #00ff00;
+            padding: 15px;
+            position: relative;
+            min-height: 80vh;
+        }
+        
+        .header { 
+            text-align: center; 
+            border-bottom: 1px solid #00ff00;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .site-title {
+            font-size: clamp(20px, 5vw, 32px);
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
+            margin: 10px 0;
+            font-weight: bold;
+            word-break: break-word;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+        
+        .onion-badge {
+            background: #ff6600;
+            color: #000000;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: clamp(11px, 2.5vw, 14px);
+            font-weight: bold;
+            margin: 5px 0;
+            display: inline-block;
+        }
+        
+        .language-flags {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .language-flags span {
+            font-size: clamp(14px, 3vw, 18px);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .language-flags span:hover {
+            transform: scale(1.2);
+        }
+        
+        .subtitle {
+            color: #00ffff;
+            font-size: clamp(12px, 2.5vw, 16px);
+            margin: 8px 0;
+            word-break: break-word;
+        }
+        
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .menu a {
+            color: #00ff00;
+            text-decoration: none;
+            border: 1px solid #00ff00;
+            padding: 5px 10px;
+            font-size: clamp(10px, 2vw, 13px);
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+        
+        .menu a:hover {
+            background: #00ff00;
+            color: #000000;
+        }
+        
+        .content {
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            background: #000000;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            padding: 6px 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: clamp(10px, 1.8vw, 12px);
+        }
+
+        .page-btn.active {
+            background: #00ff00;
+            color: #000000;
+        }
+
+        .page-btn:hover {
+            background: #00ff00;
+            color: #000000;
+        }
+
+        .video-item {
+            border: 1px solid #00ff00;
+            padding: 12px;
+            background: #001100;
+            transition: all 0.3s;
+        }
+        
+        .video-item:hover {
+            background: #002200;
+            border-color: #00ffff;
+        }
+        
+        .video-title {
+            color: #00ffff;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: clamp(12px, 2vw, 14px);
+        }
+        
+        .video-date {
+            color: #ff6600;
+            font-size: clamp(10px, 1.8vw, 12px);
+            margin-bottom: 6px;
+        }
+        
+        .video-preview {
+            width: 100%;
+            height: 150px;
+            background: #000000;
+            border: 1px solid #00ff00;
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: clamp(10px, 1.8vw, 12px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-info {
+            font-size: clamp(10px, 1.8vw, 11px);
+            color: #888;
+            margin: 4px 0;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: #000000;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            padding: 6px 12px;
+            text-decoration: none;
+            font-size: clamp(10px, 1.8vw, 12px);
+            margin-top: 8px;
+            transition: all 0.3s;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .download-btn:hover {
+            background: #00ff00;
+            color: #000000;
+        }
+        
+        .prompt {
+            color: #00ff00;
+            margin: 5px 0;
+            word-break: break-word;
+        }
+        
+        .footer {
+            text-align: center;
+            border-top: 1px solid #00ff00;
+            padding-top: 15px;
+            margin-top: 30px;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+        
+        .counter {
+            color: #ff6600;
+            font-weight: bold;
+            font-size: clamp(12px, 2.5vw, 14px);
+            margin: 10px 0;
+        }
+        
+        .contact {
+            color: #00ffff;
+            margin: 5px 0;
+            font-size: clamp(11px, 2vw, 13px);
+        }
+        
+        .copyright {
+            color: #888;
+            font-size: clamp(10px, 1.8vw, 12px);
+            margin-top: 10px;
+            line-height: 1.3;
+        }
+        
+        .onion-address {
+            font-size: clamp(10px, 2vw, 12px);
+            word-break: break-all;
+            margin: 10px 0;
+            padding: 5px;
+            border: 1px solid #00ff00;
+        }
+        
+        .blink {
+            animation: blink 1s infinite;
+        }
+        
+        .recording-status {
+            background: #002200;
+            border: 1px solid #00ff00;
+            padding: 12px;
+            margin: 12px 0;
+        }
+        
+        .status-active {
+            color: #00ff00;
+            font-weight: bold;
+        }
+        
+        .status-paused {
+            color: #ff6600;
+            font-weight: bold;
+        }
+        
+        .filter-options {
+            display: flex;
+            gap: 8px;
+            margin: 12px 0;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: #000000;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            padding: 4px 12px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s;
+            font-size: clamp(10px, 1.8vw, 12px);
+        }
+        
+        .filter-btn.active {
+            background: #00ff00;
+            color: #000000;
+        }
+        
+        .filter-btn:hover {
+            background: #00ff00;
+            color: #000000;
+        }
+        
+        .video-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin: 15px 0;
+        }
+        
+        .stat-card {
+            background: #001100;
+            border: 1px solid #00ff00;
+            padding: 12px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: clamp(16px, 3vw, 20px);
+            color: #00ffff;
+            font-weight: bold;
+            margin: 4px 0;
+        }
+        
+        .stat-label {
+            color: #00ff00;
+            font-size: clamp(10px, 1.8vw, 11px);
+        }
+        
+        .timestamp {
+            color: #ffff00;
+            font-size: clamp(9px, 1.6vw, 10px);
+            margin-top: 4px;
+        }
+        
+        .dynamic-value {
+            color: #00ffff;
+            font-weight: bold;
+        }
+
+        .javascript-warning {
+            background: #330000;
+            border: 1px solid #ff0000;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center;
+            color: #ff6666;
+            font-size: clamp(11px, 2vw, 13px);
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        @media (min-width: 768px) {
+            .download-btn {
+                width: auto;
+            }
+            
+            .video-grid {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            }
+            
+            .video-stats {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+<!--    <noscript>
+        <div class="javascript-warning">
+            ⚠️ ATTENZIONE: JAVASCRIPT DISABILITATO - Alcune funzionalità potrebbero non funzionare correttamente.
+        </div>
+    </noscript> -->
+
+    <div class="terminal">
+        <div class="header">
+            <div class="site-title" data-translate="title">SKYTRUTH TERMINAL</div>
+            <div class="header-top">
+                <div class="onion-badge" data-translate="onion_service">🧅 ONION SERVICE</div>
+                <div class="language-flags">
+                    <span onclick="changeLanguage('it')" title="Italiano">🇮🇹</span>
+                    <span onclick="changeLanguage('ru')" title="Russian">🇷🇺</span>
+                    <span onclick="changeLanguage('cn')" title="Chinese">🇨🇳</span>
+                    <span onclick="changeLanguage('pt')" title="Portuguese">🇵🇹</span>
+                    <span onclick="changeLanguage('jp')" title="Japanese">🇯🇵</span>
+                    <span onclick="changeLanguage('ar')" title="Arabic">🇸🇦</span>
+                    <span onclick="changeLanguage('fr')" title="French">🇫🇷</span>
+                    <span onclick="changeLanguage('de')" title="German">🇩🇪</span>
+                    <span onclick="changeLanguage('es')" title="Spanish">🇪🇸</span>
+                    <span onclick="changeLanguage('en')" title="English">🇺🇸</span>
+                </div>
+            </div>
+            <div class="subtitle" data-translate="subtitle">ARCHIVIO REGISTRAZIONI VIDEO TIMELAPSE</div>
+            <div class="menu">
+                <a href="index.html" data-translate="home">CASA</a>
+                <a href="collegamenti.html" data-translate="links">COLLEGAMENTI</a>
+                <a href="registrazioni_video.html" data-translate="videos">REGISTRAZIONI VIDEO</a>
+                <a href="ricezione_dati.html" data-translate="data">RICEZIONE DATI</a>
+                <a href="tabelle_comparative.html" data-translate="tables">TABELLE COMPARATIVE</a>
+                <a href="contatti_anonimi.html" data-translate="contacts">CONTATTI ANONIMI</a>
+            </div>
+        </div>
+
+        <div class="content">
+        <div class="prompt" style="text-align: center">root@skytruth:~# video_archive.sh</div>
+        <div style="text-align: center">> ACCESSO ARCHIVIO VIDEO TIMELAPSE</div>
+        <div style="text-align: center">> CARICAMENTO REGISTRAZIONI...</div>
+        <div data-translate="welcome3" style="text-align: center">> LE TRADUZIONI FUNZIONANO SOLO SE ATTIVI JAVASCRIPT</div>
+
+            <!-- === STATO SISTEMA DINAMICO === -->
+            <div class="recording-status">
+                <div class="prompt">📹 STATO SISTEMA DI REGISTRAZIONE:</div>
+                <div class="video-info">🔄 Sistema: <span class="dynamic-value" id="systemStatus">IN PAUSA</span></div>
+                <div class="video-info">⏱️ Intervallo scatti: <span class="dynamic-value" id="captureInterval">20</span> secondi</div>
+                <div class="video-info">🎥 Telecamere attive: <span class="dynamic-value" id="activeCameras">0/1</span></div>
+                <div class="video-info">💾 Spazio disponibile: <span class="dynamic-value" id="freeSpace">135.7 GB</span></div>
+            </div>
+   
+             <!-- === STATISTICHE DINAMICHE === -->
+            <div class="video-stats">
+                <div class="stat-card">
+                    <div class="stat-label">VIDEO TOTALI ARCHIVIATI</div>
+                    <div class="stat-value" id="totalVideos">5</div>
+                    <div class="stat-label">timelapse completi</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">DURATA TOTALE</div>
+                    <div class="stat-value" id="totalDuration">4m 50s</div>
+                    <div class="stat-label">di registrazione</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">FRAME TOTALI</div>
+                    <div class="stat-value" id="totalFrames">746</div>
+                    <div class="stat-label">immagini catturate</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">ULTIMO AGGIORNAMENTO</div>
+                    <div class="stat-value" id="lastUpdateTime">13:20:44</div>
+                    <div class="stat-label" id="currentDate">2026-01-04</div>
+                </div>
+            </div>
+
+            <!-- === FILTRI TEMPORALI === -->
+<!--             <div class="filter-options">
+                <div class="prompt">🎛️ FILTRI:</div>
+                <button class="filter-btn active" onclick="filterVideos('all')">TUTTI</button>
+                <button class="filter-btn" onclick="filterVideos('today')">ULTIMO GIORNO</button>
+                <button class="filter-btn" onclick="filterVideos('week')">ULTIMA SETTIMANA</button>
+                <button class="filter-btn" onclick="filterVideos('month')">ULTIMO MESE</button>
+            </div>  -->
+
+            <!-- === REGISTRAZIONI VIDEO - SEZIONE DINAMICA === -->
+            <h3>📁 REGISTRAZIONI:</h3>
+            <div class="video-grid" id="videoGrid">
+                <!-- === INIZIO CONTENUTO DINAMICO === -->
+                
+                <div class="video-item" data-date="2026-01-04">
+                    <div class="video-title">📹 TIMELAPSE_20260104_132021.mp4</div>
+                    <div class="video-date">🕒 2026-01-04 | 13:20:21</div>
+                    <div class="video-preview"><img src="timelapse/previews/TIMELAPSE_20260104_132021.mp4.jpg" alt="Anteprima" onerror="this.style.display='none'"></div>
+                    <div class="video-info">⏱️ 26s | 📊 267 frame</div>
+                    <div class="video-info">🎞️ 10fps | 📐 1920x1080</div>
+                    <div class="video-info">💾 12.4 MB</div>
+                    <a href="timelapse/videos/TIMELAPSE_20260104_132021.mp4" class="download-btn" download>⬇️ SCARICA (12.4 MB)</a>
+                </div>
+                    
+                <div class="video-item" data-date="2026-01-03">
+                    <div class="video-title">📹 TIMELAPSE_20260103_153602.mp4</div>
+                    <div class="video-date">🕒 2026-01-03 | 15:36:02</div>
+                    <div class="video-preview"><img src="timelapse/previews/TIMELAPSE_20260103_153602.mp4.jpg" alt="Anteprima" onerror="this.style.display='none'"></div>
+                    <div class="video-info">⏱️ 10s | 📊 108 frame</div>
+                    <div class="video-info">🎞️ 10fps | 📐 1920x1080</div>
+                    <div class="video-info">💾 4.9 MB</div>
+                    <a href="timelapse/videos/TIMELAPSE_20260103_153602.mp4" class="download-btn" download>⬇️ SCARICA (4.9 MB)</a>
+                </div>
+                    
+                <div class="video-item" data-date="2026-01-01">
+                    <div class="video-title">📹 TIMELAPSE_20260101_135357.mp4</div>
+                    <div class="video-date">🕒 2026-01-01 | 13:53:57</div>
+                    <div class="video-preview"><img src="timelapse/previews/TIMELAPSE_20260101_135357.mp4.jpg" alt="Anteprima" onerror="this.style.display='none'"></div>
+                    <div class="video-info">⏱️ 19s | 📊 196 frame</div>
+                    <div class="video-info">🎞️ 10fps | 📐 1920x1080</div>
+                    <div class="video-info">💾 10.2 MB</div>
+                    <a href="timelapse/videos/TIMELAPSE_20260101_135357.mp4" class="download-btn" download>⬇️ SCARICA (10.2 MB)</a>
+                </div>
+                    
+                <div class="video-item" data-date="2025-12-31">
+                    <div class="video-title">📹 TIMELAPSE_20251231_135429.mp4</div>
+                    <div class="video-date">🕒 2025-12-31 | 13:54:29</div>
+                    <div class="video-preview"><img src="timelapse/previews/TIMELAPSE_20251231_135429.mp4.jpg" alt="Anteprima" onerror="this.style.display='none'"></div>
+                    <div class="video-info">⏱️ 12s | 📊 127 frame</div>
+                    <div class="video-info">🎞️ 10fps | 📐 1920x1080</div>
+                    <div class="video-info">💾 6.5 MB</div>
+                    <a href="timelapse/videos/TIMELAPSE_20251231_135429.mp4" class="download-btn" download>⬇️ SCARICA (6.5 MB)</a>
+                </div>
+                    
+                <div class="video-item" data-date="2025-12-30">
+                    <div class="video-title">📹 TIMELAPSE_20251230_151420.mp4</div>
+                    <div class="video-date">🕒 2025-12-30 | 15:14:20</div>
+                    <div class="video-preview"><img src="timelapse/previews/TIMELAPSE_20251230_151420.mp4.jpg" alt="Anteprima" onerror="this.style.display='none'"></div>
+                    <div class="video-info">⏱️ 4s | 📊 48 frame</div>
+                    <div class="video-info">🎞️ 10fps | 📐 1920x1080</div>
+                    <div class="video-info">💾 2.4 MB</div>
+                    <a href="timelapse/videos/TIMELAPSE_20251230_151420.mp4" class="download-btn" download>⬇️ SCARICA (2.4 MB)</a>
+                </div>
+                    
+                <!-- === FINE CONTENUTO DINAMICO === -->
+            </div>
+
+            <!-- === INFORMAZIONI TECNICHE DINAMICHE === -->
+            <div class="recording-status">
+                <div class="prompt">💡 INFORMAZIONI TECNICHE:</div>
+                <div class="video-info">🎥 Telecamera: <span class="dynamic-value" id="cameraModel">uvcvideo</span></div>
+                <div class="video-info">⚙️ Software: <span class="dynamic-value" id="softwareUsed">OpenCV + FFmpeg</span></div>
+<!--                 <div class="video-info">📁 Struttura: <span class="dynamic-value" id="folderStructure">frames/ (temporaneo) → videos/ (finale)</span></div>
+             <div class="video-info">🔄 Processo: Scatto ogni <span class="dynamic-value" id="processInterval">10s</span> → Timelapse <span class="dynamic-value" id="timelapseFPS">10</span>fps</div> -->
+            </div>
+        <div class="prompt" style="text-align: center">root@skytruth:~# <span class="blink">_</span></div>
+        </div>
+
+        <div class="footer">
+            <div class="contact" data-translate="archive_contact">ARCHIVIO VIDEO TIMELAPSE - SKYTRUTH PROJECT</div>
+            <div class="counter" data-translate="donations">DONAZIONI XMR MONERO:</div>
+            <div class="onion-badge">45QW5EeHKzjFhwhhjB6byJdSXd7ZUR4FgELHGz1e4Mt5M3Yt6TSiXzaEHdcEeneWVX3FtCpdvt4toge3aqCvrihf38SSVGv</div>
+            <br>
+            <div class="copyright" data-translate="copyright">(c) 2026 - SKY MONITORING SYSTEM | REAL-TIME RECORDING</div>
+        </div>
+    </div>
+
+   <script>
+        const translations = {
+            it: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "ARCHIVIO REGISTRAZIONI VIDEO TIMELAPSE",
+                home: "CASA",
+                links: "COLLEGAMENTI",
+                videos: "REGISTRAZIONI VIDEO",
+                data: "RICEZIONE DATI",
+                tables: "TABELLE COMPARATIVE",
+                contacts: "CONTATTI ANONIMI",
+                onion_service: "🧅 ONION SERVICE",
+                access_archive: "> ACCESSO ARCHIVIO VIDEO TIMELAPSE",
+                loading_recordings: "> CARICAMENTO REGISTRAZIONI...",
+                translations_note: "> LE TRADUZIONI FUNZIONANO SOLO SE ATTIVI JAVASCRIPT",
+                system_status: "📹 STATO SISTEMA DI REGISTRAZIONE:",
+                system_label: "🔄 Sistema:",
+                capture_interval: "⏱️ Intervallo scatti:",
+                active_cameras: "🎥 Telecamere attive:",
+                free_space: "💾 Spazio disponibile:",
+                total_videos_label: "VIDEO TOTALI ARCHIVIATI",
+                timelapse_complete: "timelapse completi",
+                total_duration_label: "DURATA TOTALE",
+                recording_time: "di registrazione",
+                total_frames_label: "FRAME TOTALI",
+                captured_images: "immagini catturate",
+                last_update_label: "ULTIMO AGGIORNAMENTO",
+                filters_label: "🎛️ FILTRI:",
+                filter_all: "TUTTI",
+                filter_today: "ULTIMO GIORNO",
+                filter_week: "ULTIMA SETTIMANA",
+                filter_month: "ULTIMO MESE",
+                recordings_title: "📁 REGISTRAZIONI:",
+                tech_info: "💡 INFORMAZIONI TECNICHE:",
+                camera_model: "🎥 Telecamera:",
+                software_used: "⚙️ Software:",
+                folder_structure: "📁 Struttura:",
+                process_info: "🔄 Processo: Scatto ogni",
+                archive_contact: "ARCHIVIO VIDEO TIMELAPSE - SKYTRUTH PROJECT",
+                donations: "DONAZIONI XMR MONERO:",
+                copyright: "(c) 2026 - SKY MONITORING SYSTEM | REAL-TIME RECORDING",
+                js_warning: "⚠️ ATTENZIONE: JAVASCRIPT DISABILITATO - Alcune funzionalità potrebbero non funzionare correttamente. Per un'esperienza completa, si consiglia di abilitare JavaScript nel browser."
+            },
+            en: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "TIMELAPSE VIDEO RECORDINGS ARCHIVE",
+                home: "HOME",
+                links: "LINKS",
+                videos: "VIDEO RECORDINGS",
+                data: "DATA RECEPTION",
+                tables: "COMPARATIVE TABLES",
+                contacts: "ANONYMOUS CONTACTS",
+                onion_service: "🧅 ONION SERVICE",
+                access_archive: "> TIMELAPSE VIDEO ARCHIVE ACCESS",
+                loading_recordings: "> LOADING RECORDINGS...",
+                translations_note: "> TRANSLATIONS ONLY WORK IF YOU ENABLE JAVASCRIPT",
+                system_status: "📹 RECORDING SYSTEM STATUS:",
+                system_label: "🔄 System:",
+                capture_interval: "⏱️ Capture interval:",
+                active_cameras: "🎥 Active cameras:",
+                free_space: "💾 Free space:",
+                total_videos_label: "TOTAL ARCHIVED VIDEOS",
+                timelapse_complete: "complete timelapses",
+                total_duration_label: "TOTAL DURATION",
+                recording_time: "of recording",
+                total_frames_label: "TOTAL FRAMES",
+                captured_images: "captured images",
+                last_update_label: "LAST UPDATE",
+                filters_label: "🎛️ FILTERS:",
+                filter_all: "ALL",
+                filter_today: "LAST DAY",
+                filter_week: "LAST WEEK",
+                filter_month: "LAST MONTH",
+                recordings_title: "📁 RECORDINGS:",
+                tech_info: "💡 TECHNICAL INFORMATION:",
+                camera_model: "🎥 Camera:",
+                software_used: "⚙️ Software:",
+                folder_structure: "📁 Structure:",
+                process_info: "🔄 Process: Capture every",
+                archive_contact: "TIMELAPSE VIDEO ARCHIVE - SKYTRUTH PROJECT",
+                donations: "XMR MONERO DONATIONS:",
+                copyright: "(c) 2026 - SKY MONITORING SYSTEM | REAL-TIME RECORDING",
+                js_warning: "⚠️ WARNING: JAVASCRIPT DISABLED - Some features may not work properly. For full experience, please enable JavaScript in your browser."
+            },
+            es: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "ARCHIVO DE GRABACIONES DE VIDEO TIMELAPSE",
+                home: "INICIO",
+                links: "ENLACES",
+                videos: "GRABACIONES DE VIDEO",
+                data: "RECEPCIÓN DE DATOS",
+                tables: "TABLAS COMPARATIVAS",
+                contacts: "CONTACTOS ANÓNIMOS",
+                onion_service: "🧅 SERVICIO ONION",
+                access_archive: "> ACCESO AL ARCHIVO DE VIDEO TIMELAPSE",
+                loading_recordings: "> CARGANDO GRABACIONES...",
+                translations_note: "> LAS TRADUCCIONES SOLO FUNCIONAN SI ACTIVAS JAVASCRIPT",
+                system_status: "📹 ESTADO DEL SISTEMA DE GRABACIÓN:",
+                system_label: "🔄 Sistema:",
+                capture_interval: "⏱️ Intervalo de captura:",
+                active_cameras: "🎥 Cámaras activas:",
+                free_space: "💾 Espacio libre:",
+                total_videos_label: "VIDEOS TOTALES ARCHIVADOS",
+                timelapse_complete: "timelapses completos",
+                total_duration_label: "DURACIÓN TOTAL",
+                recording_time: "de grabación",
+                total_frames_label: "FOTOGRAFÍAS TOTALES",
+                captured_images: "imágenes capturadas",
+                last_update_label: "ÚLTIMA ACTUALIZACIÓN",
+                filters_label: "🎛️ FILTROS:",
+                filter_all: "TODOS",
+                filter_today: "ÚLTIMO DÍA",
+                filter_week: "ÚLTIMA SEMANA",
+                filter_month: "ÚLTIMO MES",
+                recordings_title: "📁 GRABACIONES:",
+                tech_info: "💡 INFORMACIÓN TÉCNICA:",
+                camera_model: "🎥 Cámara:",
+                software_used: "⚙️ Software:",
+                folder_structure: "📁 Estructura:",
+                process_info: "🔄 Proceso: Captura cada",
+                archive_contact: "ARCHIVO DE VIDEO TIMELAPSE - PROYECTO SKYTRUTH",
+                donations: "DONACIONES XMR MONERO:",
+                copyright: "(c) 2026 - SISTEMA DE MONITOREO DEL CIELO | GRABACIÓN EN TIEMPO REAL",
+                js_warning: "⚠️ ADVERTENCIA: JAVASCRIPT DESACTIVADO - Algunas funciones pueden no funcionar correctamente. Para experiencia completa, active JavaScript en su navegador."
+            },
+            fr: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "ARCHIVE D'ENREGISTREMENTS VIDÉO TIMELAPSE",
+                home: "ACCUEIL",
+                links: "LIENS",
+                videos: "ENREGISTREMENTS VIDÉO",
+                data: "RÉCEPTION DE DONNÉES",
+                tables: "TABLEAUX COMPARATIFS",
+                contacts: "CONTACTS ANONYMES",
+                onion_service: "🧅 SERVICE ONION",
+                access_archive: "> ACCÈS À L'ARCHIVE VIDÉO TIMELAPSE",
+                loading_recordings: "> CHARGEMENT DES ENREGISTREMENTS...",
+                translations_note: "> LES TRADUCTIONS FONCTIONNENT SEULEMENT SI VOUS ACTIVEZ JAVASCRIPT",
+                system_status: "📹 ÉTAT DU SYSTÈME D'ENREGISTREMENT:",
+                system_label: "🔄 Système:",
+                capture_interval: "⏱️ Intervalle de capture:",
+                active_cameras: "🎥 Caméras actives:",
+                free_space: "💾 Espace libre:",
+                total_videos_label: "VIDÉOS TOTALES ARCHIVÉES",
+                timelapse_complete: "timelapses complets",
+                total_duration_label: "DURÉE TOTALE",
+                recording_time: "d'enregistrement",
+                total_frames_label: "IMAGES TOTALES",
+                captured_images: "images capturées",
+                last_update_label: "DERNIÈRE MISE À JOUR",
+                filters_label: "🎛️ FILTRES:",
+                filter_all: "TOUS",
+                filter_today: "DERNIER JOUR",
+                filter_week: "DERNIÈRE SEMAINE",
+                filter_month: "DERNIER MOIS",
+                recordings_title: "📁 ENREGISTREMENTS:",
+                tech_info: "💡 INFORMATIONS TECHNIQUES:",
+                camera_model: "🎥 Caméra:",
+                software_used: "⚙️ Logiciel:",
+                folder_structure: "📁 Structure:",
+                process_info: "🔄 Processus: Capture chaque",
+                archive_contact: "ARCHIVE VIDÉO TIMELAPSE - PROJET SKYTRUTH",
+                donations: "DONS XMR MONERO:",
+                copyright: "(c) 2026 - SYSTÈME DE SURVEILLANCE DU CIEL | ENREGISTREMENT EN TEMPS RÉEL",
+                js_warning: "⚠️ ATTENTION: JAVASCRIPT DÉSACTIVÉ - Certaines fonctionnalités peuvent ne pas fonctionner correctement. Pour une expérience complète, veuillez activer JavaScript dans votre navigateur."
+            },
+            de: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "TIMELAPSE-VIDEOAUFNAHMEN ARCHIV",
+                home: "STARTSEITE",
+                links: "VERBINDUNGEN",
+                videos: "VIDEOAUFNAHMEN",
+                data: "DATENEMPFANG",
+                tables: "VERGLEICHTABELLEN",
+                contacts: "ANONYME KONTAKTE",
+                onion_service: "🧅 ONION SERVICE",
+                access_archive: "> ZUGANG ZUM TIMELAPSE-VIDEOARCHIV",
+                loading_recordings: "> LADE AUFNAHMEN...",
+                translations_note: "> ÜBERSETZUNGEN FUNKTIONIEREN NUR WENN JAVASCRIPT AKTIVIERT IST",
+                system_status: "📹 AUFNAHMESYSTEMSTATUS:",
+                system_label: "🔄 System:",
+                capture_interval: "⏱️ Aufnahmeintervall:",
+                active_cameras: "🎥 Aktive Kameras:",
+                free_space: "💾 Freier Speicher:",
+                total_videos_label: "GESAMTE ARCHIVIERTE VIDEOS",
+                timelapse_complete: "komplette Timelapses",
+                total_duration_label: "GESAMTDAUER",
+                recording_time: "Aufnahmezeit",
+                total_frames_label: "GESAMTBILDER",
+                captured_images: "aufgenommene Bilder",
+                last_update_label: "LETZTES UPDATE",
+                filters_label: "🎛️ FILTER:",
+                filter_all: "ALLE",
+                filter_today: "LETZTER TAG",
+                filter_week: "LETZTE WOCHE",
+                filter_month: "LETZTER MONAT",
+                recordings_title: "📁 AUFNAHMEN:",
+                tech_info: "💡 TECHNISCHE INFORMATIONEN:",
+                camera_model: "🎥 Kamera:",
+                software_used: "⚙️ Software:",
+                folder_structure: "📁 Struktur:",
+                process_info: "🔄 Prozess: Aufnahme alle",
+                archive_contact: "TIMELAPSE-VIDEOARCHIV - SKYTRUTH PROJEKT",
+                donations: "SPENDEN XMR MONERO:",
+                copyright: "(c) 2026 - HIMMELÜBERWACHUNGSSYSTEM | ECHTZEITAUFNAHME",
+                js_warning: "⚠️ WARNUNG: JAVASCRIPT DEAKTIVIERT - Einige Funktionen funktionieren möglicherweise nicht richtig. Für die volle Erfahrung aktivieren Sie JavaScript in Ihrem Browser."
+            },
+            ru: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "АРХИВ ВИДЕОЗАПИСЕЙ ТАЙМЛАПС",
+                home: "ГЛАВНАЯ",
+                links: "ССЫЛКИ",
+                videos: "ВИДЕОЗАПИСИ",
+                data: "ПРИЕМ ДАННЫХ",
+                tables: "СРАВНИТЕЛЬНЫЕ ТАБЛИЦЫ",
+                contacts: "АНОНИМНЫЕ КОНТАКТЫ",
+                onion_service: "🧅 ONION СЕРВИС",
+                access_archive: "> ДОСТУП К АРХИВУ ВИДЕО ТАЙМЛАПС",
+                loading_recordings: "> ЗАГРУЗКА ЗАПИСЕЙ...",
+                translations_note: "> ПЕРЕВОДЫ РАБОТАЮТ ТОЛЬКО ЕСЛИ ВКЛЮЧЕН JAVASCRIPT",
+                system_status: "📹 СТАТУС СИСТЕМЫ ЗАПИСИ:",
+                system_label: "🔄 Система:",
+                capture_interval: "⏱️ Интервал съемки:",
+                active_cameras: "🎥 Активные камеры:",
+                free_space: "💾 Свободное место:",
+                total_videos_label: "ВСЕГО АРХИВИРОВАННЫХ ВИДЕО",
+                timelapse_complete: "полных таймлапсов",
+                total_duration_label: "ОБЩАЯ ДЛИТЕЛЬНОСТЬ",
+                recording_time: "записи",
+                total_frames_label: "ВСЕГО КАДРОВ",
+                captured_images: "захваченных изображений",
+                last_update_label: "ПОСЛЕДНЕЕ ОБНОВЛЕНИЕ",
+                filters_label: "🎛️ ФИЛЬТРЫ:",
+                filter_all: "ВСЕ",
+                filter_today: "ПОСЛЕДНИЙ ДЕНЬ",
+                filter_week: "ПОСЛЕДНЯЯ НЕДЕЛЯ",
+                filter_month: "ПОСЛЕДНИЙ МЕСЯЦ",
+                recordings_title: "📁 ЗАПИСИ:",
+                tech_info: "💡 ТЕХНИЧЕСКАЯ ИНФОРМАЦИЯ:",
+                camera_model: "🎥 Камера:",
+                software_used: "⚙️ Программное обеспечение:",
+                folder_structure: "📁 Структура:",
+                process_info: "🔄 Процесс: Съемка каждые",
+                archive_contact: "АРХИВ ВИДЕО ТАЙМЛАПС - ПРОЕКТ SKYTRUTH",
+                donations: "ПОЖЕРТВОВАНИЯ XMR MONERO:",
+                copyright: "(c) 2026 - СИСТЕМА МОНИТОРИНГА НЕБА | ЗАПИСЬ В РЕАЛЬНОМ ВРЕМЕНИ",
+                js_warning: "⚠️ ВНИМАНИЕ: JAVASCRIPT ОТКЛЮЧЕН - Некоторые функции могут работать некорректно. Для полного опыта включите JavaScript в вашем браузере."
+            },
+            pt: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "ARQUIVO DE GRAVAÇÕES DE VÍDEO TIMELAPSE",
+                home: "INÍCIO",
+                links: "LIGAÇÕES",
+                videos: "GRAVAÇÕES DE VÍDEO",
+                data: "RECEPÇÃO DE DADOS",
+                tables: "TABELAS COMPARATIVAS",
+                contacts: "CONTACTOS ANÓNIMOS",
+                onion_service: "🧅 SERVIÇO ONION",
+                access_archive: "> ACESSO AO ARQUIVO DE VÍDEO TIMELAPSE",
+                loading_recordings: "> A CARREGAR GRAVAÇÕES...",
+                translations_note: "> AS TRADUÇÕES SÓ FUNCIONAM SE ATIVAR O JAVASCRIPT",
+                system_status: "📹 ESTADO DO SISTEMA DE GRAVAÇÃO:",
+                system_label: "🔄 Sistema:",
+                capture_interval: "⏱️ Intervalo de captura:",
+                active_cameras: "🎥 Câmaras ativas:",
+                free_space: "💾 Espaço livre:",
+                total_videos_label: "VÍDEOS TOTAIS ARQUIVADOS",
+                timelapse_complete: "timelapses completos",
+                total_duration_label: "DURAÇÃO TOTAL",
+                recording_time: "de gravação",
+                total_frames_label: "IMAGENS TOTAIS",
+                captured_images: "imagens capturadas",
+                last_update_label: "ÚLTIMA ATUALIZAÇÃO",
+                filters_label: "🎛️ FILTROS:",
+                filter_all: "TODOS",
+                filter_today: "ÚLTIMO DIA",
+                filter_week: "ÚLTIMA SEMANA",
+                filter_month: "ÚLTIMO MÊS",
+                recordings_title: "📁 GRAVAÇÕES:",
+                tech_info: "💡 INFORMAÇÕES TÉCNICAS:",
+                camera_model: "🎥 Câmara:",
+                software_used: "⚙️ Software:",
+                folder_structure: "📁 Estrutura:",
+                process_info: "🔄 Processo: Captura a cada",
+                archive_contact: "ARQUIVO DE VÍDEO TIMELAPSE - PROJETO SKYTRUTH",
+                donations: "DOAÇÕES XMR MONERO:",
+                copyright: "(c) 2026 - SISTEMA DE MONITORAMENTO DO CÉU | GRAVAÇÃO EM TEMPO REAL",
+                js_warning: "⚠️ AVISO: JAVASCRIPT DESATIVADO - Algumas funcionalidades podem não funcionar corretamente. Para experiência completa, ative o JavaScript no seu navegador."
+            },
+            cn: {
+                title: "SKYTRUTH 终端",
+                subtitle: "缩时摄影视频录制档案",
+                home: "首页",
+                links: "链接",
+                videos: "视频录制",
+                data: "数据接收",
+                tables: "比较表格",
+                contacts: "匿名联系",
+                onion_service: "🧅 ONION 服务",
+                access_archive: "> 访问缩时摄影视频档案",
+                loading_recordings: "> 加载录制中...",
+                translations_note: "> 翻译仅在启用 JAVASCRIPT 时有效",
+                system_status: "📹 录制系统状态:",
+                system_label: "🔄 系统:",
+                capture_interval: "⏱️ 拍摄间隔:",
+                active_cameras: "🎥 活动摄像头:",
+                free_space: "💾 可用空间:",
+                total_videos_label: "总存档视频",
+                timelapse_complete: "完整缩时摄影",
+                total_duration_label: "总时长",
+                recording_time: "录制时间",
+                total_frames_label: "总帧数",
+                captured_images: "捕获图像",
+                last_update_label: "最后更新",
+                filters_label: "🎛️ 过滤器:",
+                filter_all: "全部",
+                filter_today: "最后一天",
+                filter_week: "最后一周",
+                filter_month: "最后一个月",
+                recordings_title: "📁 录制:",
+                tech_info: "💡 技术信息:",
+                camera_model: "🎥 摄像头:",
+                software_used: "⚙️ 软件:",
+                folder_structure: "📁 结构:",
+                process_info: "🔄 过程: 每",
+                archive_contact: "缩时摄影视频档案 - SKYTRUTH 项目",
+                donations: "XMR MONERO 捐款:",
+                copyright: "(c) 2026 - 天空监控系统 | 实时录制",
+                js_warning: "⚠️ 警告: JAVASCRIPT 已禁用 - 某些功能可能无法正常工作。为获得完整体验，请在浏览器中启用 JavaScript。"
+            },
+            jp: {
+                title: "SKYTRUTH ターミナル",
+                subtitle: "タイムラプス動画記録アーカイブ",
+                home: "ホーム",
+                links: "リンク",
+                videos: "動画記録",
+                data: "データ受信",
+                tables: "比較表",
+                contacts: "匿名連絡先",
+                onion_service: "🧅 オニオンサービス",
+                access_archive: "> タイムラプス動画アーカイブアクセス",
+                loading_recordings: "> 記録を読み込み中...",
+                translations_note: "> 翻訳は JAVASCRIPT を有効にした場合のみ機能します",
+                system_status: "📹 録画システムステータス:",
+                system_label: "🔄 システム:",
+                capture_interval: "⏱️ キャプチャ間隔:",
+                active_cameras: "🎥 アクティブカメラ:",
+                free_space: "💾 空き容量:",
+                total_videos_label: "アーカイブされた動画総数",
+                timelapse_complete: "完全なタイムラプス",
+                total_duration_label: "総再生時間",
+                recording_time: "の録画",
+                total_frames_label: "総フレーム数",
+                captured_images: "キャプチャされた画像",
+                last_update_label: "最終更新",
+                filters_label: "🎛️ フィルター:",
+                filter_all: "すべて",
+                filter_today: "最終日",
+                filter_week: "最終週",
+                filter_month: "最終月",
+                recordings_title: "📁 記録:",
+                tech_info: "💡 技術情報:",
+                camera_model: "🎥 カメラ:",
+                software_used: "⚙️ ソフトウェア:",
+                folder_structure: "📁 構造:",
+                process_info: "🔄 プロセス: キャプチャ間隔",
+                archive_contact: "タイムラプス動画アーカイブ - SKYTRUTH プロジェクト",
+                donations: "XMR モネロ寄付:",
+                copyright: "(c) 2026 - 空監視システム | リアルタイム録画",
+                js_warning: "⚠️ 警告: JAVASCRIPT 無効 - 一部の機能が正しく動作しない場合があります。完全な体験には、ブラウザで JavaScript を有効にしてください。"
+            },
+            ar: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "أرشيف تسجيلات الفيديو بالتقاط الزمن",
+                home: "الرئيسية",
+                links: "الروابط",
+                videos: "تسجيلات الفيديو",
+                data: "استقبال البيانات",
+                tables: "الجداول المقارنة",
+                contacts: "جهات اتصال مجهولة",
+                onion_service: "🧅 خدمة ONION",
+                access_archive: "> الوصول إلى أرشيف الفيديو بالتقاط الزمن",
+                loading_recordings: "> جاري تحميل التسجيلات...",
+                translations_note: "> الترجمة تعمل فقط إذا قمت بتشغيل JAVASCRIPT",
+                system_status: "📹 حالة نظام التسجيل:",
+                system_label: "🔄 النظام:",
+                capture_interval: "⏱️ فاصل الالتقاط:",
+                active_cameras: "🎥 الكاميرات النشطة:",
+                free_space: "💾 المساحة المتاحة:",
+                total_videos_label: "إجمالي مقاطع الفيديو المؤرشفة",
+                timelapse_complete: "التقاط زمني كامل",
+                total_duration_label: "المدة الإجمالية",
+                recording_time: "من التسجيل",
+                total_frames_label: "إجمالي الإطارات",
+                captured_images: "الصور الملتقطة",
+                last_update_label: "آخر تحديث",
+                filters_label: "🎛️ المرشحات:",
+                filter_all: "الكل",
+                filter_today: "آخر يوم",
+                filter_week: "آخر أسبوع",
+                filter_month: "آخر شهر",
+                recordings_title: "📁 التسجيلات:",
+                tech_info: "💡 المعلومات التقنية:",
+                camera_model: "🎥 الكاميرا:",
+                software_used: "⚙️ البرنامج:",
+                folder_structure: "📁 الهيكل:",
+                process_info: "🔄 العملية: الالتقاط كل",
+                archive_contact: "أرشيف الفيديو بالتقاط الزمن - مشروع SKYTRUTH",
+                donations: "تبرعات XMR MONERO:",
+                copyright: "(c) 2026 - نظام مراقبة السماء | التسجيل في الوقت الحقيقي",
+                js_warning: "⚠️ تحذير: JAVASCRIPT معطل - بعض الميزات قد لا تعمل بشكل صحيح. للتجربة الكاملة، يرجى تمكين JavaScript في متصفحك."
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Aggiorna anche il messaggio noscript se possibile
+            const noscriptWarning = document.querySelector('.javascript-warning');
+            if (noscriptWarning && translations[lang] && translations[lang]['js_warning']) {
+                noscriptWarning.textContent = translations[lang]['js_warning'];
+            }
+            
+            // Aggiorna l'attributo lang della pagina
+            document.documentElement.lang = lang;
+        }
+
+    <script>
+        // Filtro video
+        function filterVideos(filter) {
+            // Rimuovi classe active da tutti i bottoni
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Aggiungi classe active al bottone cliccato
+            event.target.classList.add('active');
+            
+            const videoItems = document.querySelectorAll('.video-item');
+            const today = new Date().toISOString().split('T')[0];
+            const oneWeekAgo = new Date();
+            oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+            const oneWeekAgoStr = oneWeekAgo.toISOString().split('T')[0];
+            const oneMonthAgo = new Date();
+            oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+            const oneMonthAgoStr = oneMonthAgo.toISOString().split('T')[0];
+            
+            videoItems.forEach(item => {
+                const date = item.getAttribute('data-date');
+                
+                let show = false;
+                
+                switch(filter) {
+                    case 'all':
+                        show = true;
+                        break;
+                    case 'today':
+                        show = date === today;
+                        break;
+                    case 'week':
+                        show = date >= oneWeekAgoStr;
+                        break;
+                    case 'month':
+                        show = date >= oneMonthAgoStr;
+                        break;
+                }
+                
+                item.style.display = show ? 'block' : 'none';
+            });
+        }
+
+        // Filtro video
+        function filterVideos(filter) {
+            // Rimuovi classe active da tutti i bottoni
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Aggiungi classe active al bottone cliccato
+            event.target.classList.add('active');
+            
+            const videoItems = document.querySelectorAll('.video-item');
+            const today = new Date().toISOString().split('T')[0];
+            const oneWeekAgo = new Date();
+            oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+            const oneWeekAgoStr = oneWeekAgo.toISOString().split('T')[0];
+            const oneMonthAgo = new Date();
+            oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+            const oneMonthAgoStr = oneMonthAgo.toISOString().split('T')[0];
+            
+            videoItems.forEach(item => {
+                const date = item.getAttribute('data-date');
+                
+                let show = false;
+                
+                switch(filter) {
+                    case 'all':
+                        show = true;
+                        break;
+                    case 'today':
+                        show = date === today;
+                        break;
+                    case 'week':
+                        show = date >= oneWeekAgoStr;
+                        break;
+                    case 'month':
+                        show = date >= oneMonthAgoStr;
+                        break;
+                }
+                
+                item.style.display = show ? 'block' : 'none';
+            });
+            
+            // Riapplica la paginazione dopo il filtro
+            initVideoPagination();
+        }
+
+        // Aggiornamento orario in tempo reale
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toTimeString().split(' ')[0];
+            const dateString = now.toISOString().split('T')[0];
+            
+            const lastUpdateElement = document.getElementById('lastUpdateTime');
+            const currentDateElement = document.getElementById('currentDate');
+            
+            if (lastUpdateElement) lastUpdateElement.textContent = timeString;
+            if (currentDateElement) currentDateElement.textContent = dateString;
+        }
+
+        // Sistema di paginazione per video - 25 VIDEO PER PAGINA
+        let currentVideoPage = 1;
+        const videosPerPage = 25; // 25 VIDEO PER PAGINA COME RICHIESTO
+
+        function initVideoPagination() {
+            const videos = document.querySelectorAll('.video-item');
+            const totalPages = Math.ceil(videos.length / videosPerPage);
+            
+            if (totalPages <= 1) {
+                document.getElementById('videoPagination').style.display = 'none';
+                showAllVideos(); // Mostra tutti i video se c'è solo una pagina
+                return;
+            }
+
+            let paginationHTML = '';
+            
+            // Bottone prima pagina
+            if (currentVideoPage > 1) {
+                paginationHTML += `<button class="page-btn" onclick="changeVideoPage(1)">«</button>`;
+                paginationHTML += `<button class="page-btn" onclick="changeVideoPage(${currentVideoPage - 1})">‹</button>`;
+            }
+            
+            // Pagine numeriche
+            const startPage = Math.max(1, currentVideoPage - 2);
+            const endPage = Math.min(totalPages, currentVideoPage + 2);
+            
+            for (let i = startPage; i <= endPage; i++) {
+                paginationHTML += `<button class="page-btn ${i === currentVideoPage ? 'active' : ''}" onclick="changeVideoPage(${i})">${i}</button>`;
+            }
+            
+            // Bottone ultima pagina
+            if (currentVideoPage < totalPages) {
+                paginationHTML += `<button class="page-btn" onclick="changeVideoPage(${currentVideoPage + 1})">›</button>`;
+                paginationHTML += `<button class="page-btn" onclick="changeVideoPage(${totalPages})">»</button>`;
+            }
+            
+            document.getElementById('videoPagination').innerHTML = paginationHTML;
+            showVideoPage(currentVideoPage);
+        }
+
+        function changeVideoPage(page) {
+            currentVideoPage = page;
+            initVideoPagination();
+        }
+
+        function showVideoPage(page) {
+            const videos = document.querySelectorAll('.video-item');
+            const startIndex = (page - 1) * videosPerPage;
+            const endIndex = startIndex + videosPerPage;
+
+            videos.forEach((video, index) => {
+                // Mostra solo i video della pagina corrente
+                const shouldShow = (index >= startIndex && index < endIndex);
+                video.style.display = shouldShow ? 'block' : 'none';
+            });
+        }
+
+        function showAllVideos() {
+            // Mostra tutti i video (per quando c'è solo una pagina)
+            const videos = document.querySelectorAll('.video-item');
+            videos.forEach(video => {
+                video.style.display = 'block';
+            });
+        }
+
+        // Inizializzazione
+        document.addEventListener('DOMContentLoaded', function() {
+            initVideoPagination();
+            setInterval(updateTime, 1000);
+            updateTime();
+        });
+
+        // Aggiornamento automatico ogni 30 secondi
+        setTimeout(() => {
+            location.reload();
+        }, 30000);
+    </script>
+</body>
+</html>

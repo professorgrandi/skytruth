@@ -1,0 +1,26 @@
+{
+  "id": "session_1767451011",
+  "timestamp": "2026-01-03 15:36:51",
+  "aircraft_count": 1,
+  "message_count": 1,
+  "signal_quality": "\ud83d\udfe1 MEDIO-BASSA",
+  "signal_level": 40,
+  "avg_altitude": 33950,
+  "avg_speed": 379.0,
+  "top_airline": "4baa88",
+  "aircraft_details": {
+    "4baa88": {
+      "flight": "THY1FM",
+      "type": "",
+      "altitude": 33950,
+      "speed": 379.0,
+      "lat": 40.605377,
+      "lon": 15.772522,
+      "airline": "4baa88"
+    }
+  },
+  "duration": "VARIABILE",
+  "file_size": "10.7 MB",
+  "audio_file": "audio/recording_1767451011_adsb_messages.txt",
+  "fonte": "ARCHIVIO VOLI"
+}

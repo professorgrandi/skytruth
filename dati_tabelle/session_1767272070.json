@@ -1,0 +1,53 @@
+{
+  "id": "session_1767272070",
+  "timestamp": "2026-01-01 13:54:30",
+  "aircraft_count": 4,
+  "message_count": 4,
+  "signal_quality": "\ud83d\udfe2 MEDIA",
+  "signal_level": 65,
+  "avg_altitude": 32412,
+  "avg_speed": 409.0,
+  "top_airline": "4d2215",
+  "aircraft_details": {
+    "4d2215": {
+      "flight": "RYR134D",
+      "type": "",
+      "altitude": 24675,
+      "speed": 409.5,
+      "lat": 40.717667,
+      "lon": 15.821411,
+      "airline": "4d2215"
+    },
+    "7100ad": {
+      "flight": "SVA207",
+      "type": "",
+      "altitude": 35975,
+      "speed": 410.2,
+      "lat": 40.533313,
+      "lon": 15.80221,
+      "airline": "7100ad"
+    },
+    "4bb210": {
+      "flight": "THY8NR",
+      "type": "",
+      "altitude": 32000,
+      "speed": 0,
+      "lat": 40.794525,
+      "lon": 15.595947,
+      "airline": "4bb210"
+    },
+    "4bab27": {
+      "flight": "THY1SQ",
+      "type": "",
+      "altitude": 37000,
+      "speed": 0,
+      "lat": 40.652161,
+      "lon": 15.559762,
+      "airline": "4bab27"
+    }
+  },
+  "duration": "VARIABILE",
+  "file_size": "1.0 MB",
+  "audio_file": "audio/recording_1767272070_adsb_messages.txt",
+  "fonte": "ARCHIVIO VOLI"
+}

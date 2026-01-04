@@ -1,0 +1,80 @@
+{
+  "id": "comparazione_session_1767529231",
+  "timestamp": "2026-01-04 13:21:29",
+  "tabella_originale": "session_1767529231",
+  "dati_reali": {
+    "id": "session_1767529231",
+    "timestamp": "2026-01-04 13:20:31",
+    "aircraft_count": 2,
+    "message_count": 2,
+    "signal_quality": "🟡 MEDIO-BASSA",
+    "signal_level": 40,
+    "avg_altitude": 35000,
+    "avg_speed": 458.0,
+    "top_airline": "4d2234",
+    "aircraft_details": {
+      "4d2234": {
+        "flight": "RYR7003",
+        "type": "",
+        "altitude": 37000,
+        "speed": 410.0,
+        "lat": 40.643738,
+        "lon": 15.621033,
+        "airline": "4d2234"
+      },
+      "a2b501": {
+        "flight": "UAL164",
+        "type": "",
+        "altitude": 33000,
+        "speed": 506.6,
+        "lat": 40.544765,
+        "lon": 15.696467,
+        "airline": "a2b501"
+      }
+    },
+    "duration": "VARIABILE",
+    "file_size": "3.3 MB",
+    "audio_file": "audio/recording_1767529231_adsb_messages.txt",
+    "fonte": "ARCHIVIO VOLI"
+  },
+  "dati_flightradar": {
+    "timestamp": "2026-01-04 13:20:31",
+    "total_aircraft": 1,
+    "visible_aircraft": [
+      {
+        "icao": "aircraft",
+        "lat": 0,
+        "lon": 0,
+        "altitude": 0,
+        "speed": 0,
+        "flight": "N/A",
+        "type": "N/A",
+        "airline": "UNK",
+        "visible": true
+      }
+    ],
+    "hidden_aircraft": 0,
+    "source": "Flight Radar 24 (API Reale)"
+  },
+  "differenze": {
+    "aerei_reali_totali": 2,
+    "aerei_fr_totali": 1,
+    "aerei_mancanti_fr": 2,
+    "aerei_extra_fr": 1,
+    "discrepanza_percentuale": 100.0,
+    "aerei_mancanti_lista": [
+      "a2b501",
+      "4d2234"
+    ],
+    "aerei_extra_lista": [
+      "aircraft"
+    ]
+  },
+  "grafico_differenze": "\n    📊 GRAFICO DIFFERENZE:\n    \n    AEREI RILEVATI: █████████████        2 aerei\n    FLIGHT RADAR:   ██████               1 aerei\n    \n    ⚠️  AEREI NASCOSTI: 2 (100.0%)\n    🔍 DISCREPANZA: 100.0%\n    ",
+  "note_analisi": [
+    "⚠️  2 aerei reali non presenti su Flight Radar",
+    "🔍 ICAO mancanti: a2b501, 4d2234",
+    "🔎 1 aerei su Flight Radar non rilevati da noi",
+    "🚨 ALTA DISCREPANZA: Oltre il 30% di aerei nascosti"
+  ]
+}

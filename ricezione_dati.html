@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>Ricezione Dati - SkyTruth</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SkyTruth - Ricezione dati ADS-B 1090MHz per monitoraggio traffico aereo in tempo reale">
+    <meta name="keywords" content="skytruth, ricezione dati, ADS-B, 1090MHz, traffico aereo, dump1090, monitoraggio">
+    <meta name="robots" content="index, follow">
+
+    <!-- Onion Service Metadata -->
+    <meta name="onion-location" content="http://64chdrfe7bonndpbgyzizxelgkyk37fufwzltpkivwyivcv2md5j4byd.onion">
+    <link rel="canonical" href="http://64chdrfe7bonndpbgyzizxelgkyk37fufwzltpkivwyivcv2md5j4byd.onion">
+
+    <!-- Meta multilingua -->
+    <meta name="keywords" lang="it" content="ricezione dati, ADS-B, 1090MHz, traffico aereo, dump1090, monitoraggio, trasponder">
+    <meta name="keywords" lang="en" content="data reception, ADS-B, 1090MHz, air traffic, dump1090, monitoring, transponder">
+    <meta name="keywords" lang="es" content="recepción de datos, ADS-B, 1090MHz, tráfico aéreo, dump1090, monitoreo, transpondedor">
+    <meta name="keywords" lang="fr" content="réception de données, ADS-B, 1090MHz, trafic aérien, dump1090, surveillance, transpondeur">
+    <meta name="keywords" lang="de" content="Datenempfang, ADS-B, 1090MHz, Luftverkehr, dump1090, Überwachung, Transponder">
+    <meta name="keywords" lang="ru" content="прием данных, ADS-B, 1090МГц, воздушное движение, dump1090, мониторинг, транспондер">
+    <meta name="keywords" lang="pt" content="recepção de dati, ADS-B, 1090MHz, tráfego aéreo, dump1090, monitoramento, transponder">
+    <meta name="keywords" lang="cn" content="数据接收, ADS-B, 1090MHz, 空中交通, dump1090, 监控, 应答器">
+    <meta name="keywords" lang="jp" content="データ受信, ADS-B, 1090MHz, 航空交通, dump1090, モニタリング, トランスポンダ">
+    <meta name="keywords" lang="ar" content="استقبال البيانات, ADS-B, 1090MHz, حركة الطيران, dump1090, مراقبة, المستجيب">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body { 
+            font-family: 'Courier New', monospace; 
+            background: #000000;
+            color: #00ff00;
+            margin: 0;
+            padding: 15px;
+            line-height: 1.4;
+        }
+        
+        .terminal {
+            max-width: 1400px;
+            margin: 0 auto;
+            border: 1px solid #00ff00;
+            padding: 15px;
+            position: relative;
+            min-height: 80vh;
+        }
+        
+        .header { 
+            text-align: center; 
+            border-bottom: 1px solid #00ff00;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .site-title {
+            font-size: clamp(20px, 5vw, 32px);
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
+            margin: 10px 0;
+            font-weight: bold;
+            word-break: break-word;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+        
+        .onion-badge {
+            background: #ff6600;
+            color: #000000;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: clamp(11px, 2.5vw, 14px);
+            font-weight: bold;
+            margin: 5px 0;
+            display: inline-block;
+        }
+        
+        .language-flags {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .language-flags span {
+            font-size: clamp(14px, 3vw, 18px);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .language-flags span:hover {
+            transform: scale(1.2);
+        }
+        
+        .subtitle {
+            color: #00ffff;
+            font-size: clamp(12px, 2.5vw, 16px);
+            margin: 8px 0;
+            word-break: break-word;
+        }
+        
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .menu a {
+            color: #00ff00;
+            text-decoration: none;
+            border: 1px solid #00ff00;
+            padding: 5px 10px;
+            font-size: clamp(10px, 2vw, 13px);
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+        
+        .menu a:hover {
+            background: #00ff00;
+            color: #000000;
+        }
+        
+        .content {
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        
+        .prompt {
+            color: #00ff00;
+            margin: 5px 0;
+            word-break: break-word;
+        }
+        
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 12px;
+            margin: 15px 0;
+        }
+        
+        .data-card {
+            border: 1px solid #00ff00;
+            padding: 12px;
+            background: #001100;
+        }
+        
+        .data-time {
+            color: #ff6600;
+            font-weight: bold;
+            font-size: clamp(12px, 2vw, 14px);
+        }
+        
+        .data-info {
+            margin: 4px 0;
+            font-size: clamp(11px, 1.8vw, 13px);
+        }
+        
+        .signal-strength {
+            color: #00ffff;
+            font-weight: bold;
+            font-size: clamp(12px, 2vw, 14px);
+        }
+        
+        .aircraft-count {
+            color: #ffff00;
+            font-weight: bold;
+        }
+        
+        .footer {
+            text-align: center;
+            border-top: 1px solid #00ff00;
+            padding-top: 15px;
+            margin-top: 30px;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+        
+        .counter {
+            color: #ff6600;
+            font-weight: bold;
+            font-size: clamp(12px, 2.5vw, 14px);
+            margin: 10px 0;
+        }
+        
+        .contact {
+            color: #00ffff;
+            margin: 5px 0;
+            font-size: clamp(11px, 2vw, 13px);
+        }
+        
+        .copyright {
+            color: #888;
+            font-size: clamp(10px, 1.8vw, 12px);
+            margin-top: 10px;
+            line-height: 1.3;
+        }
+        
+        .onion-address {
+            font-size: clamp(10px, 2vw, 12px);
+            word-break: break-all;
+            margin: 10px 0;
+            padding: 5px;
+            border: 1px solid #00ff00;
+        }
+        
+        .blink {
+            animation: blink 1s infinite;
+        }
+        
+        .realtime-data {
+            background: #002200;
+            border: 1px solid #00ff00;
+            padding: 12px;
+            margin: 12px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .realtime-title {
+            color: #00ffff;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: clamp(12px, 2vw, 14px);
+        }
+        
+        .status-active {
+            color: #00ff00;
+            font-weight: bold;
+        }
+        
+        .status-inactive {
+            color: #ff6600;
+            font-weight: bold;
+        }
+        
+        .hardware-info {
+            background: #001100;
+            border: 1px solid #00ff00;
+            padding: 12px;
+            margin: 12px 0;
+        }
+        
+        .signal-quality {
+            background: #002200;
+            border: 1px solid #00ff00;
+            padding: 8px;
+            margin: 8px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .signal-excellent { color: #00ff00; }
+        .signal-high { color: #00ff00; }
+        .signal-medium { color: #ffff00; }
+        .signal-low { color: #ff6600; }
+        .signal-offline { color: #ff0000; }
+        
+        .messages-preview {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #00ff00;
+        }
+        
+        .message-line {
+            font-family: 'Courier New', monospace;
+            font-size: clamp(9px, 1.6vw, 0.8em);
+            color: #00ff00;
+            margin: 2px 0;
+            padding: 2px 5px;
+            background: #002200;
+            border-radius: 3px;
+        }
+        
+        .system-instructions {
+            background: #001100;
+            border: 1px solid #00ff00;
+            padding: 12px;
+            margin: 12px 0;
+        }
+        
+        .instruction-line {
+            margin: 6px 0;
+            font-size: clamp(11px, 1.8vw, 13px);
+            color: #00ff00;
+        }
+        
+        /* Stili per le tabelle */
+        .tables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .table-card {
+            border: 1px solid #00ff00;
+            padding: 12px;
+            background: #001100;
+            transition: all 0.3s;
+        }
+        
+        .table-card:hover {
+            background: #002200;
+            border-color: #00ffff;
+        }
+        
+        .table-header {
+            border-bottom: 1px solid #00ff00;
+            padding-bottom: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .table-title {
+            color: #00ffff;
+            font-weight: bold;
+            font-size: clamp(12px, 2vw, 16px);
+        }
+        
+        .table-date {
+            color: #ff6600;
+            font-size: clamp(10px, 1.8vw, 12px);
+            margin-top: 4px;
+        }
+        
+        .table-stats {
+            margin: 12px 0;
+        }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 6px 0;
+            font-size: clamp(11px, 1.8vw, 13px);
+        }
+        
+        .stat-label {
+            color: #00ff00;
+        }
+        
+        .stat-value {
+            color: #ffff00;
+            font-weight: bold;
+        }
+        
+        .aircraft-list {
+            margin: 12px 0;
+            padding: 8px;
+            background: #000000;
+            border: 1px solid #00ff00;
+            border-radius: 3px;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+        
+        .aircraft-title {
+            color: #00ffff;
+            font-weight: bold;
+            margin-bottom: 6px;
+            font-size: clamp(11px, 1.8vw, 13px);
+        }
+        
+        .aircraft-line {
+            font-family: 'Courier New', monospace;
+            font-size: clamp(9px, 1.6vw, 0.75em);
+            color: #00ff00;
+            margin: 2px 0;
+            padding: 2px 5px;
+            background: #002200;
+            border-radius: 2px;
+        }
+        
+        .aircraft-code {
+            color: #ff9900;
+            font-weight: bold;
+        }
+        
+        .flight-number {
+            color: #00ccff;
+        }
+        
+        .aircraft-type {
+            color: #ffff00;
+        }
+        
+        .altitude {
+            color: #ff6600;
+        }
+        
+        .table-footer {
+            border-top: 1px solid #00ff00;
+            padding-top: 8px;
+            margin-top: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .file-info {
+            color: #888;
+            font-size: clamp(9px, 1.6vw, 11px);
+        }
+        
+        .duration, .file-size {
+            margin-right: 8px;
+        }
+        
+        .download-links {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        
+        .download-btn {
+            background: #000000;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            padding: 4px 8px;
+            text-decoration: none;
+            font-size: clamp(9px, 1.6vw, 11px);
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        
+        .download-btn:hover {
+            background: #00ff00;
+            color: #000000;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            background: #000000;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            padding: 6px 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: clamp(10px, 1.8vw, 12px);
+        }
+
+        .page-btn.active {
+            background: #00ff00;
+            color: #000000;
+        }
+
+        .page-btn:hover {
+            background: #00ff00;
+            color: #000000;
+        }
+        
+        .no-data {
+            text-align: center;
+            color: #ff6600;
+            padding: 30px;
+            font-size: clamp(12px, 2vw, 16px);
+            border: 1px solid #ff6600;
+            background: #001100;
+            margin: 15px 0;
+        }
+
+        .javascript-warning {
+            background: #330000;
+            border: 1px solid #ff0000;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center;
+            color: #ff6666;
+            font-size: clamp(11px, 2vw, 13px);
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .two-column-layout {
+            display: grid;
+            margin: 20px 0;
+        }
+
+        .column-left, .column-right {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .recent-detections-box {
+            border: 1px solid #00ff00;
+            padding: 12px;
+            background: #001100;
+         }
+        
+                @media (min-width: 768px) {
+            .tables-grid {
+                grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            }
+            
+            .data-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+            
+            .two-column-layout {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .tables-grid {
+                grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            }
+            
+            .two-column-layout {
+                grid-template-columns: 1fr 1fr;
+                gap: 25px;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+<!--    <noscript>
+        <div class="javascript-warning">
+            ⚠️ ATTENZIONE: JAVASCRIPT DISABILITATO - Alcune funzionalità potrebbero non funzionare correttamente.
+            Per un'esperienza completa, si consiglia di abilitare JavaScript nel browser.
+        </div>
+    </noscript> -->
+
+    <div class="terminal">
+        <div class="header">
+            <div class="site-title" data-translate="title">SKYTRUTH TERMINAL</div>
+            <div class="header-top">
+                <div class="onion-badge" data-translate="onion_service">🧅 ONION SERVICE</div>
+                <div class="language-flags">
+                    <span onclick="changeLanguage('it')" title="Italiano">🇮🇹</span>
+                    <span onclick="changeLanguage('ru')" title="Russian">🇷🇺</span>
+                    <span onclick="changeLanguage('cn')" title="Chinese">🇨🇳</span>
+                    <span onclick="changeLanguage('pt')" title="Portuguese">🇵🇹</span>
+                    <span onclick="changeLanguage('jp')" title="Japanese">🇯🇵</span>
+                    <span onclick="changeLanguage('ar')" title="Arabic">🇸🇦</span>
+                    <span onclick="changeLanguage('fr')" title="French">🇫🇷</span>
+                    <span onclick="changeLanguage('de')" title="German">🇩🇪</span>
+                    <span onclick="changeLanguage('es')" title="Spanish">🇪🇸</span>
+                    <span onclick="changeLanguage('en')" title="English">🇺🇸</span>
+                </div>
+            </div>
+            <div class="subtitle" data-translate="subtitle">FREQUENZA: 1090 MHz | MODALITÀ: ADS-B Mode S</div>
+            <div class="menu">
+                <a href="index.html" data-translate="home">CASA</a>
+                <a href="collegamenti.html" data-translate="links">COLLEGAMENTI</a>
+                <a href="registrazioni_video.html" data-translate="videos">REGISTRAZIONI VIDEO</a>
+                <a href="ricezione_dati.html" data-translate="data">RICEZIONE DATI</a>
+                <a href="tabelle_comparative.html" data-translate="tables">TABELLE COMPARATIVE</a>
+                <a href="contatti_anonimi.html" data-translate="contacts">CONTATTI ANONIMI</a>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="prompt" style="text-align: center">root@skytruth:~# dump1090_start.sh</div>
+            <div data-translate="start_message" style="text-align: center">🚀 SISTEMA ADS-B ATTIVO</div>
+            <div data-translate="detection_status" style="text-align: center">📡 SCANSIONE TRASPONDER ATTIVA</div>
+            <div data-translate="welcome3" style="text-align: center">> LE TRADUZIONI FUNZIONANO SOLO SE ATTIVI JAVASCRIPT</div>
+            <br>
+        
+            <div class="two-column-layout">
+                <div class="column-left">
+                    <div class="hardware-info">
+                        <div class="prompt" data-translate="hardware_config">🔧 CONFIGURAZIONE HARDWARE:</div>
+                        <div class="data-info" data-translate="receiver_model">📡 Ricevitore: ✅ NooElec NESDR Smart v5</div>
+                        <div class="data-info" data-translate="gain_frequency">⚡ Guadagno: Auto | Frequenza: 1090 MHz</div>
+                        <div class="data-info" data-translate="protocol">🛰️ Protocollo: ADS-B Mode S</div>
+                        <div class="data-info" data-translate="hardware_status">📊 Stato: 🟢 CONNESSO</div>
+                    </div>
+                </div>
+                
+                <div class="column-right">
+<!--                     <div class="hardware-info">
+                        <div class="prompt">📋 ULTIME RILEVAZIONI:</div> -->
+                        <div class="data-card">
+    <div class="data-time">🕒 2026-01-04 13:21:08 | 🗄️ ARCHIVIO</div>
+    <div class="data-info">✈️ Aerei rilevati: <span class="aircraft-count">2</span></div>
+    <div class="data-info">📡 Messaggi totali: 0</div>
+    <div class="data-info">📊 Stato: <span class="status-active">ATTIVO</span></div>
+    <div class="messages-preview">
+        <strong>Ultimi rilevamenti:</strong>
+        <div class="message-line">4d2234 | RYR7003 | 37000ft | 410.0kt</div><div class="message-line">a2b501 | UAL164 | 33000ft | 506.6kt</div>
+    </div>
+</div>
+<!--                     </div>  -->
+                </div>
+            </div>
+        </div>  <!-- ⬅️ ORA CHIUDI .content QUI! -->
+
+
+<!--            <div class="hardware-info">
+                <div class="prompt" data-translate="hardware_config">🔧 CONFIGURAZIONE HARDWARE:</div>
+                <div class="data-info" data-translate="receiver_model">📡 Ricevitore: ✅ NooElec NESDR Smart v5</div>
+                <div class="data-info" data-translate="gain_frequency">⚡ Guadagno: Auto | Frequenza: 1090 MHz</div>
+                <div class="data-info" data-translate="protocol">🛰️ Protocollo: ADS-B Mode S</div>
+                <div class="data-info" data-translate="hardware_status">📊 Stato: 🟢 CONNESSO</div>
+            </div>
+
+           <div class="realtime-data">
+                <div class="realtime-title" data-translate="realtime_title">📊 DATI IN TEMPO REALE - TRASPONDER ADS-B</div>
+                <div data-translate="receiver_status">> Stato ricevitore: <span class="status-active" id="receiverStatus">CONNESSO</span></div>
+                <div data-translate="aircraft_detected">> Aerei rilevati: <span class="aircraft-count" id="aircraftCount">0</span></div>
+                <div class="signal-quality">
+                    <span data-translate="signal_quality">> Qualità segnale: </span>
+                    <span class="%%SIGNAL_CSS_CLASS%%" id="signalText">📡 BASSA</span>
+                </div>
+                <div data-translate="last_update">> Ultimo aggiornamento: <span id="currentTime">2026-01-04 13:21:04</span></div>
+                <div data-translate="messages_second">> Messaggi/secondo: <span id="messagesPerSecond">0</span></div>
+            </div> 
+
+            <h3 data-translate="recent_detections">📋 ULTIME RILEVAZIONI:</h3>
+            <div class="data-card">
+    <div class="data-time">🕒 2026-01-04 13:21:08 | 🗄️ ARCHIVIO</div>
+    <div class="data-info">✈️ Aerei rilevati: <span class="aircraft-count">2</span></div>
+    <div class="data-info">📡 Messaggi totali: 0</div>
+    <div class="data-info">📊 Stato: <span class="status-active">ATTIVO</span></div>
+    <div class="messages-preview">
+        <strong>Ultimi rilevamenti:</strong>
+        <div class="message-line">4d2234 | RYR7003 | 37000ft | 410.0kt</div><div class="message-line">a2b501 | UAL164 | 33000ft | 506.6kt</div>
+    </div>
+</div>
+-->
+            <h3 data-translate="detection_tables">📊 TABELLE RILEVAZIONI (5 totali):</h3>
+            
+            <input type="hidden" id="currentPage" value="1">
+            <input type="hidden" id="totalPages" value="1">
+            
+            <div class="tables-grid" id="tablesGrid">
+                
+        <div class="table-card">
+            <div class="table-header">
+                <div class="table-title">📊 RILEVAZIONE #1</div>
+                <div class="table-date">🕒 2026-01-04 13:20:31</div>
+                <div class="table-source" style="color: #00ffff; font-size: 0.8em;">🔍 ARCHIVIO VOLI</div>
+            </div>
+            
+            <div class="table-stats">
+                <div class="stat-row">
+                    <span class="stat-label">✈️ Aerei:</span>
+                    <span class="stat-value">2</span>
+                    <span class="stat-label">📨 Messaggi:</span>
+                    <span class="stat-value">2</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">📡 Segnale:</span>
+                    <span class="stat-value medio-bassa">🟡 MEDIO-BASSA</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">📊 Altitudine media:</span>
+                    <span class="stat-value">35000ft</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">💨 Velocità media:</span>
+                    <span class="stat-value">458.0kt</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">🏆 ICAO più frequente:</span>
+                    <span class="stat-value">4d2234</span>
+                </div>
+            </div>
+            
+            <div class="aircraft-list">
+                <div class="aircraft-title">🛫 Aerei rilevati:</div>
+                
+            <div class="aircraft-line">
+                <span class="aircraft-code">4d2234</span> | 
+                <span class="flight-number">RYR7003</span> | 
+                <span class="aircraft-type"></span> | 
+                <span class="altitude">37000ft</span>
+            </div>
+            <div class="aircraft-line">
+                <span class="aircraft-code">a2b501</span> | 
+                <span class="flight-number">UAL164</span> | 
+                <span class="aircraft-type"></span> | 
+                <span class="altitude">33000ft</span>
+            </div>
+            </div>
+            
+            <div class="table-footer">
+                <div class="file-info">
+                    <span class="duration">⏱️ VARIABILE</span>
+                    <span class="file-size">💾 3.3 MB</span>
+                </div>
+                <div class="download-links">
+                    <!-- <a href="audio/session_1767529231_full.zip" class="download-btn" download>🎵 SCARICA AUDIO (ZIP)</a> -->
+                    <a href="dati_tabelle/session_1767529231.json" class="download-btn" download>📊 SCARICA DATI</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-card">
+            <div class="table-header">
+                <div class="table-title">📊 RILEVAZIONE #2</div>
+                <div class="table-date">🕒 2026-01-03 15:36:51</div>
+                <div class="table-source" style="color: #00ffff; font-size: 0.8em;">🔍 ARCHIVIO VOLI</div>
+            </div>
+            
+            <div class="table-stats">
+                <div class="stat-row">
+                    <span class="stat-label">✈️ Aerei:</span>
+                    <span class="stat-value">1</span>
+                    <span class="stat-label">📨 Messaggi:</span>
+                    <span class="stat-value">1</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">📡 Segnale:</span>
+                    <span class="stat-value medio-bassa">🟡 MEDIO-BASSA</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">📊 Altitudine media:</span>
+                    <span class="stat-value">33950ft</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">💨 Velocità media:</span>
+                    <span class="stat-value">379.0kt</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">🏆 ICAO più frequente:</span>
+                    <span class="stat-value">4baa88</span>
+                </div>
+            </div>
+            
+            <div class="aircraft-list">
+                <div class="aircraft-title">🛫 Aerei rilevati:</div>
+                
+            <div class="aircraft-line">
+                <span class="aircraft-code">4baa88</span> | 
+                <span class="flight-number">THY1FM</span> | 
+                <span class="aircraft-type"></span> | 
+                <span class="altitude">33950ft</span>
+            </div>
+            </div>
+            
+            <div class="table-footer">
+                <div class="file-info">
+                    <span class="duration">⏱️ VARIABILE</span>
+                    <span class="file-size">💾 10.7 MB</span>
+                </div>
+                <div class="download-links">
+                    <!-- <a href="audio/session_1767451011_full.zip" class="download-btn" download>🎵 SCARICA AUDIO (ZIP)</a> -->
+                    <a href="dati_tabelle/session_1767451011.json" class="download-btn" download>📊 SCARICA DATI</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-card">
+            <div class="table-header">
+                <div class="table-title">📊 RILEVAZIONE #3</div>
+                <div class="table-date">🕒 2026-01-01 13:54:30</div>
+                <div class="table-source" style="color: #00ffff; font-size: 0.8em;">🔍 ARCHIVIO VOLI</div>
+            </div>
+            
+            <div class="table-stats">
+                <div class="stat-row">
+                    <span class="stat-label">✈️ Aerei:</span>
+                    <span class="stat-value">4</span>
+                    <span class="stat-label">📨 Messaggi:</span>
+                    <span class="stat-value">4</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">📡 Segnale:</span>
+                    <span class="stat-value media">🟢 MEDIA</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">📊 Altitudine media:</span>
+                    <span class="stat-value">32412ft</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">💨 Velocità media:</span>
+                    <span class="stat-value">409.0kt</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">🏆 ICAO più frequente:</span>
+                    <span class="stat-value">4d2215</span>
+                </div>
+            </div>
+            
+            <div class="aircraft-list">
+                <div class="aircraft-title">🛫 Aerei rilevati:</div>
+                
+            <div class="aircraft-line">
+                <span class="aircraft-code">4d2215</span> | 
+                <span class="flight-number">RYR134D</span> | 
+                <span class="aircraft-type"></span> | 
+                <span class="altitude">24675ft</span>
+            </div>
+            <div class="aircraft-line">
+                <span class="aircraft-code">7100ad</span> | 
+                <span class="flight-number">SVA207</span> | 
+                <span class="aircraft-type"></span> | 
+                <span class="altitude">35975ft</span>
+            </div>
+            <div class="aircraft-line">
+                <span class="aircraft-code">4bb210</span> | 
+                <span class="flight-number">THY8NR</span> | 
+                <span class="aircraft-type"></span> | 
+                <span class="altitude">32000ft</span>
+            </div>
+            <div class="aircraft-line">
+                <span class="aircraft-code">4bab27</span> | 
+                <span class="flight-number">THY1SQ</span> | 
+                <span class="aircraft-type"></span> | 
+                <span class="altitude">37000ft</span>
+            </div>
+            </div>
+            
+            <div class="table-footer">
+                <div class="file-info">
+                    <span class="duration">⏱️ VARIABILE</span>
+                    <span class="file-size">💾 1.0 MB</span>
+                </div>
+                <div class="download-links">
+                    <!-- <a href="audio/session_1767272070_full.zip" class="download-btn" download>🎵 SCARICA AUDIO (ZIP)</a> -->
+                    <a href="dati_tabelle/session_1767272070.json" class="download-btn" download>📊 SCARICA DATI</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-card">
+            <div class="table-header">
+                <div class="table-title">📊 RILEVAZIONE #4</div>
+                <div class="table-date">🕒 2025-12-31 13:54:59</div>
+                <div class="table-source" style="color: #00ffff; font-size: 0.8em;">🔍 ARCHIVIO VOLI</div>
+            </div>
+            
+            <div class="table-stats">
+                <div class="stat-row">
+                    <span class="stat-label">✈️ Aerei:</span>
+                    <span class="stat-value">6</span>
+                    <span class="stat-label">📨 Messaggi:</span>
+                    <span class="stat-value">6</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">📡 Segnale:</span>
+                    <span class="stat-value alta">🟢 ALTA</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">📊 Altitudine media:</span>
+                    <span class="stat-value">36045ft</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">💨 Velocità media:</span>
+                    <span class="stat-value">476.0kt</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">🏆 ICAO più frequente:</span>
+                    <span class="stat-value">710070</span>
+                </div>
+            </div>
+            
+            <div class="aircraft-list">
+                <div class="aircraft-title">🛫 Aerei rilevati:</div>
+                
+            <div class="aircraft-line">
+                <span class="aircraft-code">710070</span> | 
+                <span class="flight-number">SVA207</span> | 
+                <span class="aircraft-type"></span> | 
+                <span class="altitude">37975ft</span>
+            </div>
+            <div class="aircraft-line">
+                <span class="aircraft-code">78112c</span> | 
+                <span class="flight-number">CSC3804</span> | 
+                <span class="aircraft-type"></span> | 
+                <span class="altitude">37000ft</span>
+            </div>
+            <div class="aircraft-line">
+                <span class="aircraft-code">8964d3</span> | 
+                <span class="flight-number">FDB93Q</span> | 
+                <span class="aircraft-type"></span> | 
+                <span class="altitude">25100ft</span>
+            </div>
+            <div class="aircraft-line">
+                <span class="aircraft-code">4b027d</span> | 
+                <span class="flight-number">EZS16UG</span> | 
+                <span class="aircraft-type"></span> | 
+                <span class="altitude">37025ft</span>
+            </div>
+            <div class="aircraft-line">
+                <span class="aircraft-code">4ba9cf</span> | 
+                <span class="flight-number">THY1CC</span> | 
+                <span class="aircraft-type"></span> | 
+                <span class="altitude">41000ft</span>
+            </div>
+            <div class="aircraft-line">
+                <span class="aircraft-code">4bb06e</span> | 
+                <span class="flight-number">THY1SQ</span> | 
+                <span class="aircraft-type"></span> | 
+                <span class="altitude">38175ft</span>
+            </div>
+            </div>
+            
+            <div class="table-footer">
+                <div class="file-info">
+                    <span class="duration">⏱️ VARIABILE</span>
+                    <span class="file-size">💾 14.9 MB</span>
+                </div>
+                <div class="download-links">
+                    <!-- <a href="audio/session_1767185699_full.zip" class="download-btn" download>🎵 SCARICA AUDIO (ZIP)</a> -->
+                    <a href="dati_tabelle/session_1767185699.json" class="download-btn" download>📊 SCARICA DATI</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-card">
+            <div class="table-header">
+                <div class="table-title">📊 RILEVAZIONE #5</div>
+                <div class="table-date">🕒 2025-12-30 15:14:43</div>
+                <div class="table-source" style="color: #00ffff; font-size: 0.8em;">🔍 ARCHIVIO VOLI</div>
+            </div>
+            
+            <div class="table-stats">
+                <div class="stat-row">
+                    <span class="stat-label">✈️ Aerei:</span>
+                    <span class="stat-value">2</span>
+                    <span class="stat-label">📨 Messaggi:</span>
+                    <span class="stat-value">2</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">📡 Segnale:</span>
+                    <span class="stat-value medio-bassa">🟡 MEDIO-BASSA</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">📊 Altitudine media:</span>
+                    <span class="stat-value">36000ft</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">💨 Velocità media:</span>
+                    <span class="stat-value">497.0kt</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">🏆 ICAO più frequente:</span>
+                    <span class="stat-value">a90351</span>
+                </div>
+            </div>
+            
+            <div class="aircraft-list">
+                <div class="aircraft-title">🛫 Aerei rilevati:</div>
+                
+            <div class="aircraft-line">
+                <span class="aircraft-code">a90351</span> | 
+                <span class="flight-number">N680BA</span> | 
+                <span class="aircraft-type"></span> | 
+                <span class="altitude">27000ft</span>
+            </div>
+            <div class="aircraft-line">
+                <span class="aircraft-code">4d24cf</span> | 
+                <span class="flight-number">FJO648</span> | 
+                <span class="aircraft-type"></span> | 
+                <span class="altitude">45000ft</span>
+            </div>
+            </div>
+            
+            <div class="table-footer">
+                <div class="file-info">
+                    <span class="duration">⏱️ VARIABILE</span>
+                    <span class="file-size">💾 5.9 MB</span>
+                </div>
+                <div class="download-links">
+                    <!-- <a href="audio/session_1767104083_full.zip" class="download-btn" download>🎵 SCARICA AUDIO (ZIP)</a> -->
+                    <a href="dati_tabelle/session_1767104083.json" class="download-btn" download>📊 SCARICA DATI</a>
+                </div>
+            </div>
+        </div>
+            </div>
+
+            <!-- Paginazione -->
+            <div class="pagination" id="pagination">
+                <!-- Paginazione dinamica -->
+            </div>
+                <div class="prompt" data-translate="system_instructions">💡 ISTRUZIONI SISTEMA:</div>
+                <div class="instruction-line" data-translate="instruction1">• Ogni tabella rappresenta una sessione di rilevazione completa</div>
+                <div class="instruction-line" data-translate="instruction2">• Dati estratti dal ricevitore ✅ NooElec NESDR Smart v5</div>
+                <div class="instruction-line" data-translate="instruction3">• Download disponibile per audio e dati RAW</div>
+                <div class="instruction-line" data-translate="instruction4">• Sistema automatico di archiviazione e paginazione</div>
+            </div>
+<!--            <div class="hardware-info">
+                <div class="prompt" data-translate="daily_stats">📈 STATISTICHE GIORNALIERE:</div>
+                <div class="data-info" data-translate="today_aircraft">📊 Aerei totali rilevati oggi: <span class="aircraft-count">0</span></div>
+                <div class="data-info" data-translate="today_messages">📨 Messaggi totali: <span class="aircraft-count">0</span></div>
+                <div class="data-info" data-translate="uptime">⏱️ Tempo di attività: 0h 00m</div>
+                <div class="data-info" data-translate="peak_signal">📡 Picco segnale: 40%</div>
+            </div> -->
+
+            <br>
+            <div class="prompt" style="text-align: center">root@skytruth:~# <span class="blink">_</span></div>
+        </div>
+
+        <div class="footer">
+            <div class="contact" data-translate="footer_contact">SISTEMA ADS-B ATTIVO - SKYTRUTH PROJECT</div>
+            <div class="counter" data-translate="donations">DONAZIONI XMR MONERO:</div>
+            <div class="onion-badge">45QW5EeHKzjFhwhhjB6byJdSXd7ZUR4FgELHGz1e4Mt5M3Yt6TSiXzaEHdcEeneWVX3FtCpdvt4toge3aqCvrihf38SSVGv</div>
+            <br>
+            <div class="copyright" data-translate="copyright">(c) 2026 - REAL AIR TRAFFIC MONITORING | ADS-B 1090MHz | SCANSIONE TRASPONDER ATTIVA</div>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            it: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "FREQUENZA: 1090 MHz | MODALITÀ: ADS-B Mode S",
+                home: "CASA",
+                links: "COLLEGAMENTI",
+                videos: "REGISTRAZIONI VIDEO",
+                data: "RICEZIONE DATI",
+                tables: "TABELLE COMPARATIVE",
+                contacts: "CONTATTI ANONIMI",
+                onion_service: "🧅 ONION SERVICE",
+                start_message: "🚀 SISTEMA ADS-B ATTIVO",
+                detection_status: "📡 SCANSIONE TRASPONDER ATTIVA",
+                translations_note: "> LE TRADUZIONI FUNZIONANO SOLO SE ATTIVI JAVASCRIPT",
+                hardware_config: "🔧 CONFIGURAZIONE HARDWARE:",
+                receiver_model: "📡 Ricevitore:",
+                gain_frequency: "⚡ Guadagno: Auto | Frequenza:",
+                protocol: "🛰️ Protocollo:",
+                hardware_status: "📊 Stato:",
+                realtime_title: "📊 DATI IN TEMPO REALE - TRASPONDER ADS-B",
+                receiver_status: "> Stato ricevitore:",
+                aircraft_detected: "> Aerei rilevati:",
+                signal_quality: "> Qualità segnale:",
+                last_update: "> Ultimo aggiornamento:",
+                messages_second: "> Messaggi/secondo:",
+                system_instructions: "💡 ISTRUZIONI SISTEMA:",
+                instruction1: "• Ogni tabella rappresenta una sessione di rilevazione completa",
+                instruction2: "• Dati estratti dal ricevitore ✅ NooElec NESDR Smart v5",
+                instruction3: "• Download disponibile per audio e dati RAW",
+                instruction4: "• Sistema automatico di archiviazione e paginazione",
+                recent_detections: "📋 ULTIME RILEVAZIONI:",
+                detection_tables: "📊 TABELLE RILEVAZIONI",
+                daily_stats: "📈 STATISTICHE GIORNALIERE:",
+                today_aircraft: "📊 Aerei totali rilevati oggi:",
+                today_messages: "📨 Messaggi totali:",
+                uptime: "⏱️ Tempo di attività:",
+                peak_signal: "📡 Picco segnale:",
+                footer_contact: "SISTEMA ADS-B ATTIVO - SKYTRUTH PROJECT",
+                donations: "DONAZIONI XMR MONERO:",
+                copyright: "(c) 2026 - REAL AIR TRAFFIC MONITORING | ADS-B 1090MHz | SCANSIONE TRASPONDER ATTIVA",
+                js_warning: "⚠️ ATTENZIONE: JAVASCRIPT DISABILITATO - Alcune funzionalità potrebbero non funzionare correttamente. Per un'esperienza completa, si consiglia di abilitare JavaScript nel browser."
+            },
+            en: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "FREQUENZA: 1090 MHz | MODALITÀ: ADS-B Mode S",
+                home: "HOME",
+                links: "LINKS",
+                videos: "VIDEO RECORDINGS",
+                data: "DATA RECEPTION",
+                tables: "COMPARATIVE TABLES",
+                contacts: "ANONYMOUS CONTACTS",
+                onion_service: "🧅 ONION SERVICE",
+                start_message: "🚀 SISTEMA ADS-B ATTIVO",
+                detection_status: "📡 SCANSIONE TRASPONDER ATTIVA",
+                translations_note: "> TRANSLATIONS ONLY WORK IF YOU ENABLE JAVASCRIPT",
+                hardware_config: "🔧 HARDWARE CONFIGURATION:",
+                receiver_model: "📡 Receiver:",
+                gain_frequency: "⚡ Gain: Auto | Frequency:",
+                protocol: "🛰️ Protocol:",
+                hardware_status: "📊 Status:",
+                realtime_title: "📊 REAL-TIME DATA - ADS-B TRANSPONDER",
+                receiver_status: "> Receiver status:",
+                aircraft_detected: "> Aircraft detected:",
+                signal_quality: "> Signal quality:",
+                last_update: "> Last update:",
+                messages_second: "> Messages/second:",
+                system_instructions: "💡 SYSTEM INSTRUCTIONS:",
+                instruction1: "• Each table represents a complete detection session",
+                instruction2: "• Data extracted from ✅ NooElec NESDR Smart v5 receiver",
+                instruction3: "• Download available for audio and RAW data",
+                instruction4: "• Automatic archiving and pagination system",
+                recent_detections: "📋 RECENT DETECTIONS:",
+                detection_tables: "📊 DETECTION TABLES",
+                daily_stats: "📈 DAILY STATISTICS:",
+                today_aircraft: "📊 Total aircraft detected today:",
+                today_messages: "📨 Total messages:",
+                uptime: "⏱️ Uptime:",
+                peak_signal: "📡 Peak signal:",
+                footer_contact: "SISTEMA ADS-B ATTIVO - SKYTRUTH PROJECT",
+                donations: "XMR MONERO DONATIONS:",
+                copyright: "(c) 2026 - REAL AIR TRAFFIC MONITORING | ADS-B 1090MHz | SCANSIONE TRASPONDER ATTIVA",
+                js_warning: "⚠️ WARNING: JAVASCRIPT DISABLED - Some features may not work properly. For full experience, please enable JavaScript in your browser."
+            },
+            es: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "FREQUENZA: 1090 MHz | MODALITÀ: ADS-B Mode S",
+                home: "INICIO",
+                links: "ENLACES",
+                videos: "GRABACIONES DE VIDEO",
+                data: "RECEPCIÓN DE DATOS",
+                tables: "TABLAS COMPARATIVAS",
+                contacts: "CONTACTOS ANÓNIMOS",
+                onion_service: "🧅 SERVICIO ONION",
+                start_message: "🚀 SISTEMA ADS-B ATTIVO",
+                detection_status: "📡 SCANSIONE TRASPONDER ATTIVA",
+                translations_note: "> LAS TRADUCCIONES SOLO FUNCIONAN SI ACTIVAS JAVASCRIPT",
+                hardware_config: "🔧 CONFIGURACIÓN DE HARDWARE:",
+                receiver_model: "📡 Receptor:",
+                gain_frequency: "⚡ Ganancia: Auto | Frecuencia:",
+                protocol: "🛰️ Protocolo:",
+                hardware_status: "📊 Estado:",
+                realtime_title: "📊 DATOS EN TIEMPO REAL - TRANSPONDER ADS-B",
+                receiver_status: "> Estado del receptor:",
+                aircraft_detected: "> Aviones detectados:",
+                signal_quality: "> Calidad de señal:",
+                last_update: "> Última actualización:",
+                messages_second: "> Mensajes/segundo:",
+                system_instructions: "💡 INSTRUCCIONES DEL SISTEMA:",
+                instruction1: "• Cada tabla representa una sesión de detección completa",
+                instruction2: "• Datos extraídos del receptor ✅ NooElec NESDR Smart v5",
+                instruction3: "• Descarga disponible para audio y datos RAW",
+                instruction4: "• Sistema automático de archivado y paginación",
+                recent_detections: "📋 DETECCIONES RECIENTES:",
+                detection_tables: "📊 TABLAS DE DETECCIÓN",
+                daily_stats: "📈 ESTADÍSTICAS DIARIAS:",
+                today_aircraft: "📊 Aviones totales detectados hoy:",
+                today_messages: "📨 Mensajes totales:",
+                uptime: "⏱️ Tiempo de actividad:",
+                peak_signal: "📡 Señal máxima:",
+                footer_contact: "SISTEMA ADS-B ATTIVO - PROYECTO SKYTRUTH",
+                donations: "DONACIONES XMR MONERO:",
+                copyright: "(c) 2026 - MONITOREO DE TRÁFICO AÉREO REAL | ADS-B 1090MHz | SCANSIONE TRASPONDER ATTIVA",
+                js_warning: "⚠️ ADVERTENCIA: JAVASCRIPT DESACTIVADO - Algunas funciones pueden no funcionar correctamente. Para experiencia completa, active JavaScript en su navegador."
+            },
+            fr: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "FREQUENZA: 1090 MHz | MODALITÀ: ADS-B Mode S",
+                home: "ACCUEIL",
+                links: "LIENS",
+                videos: "ENREGISTREMENTS VIDÉO",
+                data: "RÉCEPTION DE DONNÉES",
+                tables: "TABLEAUX COMPARATIFS",
+                contacts: "CONTACTS ANONYMES",
+                onion_service: "🧅 SERVICE ONION",
+                start_message: "🚀 SISTEMA ADS-B ATTIVO",
+                detection_status: "📡 SCANSIONE TRASPONDER ATTIVA",
+                translations_note: "> LES TRADUCTIONS FONCTIONNENT SEULEMENT SI VOUS ACTIVEZ JAVASCRIPT",
+                hardware_config: "🔧 CONFIGURATION MATÉRIEL:",
+                receiver_model: "📡 Récepteur:",
+                gain_frequency: "⚡ Gain: Auto | Fréquence:",
+                protocol: "🛰️ Protocole:",
+                hardware_status: "📊 Statut:",
+                realtime_title: "📊 DONNÉES EN TEMPS RÉEL - TRANSPONDEUR ADS-B",
+                receiver_status: "> Statut du récepteur:",
+                aircraft_detected: "> Avions détectés:",
+                signal_quality: "> Qualité du signal:",
+                last_update: "> Dernière mise à jour:",
+                messages_second: "> Messages/seconde:",
+                system_instructions: "💡 INSTRUCTIONS SYSTÈME:",
+                instruction1: "• Chaque tableau représente une session de détection complète",
+                instruction2: "• Données extraites du récepteur ✅ NooElec NESDR Smart v5",
+                instruction3: "• Téléchargement disponible pour audio et données RAW",
+                instruction4: "• Système automatique d'archivage et pagination",
+                recent_detections: "📋 DÉTECTIONS RÉCENTES:",
+                detection_tables: "📊 TABLEAUX DE DÉTECTION",
+                daily_stats: "📈 STATISTIQUES QUOTIDIENNES:",
+                today_aircraft: "📊 Avions totaux détectés aujourd'hui:",
+                today_messages: "📨 Messages totaux:",
+                uptime: "⏱️ Temps de fonctionnement:",
+                peak_signal: "📡 Signal de pointe:",
+                footer_contact: "SISTEMA ADS-B ATTIVO - PROJET SKYTRUTH",
+                donations: "DONS XMR MONERO:",
+                copyright: "(c) 2026 - SURVEILLANCE DU TRAFIC AÉRIEN RÉEL | ADS-B 1090MHz | SCANSIONE TRASPONDER ATTIVA",
+                js_warning: "⚠️ ATTENTION: JAVASCRIPT DÉSACTIVÉ - Certaines fonctionnalités peuvent ne pas fonctionner correctement. Pour une expérience complète, veuillez activer JavaScript dans votre navigateur."
+            },
+            de: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "FREQUENZA: 1090 MHz | MODALITÀ: ADS-B Mode S",
+                home: "STARTSEITE",
+                links: "VERBINDUNGEN",
+                videos: "VIDEOAUFNAHMEN",
+                data: "DATENEMPFANG",
+                tables: "VERGLEICHTABELLEN",
+                contacts: "ANONYME KONTAKTE",
+                onion_service: "🧅 ONION SERVICE",
+                start_message: "🚀 SISTEMA ADS-B ATTIVO",
+                detection_status: "📡 SCANSIONE TRASPONDER ATTIVA",
+                translations_note: "> ÜBERSETZUNGEN FUNKTIONIEREN NUR WENN JAVASCRIPT AKTIVIERT IST",
+                hardware_config: "🔧 HARDWARE-KONFIGURATION:",
+                receiver_model: "📡 Empfänger:",
+                gain_frequency: "⚡ Verstärkung: Auto | Frequenz:",
+                protocol: "🛰️ Protokoll:",
+                hardware_status: "📊 Status:",
+                realtime_title: "📊 ECHTZEITDATEN - ADS-B TRANSPONDER",
+                receiver_status: "> Empfängerstatus:",
+                aircraft_detected: "> Erkannte Flugzeuge:",
+                signal_quality: "> Signalqualität:",
+                last_update: "> Letzte Aktualisierung:",
+                messages_second: "> Nachrichten/Sekunde:",
+                system_instructions: "💡 SYSTEMANWEISUNGEN:",
+                instruction1: "• Jede Tabelle repräsentiert eine vollständige Erkennungssitzung",
+                instruction2: "• Daten extrahiert vom ✅ NooElec NESDR Smart v5 Empfänger",
+                instruction3: "• Download verfügbar für Audio und ROH-Daten",
+                instruction4: "• Automatisches Archivierungs- und Paginierungssystem",
+                recent_detections: "📋 LETZTE ERKENNUNGEN:",
+                detection_tables: "📊 ERKENNUNGSTABELLEN",
+                daily_stats: "📈 TÄGLICHE STATISTIKEN:",
+                today_aircraft: "📊 Heute erkannte Flugzeuge gesamt:",
+                today_messages: "📨 Nachrichten gesamt:",
+                uptime: "⏱️ Betriebszeit:",
+                peak_signal: "📡 Signalspitze:",
+                footer_contact: "SISTEMA ADS-B ATTIVO - SKYTRUTH PROJEKT",
+                donations: "SPENDEN XMR MONERO:",
+                copyright: "(c) 2026 - ECHTER LUFTVERKEHRSMONITORING | ADS-B 1090MHz | SCANSIONE TRASPONDER ATTIVA",
+                js_warning: "⚠️ WARNUNG: JAVASCRIPT DEAKTIVIERT - Einige Funktionen funktionieren möglicherweise nicht richtig. Für die volle Erfahrung aktivieren Sie JavaScript in Ihrem Browser."
+            },
+            ru: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "FREQUENZA: 1090 MHz | MODALITÀ: ADS-B Mode S",
+                home: "ГЛАВНАЯ",
+                links: "ССЫЛКИ",
+                videos: "ВИДЕОЗАПИСИ",
+                data: "ПРИЕМ ДАННЫХ",
+                tables: "СРАВНИТЕЛЬНЫЕ ТАБЛИЦЫ",
+                contacts: "АНОНИМНЫЕ КОНТАКТЫ",
+                onion_service: "🧅 ONION СЕРВИС",
+                start_message: "🚀 SISTEMA ADS-B ATTIVO",
+                detection_status: "📡 SCANSIONE TRASPONDER ATTIVA",
+                translations_note: "> ПЕРЕВОДЫ РАБОТАЮТ ТОЛЬКО ЕСЛИ ВКЛЮЧЕН JAVASCRIPT",
+                hardware_config: "🔧 КОНФИГУРАЦИЯ ОБОРУДОВАНИЯ:",
+                receiver_model: "📡 Приемник:",
+                gain_frequency: "⚡ Усиление: Auto | Частота:",
+                protocol: "🛰️ Протокол:",
+                hardware_status: "📊 Статус:",
+                realtime_title: "📊 ДАННЫЕ В РЕАЛЬНОМ ВРЕМЕНИ - ADS-B ТРАНСПОНДЕР",
+                receiver_status: "> Статус приемника:",
+                aircraft_detected: "> Обнаружено самолетов:",
+                signal_quality: "> Качество сигнала:",
+                last_update: "> Последнее обновление:",
+                messages_second: "> Сообщений/секунду:",
+                system_instructions: "💡 ИНСТРУКЦИИ СИСТЕМЫ:",
+                instruction1: "• Каждая таблица представляет полную сессию обнаружения",
+                instruction2: "• Данные извлечены из приемника ✅ NooElec NESDR Smart v5",
+                instruction3: "• Доступна загрузка аудио и RAW данных",
+                instruction4: "• Автоматическая система архивирования и пагинации",
+                recent_detections: "📋 ПОСЛЕДНИЕ ОБНАРУЖЕНИЯ:",
+                detection_tables: "📊 ТАБЛИЦЫ ОБНАРУЖЕНИЯ",
+                daily_stats: "📈 ЕЖЕДНЕВНАЯ СТАТИСТИКА:",
+                today_aircraft: "📊 Всего самолетов обнаружено сегодня:",
+                today_messages: "📨 Всего сообщений:",
+                uptime: "⏱️ Время работы:",
+                peak_signal: "📡 Пиковый сигнал:",
+                footer_contact: "SISTEMA ADS-B ATTIVO - ПРОЕКТ SKYTRUTH",
+                donations: "ПОЖЕРТВОВАНИЯ XMR MONERO:",
+                copyright: "(c) 2026 - МОНИТОРИНГ РЕАЛЬНОГО ВОЗДУШНОГО ДВИЖЕНИЯ | ADS-B 1090MHz | SCANSIONE TRASPONDER ATTIVA",
+                js_warning: "⚠️ ВНИМАНИЕ: JAVASCRIPT ОТКЛЮЧЕН - Некоторые функции могут работать некорректно. Для полного опыта включите JavaScript в вашем браузере."
+            },
+            pt: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "FREQUENZA: 1090 MHz | MODALITÀ: ADS-B Mode S",
+                home: "INÍCIO",
+                links: "LIGAÇÕES",
+                videos: "GRAVAÇÕES DE VÍDEO",
+                data: "RECEPÇÃO DE DADOS",
+                tables: "TABELAS COMPARATIVAS",
+                contacts: "CONTACTOS ANÓNIMOS",
+                onion_service: "🧅 SERVIÇO ONION",
+                start_message: "🚀 SISTEMA ADS-B ATTIVO",
+                detection_status: "📡 SCANSIONE TRASPONDER ATTIVA",
+                translations_note: "> AS TRADUÇÕES SÓ FUNCIONAM SE ATIVAR O JAVASCRIPT",
+                hardware_config: "🔧 CONFIGURAÇÃO DE HARDWARE:",
+                receiver_model: "📡 Recetor:",
+                gain_frequency: "⚡ Ganho: Auto | Frequência:",
+                protocol: "🛰️ Protocolo:",
+                hardware_status: "📊 Estado:",
+                realtime_title: "📊 DADOS EM TEMPO REAL - TRANSPONDER ADS-B",
+                receiver_status: "> Estado do recetor:",
+                aircraft_detected: "> Aviões detetados:",
+                signal_quality: "> Qualidade do sinal:",
+                last_update: "> Última atualização:",
+                messages_second: "> Mensagens/segundo:",
+                system_instructions: "💡 INSTRUÇÕES DO SISTEMA:",
+                instruction1: "• Cada tabela representa uma sessão de deteção completa",
+                instruction2: "• Dados extraídos do recetor ✅ NooElec NESDR Smart v5",
+                instruction3: "• Download disponível para áudio e dados RAW",
+                instruction4: "• Sistema automático de arquivamento e paginação",
+                recent_detections: "📋 DETECÇÕES RECENTES:",
+                detection_tables: "📊 TABELAS DE DETECÇÃO",
+                daily_stats: "📈 ESTATÍSTICAS DIÁRIAS:",
+                today_aircraft: "📊 Aviões totais detetados hoje:",
+                today_messages: "📨 Mensagens totais:",
+                uptime: "⏱️ Tempo de atividade:",
+                peak_signal: "📡 Sinal de pico:",
+                footer_contact: "SISTEMA ADS-B ATTIVO - PROJETO SKYTRUTH",
+                donations: "DOAÇÕES XMR MONERO:",
+                copyright: "(c) 2026 - MONITORAMENTO DE TRÁFEGO AÉREO REAL | ADS-B 1090MHz | SCANSIONE TRASPONDER ATTIVA",
+                js_warning: "⚠️ AVISO: JAVASCRIPT DESATIVADO - Algumas funcionalidades podem não funcionar corretamente. Para experiência completa, ative o JavaScript no seu navegador."
+            },
+            cn: {
+                title: "SKYTRUTH 终端",
+                subtitle: "FREQUENZA: 1090 MHz | MODALITÀ: ADS-B Mode S",
+                home: "首页",
+                links: "链接",
+                videos: "视频录制",
+                data: "数据接收",
+                tables: "比较表格",
+                contacts: "匿名联系",
+                onion_service: "🧅 ONION 服务",
+                start_message: "🚀 SISTEMA ADS-B ATTIVO",
+                detection_status: "📡 SCANSIONE TRASPONDER ATTIVA",
+                translations_note: "> 翻译仅在启用 JAVASCRIPT 时有效",
+                hardware_config: "🔧 硬件配置:",
+                receiver_model: "📡 接收器:",
+                gain_frequency: "⚡ 增益: Auto | 频率:",
+                protocol: "🛰️ 协议:",
+                hardware_status: "📊 状态:",
+                realtime_title: "📊 实时数据 - ADS-B 应答器",
+                receiver_status: "> 接收器状态:",
+                aircraft_detected: "> 检测到的飞机:",
+                signal_quality: "> 信号质量:",
+                last_update: "> 最后更新:",
+                messages_second: "> 消息/秒:",
+                system_instructions: "💡 系统说明:",
+                instruction1: "• 每个表格代表一个完整的检测会话",
+                instruction2: "• 从 ✅ NooElec NESDR Smart v5 接收器提取的数据",
+                instruction3: "• 可下载音频和原始数据",
+                instruction4: "• 自动归档和分页系统",
+                recent_detections: "📋 最近检测:",
+                detection_tables: "📊 检测表格",
+                daily_stats: "📈 每日统计:",
+                today_aircraft: "📊 今天检测到的飞机总数:",
+                today_messages: "📨 总消息数:",
+                uptime: "⏱️ 运行时间:",
+                peak_signal: "📡 峰值信号:",
+                footer_contact: "SISTEMA ADS-B ATTIVO - SKYTRUTH 项目",
+                donations: "XMR MONERO 捐款:",
+                copyright: "(c) 2026 - 真实空中交通监控 | ADS-B 1090MHz | SCANSIONE TRASPONDER ATTIVA",
+                js_warning: "⚠️ 警告: JAVASCRIPT 已禁用 - 某些功能可能无法正常工作。为获得完整体验，请在浏览器中启用 JavaScript。"
+            },
+            jp: {
+                title: "SKYTRUTH ターミナル",
+                subtitle: "FREQUENZA: 1090 MHz | MODALITÀ: ADS-B Mode S",
+                home: "ホーム",
+                links: "リンク",
+                videos: "動画記録",
+                data: "データ受信",
+                tables: "比較表",
+                contacts: "匿名連絡先",
+                onion_service: "🧅 オニオンサービス",
+                start_message: "🚀 SISTEMA ADS-B ATTIVO",
+                detection_status: "📡 SCANSIONE TRASPONDER ATTIVA",
+                translations_note: "> 翻訳は JAVASCRIPT を有効にした場合のみ機能します",
+                hardware_config: "🔧 ハードウェア構成:",
+                receiver_model: "📡 受信機:",
+                gain_frequency: "⚡ ゲイン: Auto | 周波数:",
+                protocol: "🛰️ プロトコル:",
+                hardware_status: "📊 状態:",
+                realtime_title: "📊 リアルタイムデータ - ADS-B トランスポンダ",
+                receiver_status: "> 受信機状態:",
+                aircraft_detected: "> 検出された航空機:",
+                signal_quality: "> 信号品質:",
+                last_update: "> 最終更新:",
+                messages_second: "> メッセージ/秒:",
+                system_instructions: "💡 システム説明:",
+                instruction1: "• 各テーブルは完全な検出セッションを表します",
+                instruction2: "• ✅ NooElec NESDR Smart v5 受信機から抽出されたデータ",
+                instruction3: "• オーディオとRAWデータのダウンロード可能",
+                instruction4: "• 自動アーカイブとページネーションシステム",
+                recent_detections: "📋 最近の検出:",
+                detection_tables: "📊 検出テーブル",
+                daily_stats: "📈 日次統計:",
+                today_aircraft: "📊 本日検出された航空機総数:",
+                today_messages: "📨 総メッセージ数:",
+                uptime: "⏱️ 稼働時間:",
+                peak_signal: "📡 ピーク信号:",
+                footer_contact: "SISTEMA ADS-B ATTIVO - SKYTRUTH プロジェクト",
+                donations: "XMR モネロ寄付:",
+                copyright: "(c) 2026 - リアル航空交通モニタリング | ADS-B 1090MHz | SCANSIONE TRASPONDER ATTIVA",
+                js_warning: "⚠️ 警告: JAVASCRIPT 無効 - 一部の機能が正しく動作しない場合があります。完全な体験には、ブラウザで JavaScript を有効にしてください。"
+            },
+            ar: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "FREQUENZA: 1090 MHz | MODALITÀ: ADS-B Mode S",
+                home: "الرئيسية",
+                links: "الروابط",
+                videos: "تسجيلات الفيديو",
+                data: "استقبال البيانات",
+                tables: "الجداول المقارنة",
+                contacts: "جهات اتصال مجهولة",
+                onion_service: "🧅 خدمة ONION",
+                start_message: "🚀 SISTEMA ADS-B ATTIVO",
+                detection_status: "📡 SCANSIONE TRASPONDER ATTIVA",
+                translations_note: "> الترجمة تعمل فقط إذا قمت بتشغيل JAVASCRIPT",
+                hardware_config: "🔧 تكوين الأجهزة:",
+                receiver_model: "📡 المستقبل:",
+                gain_frequency: "⚡ الكسب: Auto | التردد:",
+                protocol: "🛰️ البروتوكول:",
+                hardware_status: "📊 الحالة:",
+                realtime_title: "📊 بيانات الوقت الحقيقي - المستجيب ADS-B",
+                receiver_status: "> حالة المستقبل:",
+                aircraft_detected: "> الطائرات المكتشفة:",
+                signal_quality: "> جودة الإشارة:",
+                last_update: "> آخر تحديث:",
+                messages_second: "> رسائل/الثانية:",
+                system_instructions: "💡 تعليمات النظام:",
+                instruction1: "• كل جدول يمثل جلسة كشف كاملة",
+                instruction2: "• البيانات مستخرجة من المستقبل ✅ NooElec NESDR Smart v5",
+                instruction3: "• التنزيل متاح للصوت والبيانات الخام",
+                instruction4: "• نظام الأرشفة والترقيم التلقائي",
+                recent_detections: "📋 الاكتشافات الحديثة:",
+                detection_tables: "📊 جداول الاكتشاف",
+                daily_stats: "📈 الإحصائيات اليومية:",
+                today_aircraft: "📊 إجمالي الطائرات المكتشفة اليوم:",
+                today_messages: "📨 إجمالي الرسائل:",
+                uptime: "⏱️ وقت التشغيل:",
+                peak_signal: "📡 إشارة الذروة:",
+                footer_contact: "SISTEMA ADS-B ATTIVO - مشروع SKYTRUTH",
+                donations: "تبرعات XMR MONERO:",
+                copyright: "(c) 2026 - مراقبة حركة الطيران الحقيقية | ADS-B 1090MHz | SCANSIONE TRASPONDER ATTIVA",
+                js_warning: "⚠️ تحذير: JAVASCRIPT معطل - بعض الميزات قد لا تعمل بشكل صحيح. للتجربة الكاملة، يرجى تمكين JavaScript في متصفحك."
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Aggiorna anche il messaggio noscript se possibile
+            const noscriptWarning = document.querySelector('.javascript-warning');
+            if (noscriptWarning && translations[lang] && translations[lang]['js_warning']) {
+                noscriptWarning.textContent = translations[lang]['js_warning'];
+            }
+            
+            // Aggiorna l'attributo lang della pagina
+            document.documentElement.lang = lang;
+        }
+
+        // Aggiornamento orario in tempo reale
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toISOString().replace('T', ' ').substring(0, 19);
+            document.getElementById('currentTime').textContent = timeString;
+        }
+
+        // Sistema di paginazione per tabelle - 20 TABELLE PER PAGINA
+        let currentPage = 1;
+        const tablesPerPage = 20; // 2 per riga × 10 righe = 20 tabelle per pagina
+
+        function initPagination() {
+            const tables = document.querySelectorAll('.table-card');
+            const totalPages = Math.ceil(tables.length / tablesPerPage);
+            
+            if (totalPages <= 1) {
+                document.getElementById('pagination').style.display = 'none';
+                showAllTables(); // Mostra tutte le tabelle se c'è solo una pagina
+                return;
+            }
+
+            let paginationHTML = '';
+            
+            // Bottone prima pagina
+            if (currentPage > 1) {
+                paginationHTML += `<button class="page-btn" onclick="changePage(1)">«</button>`;
+                paginationHTML += `<button class="page-btn" onclick="changePage(${currentPage - 1})">‹</button>`;
+            }
+            
+            // Pagine numeriche
+            const startPage = Math.max(1, currentPage - 2);
+            const endPage = Math.min(totalPages, currentPage + 2);
+            
+            for (let i = startPage; i <= endPage; i++) {
+                paginationHTML += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
+            }
+            
+            // Bottone ultima pagina
+            if (currentPage < totalPages) {
+                paginationHTML += `<button class="page-btn" onclick="changePage(${currentPage + 1})">›</button>`;
+                paginationHTML += `<button class="page-btn" onclick="changePage(${totalPages})">»</button>`;
+            }
+            
+            document.getElementById('pagination').innerHTML = paginationHTML;
+            showPage(currentPage);
+        }
+
+        function changePage(page) {
+            currentPage = page;
+            initPagination();
+        }
+
+        function showPage(page) {
+            const tables = document.querySelectorAll('.table-card');
+            const startIndex = (page - 1) * tablesPerPage;
+            const endIndex = startIndex + tablesPerPage;
+
+            tables.forEach((table, index) => {
+                // Mostra solo le tabelle della pagina corrente
+                const shouldShow = (index >= startIndex && index < endIndex);
+                table.style.display = shouldShow ? 'block' : 'none';
+            });
+        }
+
+        function showAllTables() {
+            // Mostra tutte le tabelle (per quando c'è solo una pagina)
+            const tables = document.querySelectorAll('.table-card');
+            tables.forEach(table => {
+                table.style.display = 'block';
+            });
+        }
+
+        // Inizializzazione
+        setInterval(updateTime, 1000);
+        updateTime();
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            initPagination();
+        });
+
+        // Aggiornamento automatico ogni 30 secondi
+        setTimeout(() => {
+            location.reload();
+        }, 30000);
+    </script>
+</body>
+</html>

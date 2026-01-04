@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>Tabelle Comparative - SkyTruth</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SkyTruth - Tabelle comparative dati ADS-B vs Flight Radar per analisi discrepanze traffico aereo">
+    <meta name="keywords" content="skytruth, tabelle comparative, ADS-B, flight radar, analisi discrepanze, traffico aereo, monitoraggio">
+    <meta name="robots" content="index, follow">
+
+    <!-- Onion Service Metadata -->
+    <meta name="onion-location" content="http://64chdrfe7bonndpbgyzizxelgkyk37fufwzltpkivwyivcv2md5j4byd.onion">
+    <link rel="canonical" href="http://64chdrfe7bonndpbgyzizxelgkyk37fufwzltpkivwyivcv2md5j4byd.onion">
+
+    <!-- Meta multilingua -->
+    <meta name="keywords" lang="it" content="tabelle comparative, ADS-B, flight radar, analisi discrepanze, traffico aereo, monitoraggio">
+    <meta name="keywords" lang="en" content="comparative tables, ADS-B, flight radar, discrepancy analysis, air traffic, monitoring">
+    <meta name="keywords" lang="es" content="tablas comparativas, ADS-B, flight radar, análisis discrepancias, tráfico aéreo, monitoreo">
+    <meta name="keywords" lang="fr" content="tableaux comparatifs, ADS-B, flight radar, analyse écarts, trafic aérien, surveillance">
+    <meta name="keywords" lang="de" content="Vergleichstabellen, ADS-B, Flight Radar, Diskrepanzanalyse, Luftverkehr, Überwachung">
+    <meta name="keywords" lang="ru" content="сравнительные таблицы, ADS-B, Flight Radar, анализ расхождений, воздушное движение, мониторинг">
+    <meta name="keywords" lang="pt" content="tabelas comparativas, ADS-B, flight radar, análise discrepâncias, tráfego aéreo, monitoramento">
+    <meta name="keywords" lang="cn" content="比较表格, ADS-B, Flight Radar, 差异分析, 空中交通, 监控">
+    <meta name="keywords" lang="jp" content="比較表, ADS-B, フライトレーダー, 不一致分析, 航空交通, モニタリング">
+    <meta name="keywords" lang="ar" content="جداول مقارنة, ADS-B, الرادار الجوي, تحليل الفروقات, حركة الطيران, مراقبة">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body { 
+            font-family: 'Courier New', monospace; 
+            background: #000000;
+            color: #00ff00;
+            margin: 0;
+            padding: 15px;
+            line-height: 1.4;
+        }
+        
+        .terminal {
+            max-width: 1600px;
+            margin: 0 auto;
+            border: 1px solid #00ff00;
+            padding: 15px;
+            position: relative;
+            min-height: 80vh;
+        }
+        
+        .header { 
+            text-align: center; 
+            border-bottom: 1px solid #00ff00;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .site-title {
+            font-size: clamp(20px, 5vw, 32px);
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
+            margin: 10px 0;
+            font-weight: bold;
+            word-break: break-word;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+        
+        .onion-badge {
+            background: #ff6600;
+            color: #000000;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: clamp(11px, 2.5vw, 14px);
+            font-weight: bold;
+            margin: 5px 0;
+            display: inline-block;
+        }
+        
+        .language-flags {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .language-flags span {
+            font-size: clamp(14px, 3vw, 18px);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .language-flags span:hover {
+            transform: scale(1.2);
+        }
+        
+        .subtitle {
+            color: #00ffff;
+            font-size: clamp(12px, 2.5vw, 16px);
+            margin: 8px 0;
+            word-break: break-word;
+        }
+        
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .menu a {
+            color: #00ff00;
+            text-decoration: none;
+            border: 1px solid #00ff00;
+            padding: 5px 10px;
+            font-size: clamp(10px, 2vw, 13px);
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+        
+        .menu a:hover {
+            background: #00ff00;
+            color: #000000;
+        }
+        
+        .content {
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        
+        .prompt {
+            color: #00ff00;
+            margin: 5px 0;
+            word-break: break-word;
+        }
+        
+        .footer {
+            text-align: center;
+            border-top: 1px solid #00ff00;
+            padding-top: 15px;
+            margin-top: 30px;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+        
+        .counter {
+            color: #ff6600;
+            font-weight: bold;
+            font-size: clamp(12px, 2.5vw, 14px);
+            margin: 10px 0;
+        }
+        
+        .contact {
+            color: #00ffff;
+            margin: 5px 0;
+            font-size: clamp(11px, 2vw, 13px);
+        }
+        
+        .copyright {
+            color: #888;
+            font-size: clamp(10px, 1.8vw, 12px);
+            margin-top: 10px;
+            line-height: 1.3;
+        }
+        
+        .onion-address {
+            font-size: clamp(10px, 2vw, 12px);
+            word-break: break-all;
+            margin: 10px 0;
+            padding: 5px;
+            border: 1px solid #00ff00;
+        }
+        
+        .blink {
+            animation: blink 1s infinite;
+        }
+        
+        .system-info {
+            background: #001100;
+            border: 1px solid #00ff00;
+            padding: 12px;
+            margin: 12px 0;
+        }
+        
+        .no-data {
+            text-align: center;
+            color: #ff6600;
+            padding: 30px;
+            font-size: clamp(12px, 2vw, 16px);
+            border: 1px solid #ff6600;
+            background: #001100;
+            margin: 15px 0;
+        }
+
+        /* Stili per tabelle comparative */
+        .comparison-table {
+            border: 1px solid #00ff00;
+            padding: 12px;
+            background: #001100;
+            margin: 15px 0;
+            transition: all 0.3s;
+        }
+        
+        .comparison-table:hover {
+            background: #002200;
+            border-color: #00ffff;
+        }
+        
+        .comparison-header {
+            border-bottom: 1px solid #00ff00;
+            padding-bottom: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .comparison-title {
+            color: #00ffff;
+            font-weight: bold;
+            font-size: clamp(14px, 2.5vw, 18px);
+        }
+        
+        .comparison-date {
+            color: #ff6600;
+            font-size: clamp(10px, 1.8vw, 12px);
+            margin-top: 4px;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin: 12px 0;
+        }
+        
+        .comparison-column {
+            border: 1px solid #00ff00;
+            padding: 8px;
+            background: #000000;
+        }
+        
+        .column-title {
+            color: #ffff00;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #00ff00;
+            font-size: clamp(12px, 2vw, 14px);
+        }
+        
+        .column-stats, .difference-stats {
+            margin: 8px 0;
+        }
+        
+        .stat-row, .diff-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 4px 0;
+            font-size: clamp(10px, 1.8vw, 12px);
+        }
+        
+        .stat-label, .diff-label {
+            color: #00ff00;
+        }
+        
+        .stat-value, .diff-value {
+            color: #ffff00;
+            font-weight: bold;
+        }
+        
+        .aircraft-list {
+            margin: 8px 0;
+            padding: 6px;
+            background: #001100;
+            border: 1px solid #00ff00;
+            border-radius: 3px;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+        
+        .aircraft-title {
+            color: #00ffff;
+            font-weight: bold;
+            margin-bottom: 4px;
+            font-size: clamp(10px, 1.8vw, 11px);
+        }
+        
+        .aircraft-line {
+            font-family: 'Courier New', monospace;
+            font-size: clamp(8px, 1.6vw, 0.7em);
+            color: #00ff00;
+            margin: 1px 0;
+            padding: 1px 3px;
+            background: #002200;
+            border-radius: 2px;
+        }
+        
+        .aircraft-line.real {
+            border-left: 2px solid #00ff00;
+        }
+        
+        .aircraft-line.fr {
+            border-left: 2px solid #ff6600;
+        }
+        
+        .aircraft-code {
+            color: #ff9900;
+            font-weight: bold;
+        }
+        
+        .flight-number {
+            color: #00ccff;
+        }
+        
+        .aircraft-type {
+            color: #ffff00;
+        }
+        
+        .altitude {
+            color: #ff6600;
+        }
+        
+        .visibility {
+            font-size: clamp(7px, 1.4vw, 0.6em);
+        }
+        
+        .difference-chart {
+            margin: 8px 0;
+            padding: 6px;
+            background: #000000;
+            border: 1px solid #00ff00;
+            border-radius: 3px;
+        }
+        
+        .chart-text {
+            font-family: 'Courier New', monospace;
+            font-size: clamp(7px, 1.4vw, 0.65em);
+            color: #00ff00;
+            margin: 0;
+            white-space: pre-wrap;
+        }
+        
+        .comparison-footer {
+            border-top: 1px solid #00ff00;
+            padding-top: 8px;
+            margin-top: 8px;
+        }
+        
+        .analysis-notes {
+            font-size: clamp(9px, 1.6vw, 11px);
+        }
+        
+        .note-line {
+            margin: 3px 0;
+            padding: 2px 5px;
+            background: #002200;
+            border-radius: 2px;
+        }
+        
+        /* Colori discrepanze */
+        .high-discrepancy { color: #ff0000; }
+        .medium-discrepancy { color: #ff6600; }
+        .low-discrepancy { color: #ffff00; }
+        
+            /* Paginazione avanzata */
+            .pagination {
+                display: flex;
+                justify-content: center;
+                gap: 8px;
+                margin: 20px 0;
+                flex-wrap: wrap;
+            }
+
+            .page-btn {
+                background: #000000;
+                border: 1px solid #00ff00;
+                color: #00ff00;
+                padding: 6px 12px;
+                cursor: pointer;
+                transition: all 0.3s;
+                font-size: clamp(10px, 1.8vw, 12px);
+            }
+
+            .page-btn.active {
+                background: #00ff00;
+                color: #000000;
+            }
+
+            .page-btn:hover {
+                background: #00ff00;
+                color: #000000;
+            }
+
+            .page-dots {
+                color: #00ff00;
+                padding: 6px 8px;
+                font-size: clamp(10px, 1.8vw, 12px);
+            }
+
+            .page-btn:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+
+            .page-btn:disabled:hover {
+                background: #000000;
+                color: #00ff00;
+            }
+
+            .javascript-warning {
+                background: #330000;
+                border: 1px solid #ff0000;
+                padding: 10px;
+                margin: 10px 0;
+                text-align: center;
+                color: #ff6666;
+                font-size: clamp(11px, 2vw, 13px);
+            }
+
+            @keyframes blink {
+                50% { opacity: 0; }
+            }
+
+            @media (max-width: 768px) {
+                .comparison-grid {
+                    grid-template-columns: 1fr;
+                    gap: 8px;
+                }
+                
+                .comparison-table {
+                    padding: 8px;
+                }
+            }
+
+            @media (min-width: 769px) and (max-width: 1200px) {
+                .comparison-grid {
+                    grid-template-columns: 1fr 1fr;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .pagination {
+                    gap: 4px;
+                }
+                
+                .page-btn {
+                    padding: 4px 8px;
+                    font-size: 12px;
+                }
+            }
+    </style>
+</head>
+<body>
+<!--    <noscript>
+        <div class="javascript-warning">
+            ⚠️ ATTENZIONE: JAVASCRIPT DISABILITATO - Alcune funzionalità potrebbero non funzionare correttamente.
+            Per un'esperienza completa, si consiglia di abilitare JavaScript nel browser.
+        </div>
+    </noscript> -->
+
+    <div class="terminal">
+        <div class="header">
+            <div class="site-title" data-translate="title">SKYTRUTH TERMINAL</div>
+            <div class="header-top">
+                <div class="onion-badge" data-translate="onion_service">🧅 ONION SERVICE</div>
+                <div class="language-flags">
+                    <span onclick="changeLanguage('it')" title="Italiano">🇮🇹</span>
+                    <span onclick="changeLanguage('ru')" title="Russian">🇷🇺</span>
+                    <span onclick="changeLanguage('cn')" title="Chinese">🇨🇳</span>
+                    <span onclick="changeLanguage('pt')" title="Portuguese">🇵🇹</span>
+                    <span onclick="changeLanguage('jp')" title="Japanese">🇯🇵</span>
+                    <span onclick="changeLanguage('ar')" title="Arabic">🇸🇦</span>
+                    <span onclick="changeLanguage('fr')" title="French">🇫🇷</span>
+                    <span onclick="changeLanguage('de')" title="German">🇩🇪</span>
+                    <span onclick="changeLanguage('es')" title="Spanish">🇪🇸</span>
+                    <span onclick="changeLanguage('en')" title="English">🇺🇸</span>
+                </div>
+            </div>
+            <div class="subtitle" data-translate="subtitle">ARCHIVIO TABELLE COMPARATIVE - CONFRONTO DATI</div>
+            <div class="menu">
+                <a href="index.html" data-translate="home">CASA</a>
+                <a href="collegamenti.html" data-translate="links">COLLEGAMENTI</a>
+                <a href="registrazioni_video.html" data-translate="videos">REGISTRAZIONI VIDEO</a>
+                <a href="ricezione_dati.html" data-translate="data">RICEZIONE DATI</a>
+                <a href="tabelle_comparative.html" data-translate="tables">TABELLE COMPARATIVE</a>
+                <a href="contatti_anonimi.html" data-translate="contacts">CONTATTI ANONIMI</a>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="prompt" style="text-align: center">root@skytruth:~# comparison_engine.sh</div>
+            <div data-translate="access_message" style="text-align: center">> ACCESSO ARCHIVIO TABELLE COMPARATIVE</div>
+            <div data-translate="tables_loaded" style="text-align: center">> TABELLE CARICATE: <span class="stat-value">5</span></div>
+            <div data-translate="last_update" style="text-align: center">> ULTIMO AGGIORNAMENTO: <span class="stat-value">2026-01-04 13:21:40</span></div>
+            <div data-translate="welcome3" style="text-align: center">> LE TRADUZIONI FUNZIONANO SOLO SE ATTIVI JAVASCRIPT</div>
+            <br>
+
+            <div class="system-info">
+                <div class="prompt" data-translate="instructions_title">💡 ISTRUZIONI COMPARAZIONE:</div>
+                <div class="stat-row" data-translate="instruction1">• Confronto dati reali ADS-B vs Flight Radar</div>
+                <div class="stat-row" data-translate="instruction2">• Colonna SINISTRA: Nostri dati rilevati</div>
+                <div class="stat-row" data-translate="instruction3">• Colonna CENTRO: Dati Flight Radar</div>
+                <div class="stat-row" data-translate="instruction4">• Colonna DESTRA: Analisi differenze e grafici</div>
+                <div class="stat-row" data-translate="instruction5">• Paginazione: 25 tabelle per pagina</div>
+            </div>
+
+            <!-- === TABELLE COMPARATIVE - CONTENUTO DINAMICO === -->
+            <h3 data-translate="tables_title">📊 TABELLE COMPARATIVE:</h3>
+            <div id="comparisonContainer">
+                
+        <div class="comparison-table">
+            <div class="comparison-header">
+                <div class="comparison-title">📊 COMPARAZIONE #1</div>
+                <div class="comparison-date">🕒 2026-01-04 13:21:29</div>
+            </div>
+            
+            <div class="comparison-grid">
+                <div class="comparison-column">
+                    <div class="column-title">🛰️ NOSTRI DATI</div>
+                    
+    <div class="column-stats">
+        <div class="stat-row">
+            <span class="stat-label">✈️ Aerei:</span>
+            <span class="stat-value">2</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">📡 Segnale:</span>
+            <span class="stat-value">🟡 MEDIO-BASSA</span>
+        </div>
+    </div>
+    <div class="aircraft-list">
+        <div class="aircraft-title">Aerei rilevati:</div>
+        
+        <div class="aircraft-line real">
+            <span class="aircraft-code">4d2234</span> | 
+            <span class="flight-number">RYR7003</span> | 
+            <span class="aircraft-type"></span> |
+            <span class="altitude">37000ft</span>
+        </div>
+        <div class="aircraft-line real">
+            <span class="aircraft-code">a2b501</span> | 
+            <span class="flight-number">UAL164</span> | 
+            <span class="aircraft-type"></span> |
+            <span class="altitude">33000ft</span>
+        </div>
+    </div>
+                </div>
+                
+                <div class="comparison-column">
+                    <div class="column-title">📡 FLIGHT RADAR</div>
+                    
+    <div class="column-stats">
+        <div class="stat-row">
+            <span class="stat-label">✈️ Aerei:</span>
+            <span class="stat-value">1</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">🔍 Nascosti:</span>
+            <span class="stat-value">0</span>
+        </div>
+    </div>
+    <div class="aircraft-list">
+        <div class="aircraft-title">Aerei Flight Radar:</div>
+        
+        <div class="aircraft-line fr">
+            <span class="aircraft-code">aircraft</span> | 
+            <span class="flight-number">N/A</span> | 
+            <span class="visibility">🟢 VISIBILE</span>
+        </div>
+    </div>
+                </div>
+                
+                <div class="comparison-column">
+                    <div class="column-title">📈 DIFFERENZE</div>
+                    
+    <div class="difference-stats">
+        <div class="diff-row">
+            <span class="diff-label">📊 Discrepanza:</span>
+            <span class="diff-value high-discrepancy">
+                100.0%
+            </span>
+        </div>
+        <div class="diff-row">
+            <span class="diff-label">⚠️ Aerei nascosti:</span>
+            <span class="diff-value">2</span>
+        </div>
+    </div>
+    <div class="difference-chart">
+        <pre class="chart-text">
+    📊 GRAFICO DIFFERENZE:
+    
+    AEREI RILEVATI: █████████████        2 aerei
+    FLIGHT RADAR:   ██████               1 aerei
+    
+    ⚠️  AEREI NASCOSTI: 2 (100.0%)
+    🔍 DISCREPANZA: 100.0%
+    </pre>
+    </div>
+                </div>
+            </div>
+            
+            <div class="comparison-footer">
+                <div class="analysis-notes">
+                    <strong>📝 NOTE ANALISI:</strong>
+                    <div class="note-line">⚠️  2 aerei reali non presenti su Flight Radar</div><div class="note-line">🔍 ICAO mancanti: a2b501, 4d2234</div><div class="note-line">🔎 1 aerei su Flight Radar non rilevati da noi</div><div class="note-line">🚨 ALTA DISCREPANZA: Oltre il 30% di aerei nascosti</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison-table">
+            <div class="comparison-header">
+                <div class="comparison-title">📊 COMPARAZIONE #2</div>
+                <div class="comparison-date">🕒 2026-01-03 15:37:23</div>
+            </div>
+            
+            <div class="comparison-grid">
+                <div class="comparison-column">
+                    <div class="column-title">🛰️ NOSTRI DATI</div>
+                    
+    <div class="column-stats">
+        <div class="stat-row">
+            <span class="stat-label">✈️ Aerei:</span>
+            <span class="stat-value">1</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">📡 Segnale:</span>
+            <span class="stat-value">🟡 MEDIO-BASSA</span>
+        </div>
+    </div>
+    <div class="aircraft-list">
+        <div class="aircraft-title">Aerei rilevati:</div>
+        
+        <div class="aircraft-line real">
+            <span class="aircraft-code">4baa88</span> | 
+            <span class="flight-number">THY1FM</span> | 
+            <span class="aircraft-type"></span> |
+            <span class="altitude">33950ft</span>
+        </div>
+    </div>
+                </div>
+                
+                <div class="comparison-column">
+                    <div class="column-title">📡 FLIGHT RADAR</div>
+                    
+    <div class="column-stats">
+        <div class="stat-row">
+            <span class="stat-label">✈️ Aerei:</span>
+            <span class="stat-value">1</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">🔍 Nascosti:</span>
+            <span class="stat-value">0</span>
+        </div>
+    </div>
+    <div class="aircraft-list">
+        <div class="aircraft-title">Aerei Flight Radar:</div>
+        
+        <div class="aircraft-line fr">
+            <span class="aircraft-code">aircraft</span> | 
+            <span class="flight-number">N/A</span> | 
+            <span class="visibility">🟢 VISIBILE</span>
+        </div>
+    </div>
+                </div>
+                
+                <div class="comparison-column">
+                    <div class="column-title">📈 DIFFERENZE</div>
+                    
+    <div class="difference-stats">
+        <div class="diff-row">
+            <span class="diff-label">📊 Discrepanza:</span>
+            <span class="diff-value high-discrepancy">
+                100.0%
+            </span>
+        </div>
+        <div class="diff-row">
+            <span class="diff-label">⚠️ Aerei nascosti:</span>
+            <span class="diff-value">1</span>
+        </div>
+    </div>
+    <div class="difference-chart">
+        <pre class="chart-text">
+    📊 GRAFICO DIFFERENZE:
+    
+    AEREI RILEVATI: ██████████           1 aerei
+    FLIGHT RADAR:   ██████████           1 aerei
+    
+    ⚠️  AEREI NASCOSTI: 1 (100.0%)
+    🔍 DISCREPANZA: 100.0%
+    </pre>
+    </div>
+                </div>
+            </div>
+            
+            <div class="comparison-footer">
+                <div class="analysis-notes">
+                    <strong>📝 NOTE ANALISI:</strong>
+                    <div class="note-line">⚠️  1 aerei reali non presenti su Flight Radar</div><div class="note-line">🔍 ICAO mancanti: 4baa88</div><div class="note-line">🔎 1 aerei su Flight Radar non rilevati da noi</div><div class="note-line">🚨 ALTA DISCREPANZA: Oltre il 30% di aerei nascosti</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison-table">
+            <div class="comparison-header">
+                <div class="comparison-title">📊 COMPARAZIONE #3</div>
+                <div class="comparison-date">🕒 2026-01-01 13:55:23</div>
+            </div>
+            
+            <div class="comparison-grid">
+                <div class="comparison-column">
+                    <div class="column-title">🛰️ NOSTRI DATI</div>
+                    
+    <div class="column-stats">
+        <div class="stat-row">
+            <span class="stat-label">✈️ Aerei:</span>
+            <span class="stat-value">4</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">📡 Segnale:</span>
+            <span class="stat-value">🟢 MEDIA</span>
+        </div>
+    </div>
+    <div class="aircraft-list">
+        <div class="aircraft-title">Aerei rilevati:</div>
+        
+        <div class="aircraft-line real">
+            <span class="aircraft-code">4d2215</span> | 
+            <span class="flight-number">RYR134D</span> | 
+            <span class="aircraft-type"></span> |
+            <span class="altitude">24675ft</span>
+        </div>
+        <div class="aircraft-line real">
+            <span class="aircraft-code">7100ad</span> | 
+            <span class="flight-number">SVA207</span> | 
+            <span class="aircraft-type"></span> |
+            <span class="altitude">35975ft</span>
+        </div>
+        <div class="aircraft-line real">
+            <span class="aircraft-code">4bb210</span> | 
+            <span class="flight-number">THY8NR</span> | 
+            <span class="aircraft-type"></span> |
+            <span class="altitude">32000ft</span>
+        </div>
+        <div class="aircraft-line real">
+            <span class="aircraft-code">4bab27</span> | 
+            <span class="flight-number">THY1SQ</span> | 
+            <span class="aircraft-type"></span> |
+            <span class="altitude">37000ft</span>
+        </div>
+    </div>
+                </div>
+                
+                <div class="comparison-column">
+                    <div class="column-title">📡 FLIGHT RADAR</div>
+                    
+    <div class="column-stats">
+        <div class="stat-row">
+            <span class="stat-label">✈️ Aerei:</span>
+            <span class="stat-value">1</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">🔍 Nascosti:</span>
+            <span class="stat-value">0</span>
+        </div>
+    </div>
+    <div class="aircraft-list">
+        <div class="aircraft-title">Aerei Flight Radar:</div>
+        
+        <div class="aircraft-line fr">
+            <span class="aircraft-code">aircraft</span> | 
+            <span class="flight-number">N/A</span> | 
+            <span class="visibility">🟢 VISIBILE</span>
+        </div>
+    </div>
+                </div>
+                
+                <div class="comparison-column">
+                    <div class="column-title">📈 DIFFERENZE</div>
+                    
+    <div class="difference-stats">
+        <div class="diff-row">
+            <span class="diff-label">📊 Discrepanza:</span>
+            <span class="diff-value high-discrepancy">
+                100.0%
+            </span>
+        </div>
+        <div class="diff-row">
+            <span class="diff-label">⚠️ Aerei nascosti:</span>
+            <span class="diff-value">4</span>
+        </div>
+    </div>
+    <div class="difference-chart">
+        <pre class="chart-text">
+    📊 GRAFICO DIFFERENZE:
+    
+    AEREI RILEVATI: ████████████████     4 aerei
+    FLIGHT RADAR:   ████                 1 aerei
+    
+    ⚠️  AEREI NASCOSTI: 4 (100.0%)
+    🔍 DISCREPANZA: 100.0%
+    </pre>
+    </div>
+                </div>
+            </div>
+            
+            <div class="comparison-footer">
+                <div class="analysis-notes">
+                    <strong>📝 NOTE ANALISI:</strong>
+                    <div class="note-line">⚠️  4 aerei reali non presenti su Flight Radar</div><div class="note-line">🔍 ICAO mancanti: 4bab27, 4bb210, 7100ad, 4d2215</div><div class="note-line">🔎 1 aerei su Flight Radar non rilevati da noi</div><div class="note-line">🚨 ALTA DISCREPANZA: Oltre il 30% di aerei nascosti</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison-table">
+            <div class="comparison-header">
+                <div class="comparison-title">📊 COMPARAZIONE #4</div>
+                <div class="comparison-date">🕒 2025-12-31 13:55:34</div>
+            </div>
+            
+            <div class="comparison-grid">
+                <div class="comparison-column">
+                    <div class="column-title">🛰️ NOSTRI DATI</div>
+                    
+    <div class="column-stats">
+        <div class="stat-row">
+            <span class="stat-label">✈️ Aerei:</span>
+            <span class="stat-value">6</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">📡 Segnale:</span>
+            <span class="stat-value">🟢 ALTA</span>
+        </div>
+    </div>
+    <div class="aircraft-list">
+        <div class="aircraft-title">Aerei rilevati:</div>
+        
+        <div class="aircraft-line real">
+            <span class="aircraft-code">710070</span> | 
+            <span class="flight-number">SVA207</span> | 
+            <span class="aircraft-type"></span> |
+            <span class="altitude">37975ft</span>
+        </div>
+        <div class="aircraft-line real">
+            <span class="aircraft-code">78112c</span> | 
+            <span class="flight-number">CSC3804</span> | 
+            <span class="aircraft-type"></span> |
+            <span class="altitude">37000ft</span>
+        </div>
+        <div class="aircraft-line real">
+            <span class="aircraft-code">8964d3</span> | 
+            <span class="flight-number">FDB93Q</span> | 
+            <span class="aircraft-type"></span> |
+            <span class="altitude">25100ft</span>
+        </div>
+        <div class="aircraft-line real">
+            <span class="aircraft-code">4b027d</span> | 
+            <span class="flight-number">EZS16UG</span> | 
+            <span class="aircraft-type"></span> |
+            <span class="altitude">37025ft</span>
+        </div>
+        <div class="aircraft-line real">
+            <span class="aircraft-code">4ba9cf</span> | 
+            <span class="flight-number">THY1CC</span> | 
+            <span class="aircraft-type"></span> |
+            <span class="altitude">41000ft</span>
+        </div>
+        <div class="aircraft-line real">
+            <span class="aircraft-code">4bb06e</span> | 
+            <span class="flight-number">THY1SQ</span> | 
+            <span class="aircraft-type"></span> |
+            <span class="altitude">38175ft</span>
+        </div>
+    </div>
+                </div>
+                
+                <div class="comparison-column">
+                    <div class="column-title">📡 FLIGHT RADAR</div>
+                    
+    <div class="column-stats">
+        <div class="stat-row">
+            <span class="stat-label">✈️ Aerei:</span>
+            <span class="stat-value">1</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">🔍 Nascosti:</span>
+            <span class="stat-value">0</span>
+        </div>
+    </div>
+    <div class="aircraft-list">
+        <div class="aircraft-title">Aerei Flight Radar:</div>
+        
+        <div class="aircraft-line fr">
+            <span class="aircraft-code">aircraft</span> | 
+            <span class="flight-number">N/A</span> | 
+            <span class="visibility">🟢 VISIBILE</span>
+        </div>
+    </div>
+                </div>
+                
+                <div class="comparison-column">
+                    <div class="column-title">📈 DIFFERENZE</div>
+                    
+    <div class="difference-stats">
+        <div class="diff-row">
+            <span class="diff-label">📊 Discrepanza:</span>
+            <span class="diff-value high-discrepancy">
+                100.0%
+            </span>
+        </div>
+        <div class="diff-row">
+            <span class="diff-label">⚠️ Aerei nascosti:</span>
+            <span class="diff-value">6</span>
+        </div>
+    </div>
+    <div class="difference-chart">
+        <pre class="chart-text">
+    📊 GRAFICO DIFFERENZE:
+    
+    AEREI RILEVATI: █████████████████    6 aerei
+    FLIGHT RADAR:   ██                   1 aerei
+    
+    ⚠️  AEREI NASCOSTI: 6 (100.0%)
+    🔍 DISCREPANZA: 100.0%
+    </pre>
+    </div>
+                </div>
+            </div>
+            
+            <div class="comparison-footer">
+                <div class="analysis-notes">
+                    <strong>📝 NOTE ANALISI:</strong>
+                    <div class="note-line">⚠️  6 aerei reali non presenti su Flight Radar</div><div class="note-line">🔍 ICAO mancanti: 4bb06e, 78112c, 4b027d, 710070, 8964d3, 4ba9cf</div><div class="note-line">🔎 1 aerei su Flight Radar non rilevati da noi</div><div class="note-line">🚨 ALTA DISCREPANZA: Oltre il 30% di aerei nascosti</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison-table">
+            <div class="comparison-header">
+                <div class="comparison-title">📊 COMPARAZIONE #5</div>
+                <div class="comparison-date">🕒 2025-12-30 15:15:12</div>
+            </div>
+            
+            <div class="comparison-grid">
+                <div class="comparison-column">
+                    <div class="column-title">🛰️ NOSTRI DATI</div>
+                    
+    <div class="column-stats">
+        <div class="stat-row">
+            <span class="stat-label">✈️ Aerei:</span>
+            <span class="stat-value">2</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">📡 Segnale:</span>
+            <span class="stat-value">🟡 MEDIO-BASSA</span>
+        </div>
+    </div>
+    <div class="aircraft-list">
+        <div class="aircraft-title">Aerei rilevati:</div>
+        
+        <div class="aircraft-line real">
+            <span class="aircraft-code">a90351</span> | 
+            <span class="flight-number">N680BA</span> | 
+            <span class="aircraft-type"></span> |
+            <span class="altitude">27000ft</span>
+        </div>
+        <div class="aircraft-line real">
+            <span class="aircraft-code">4d24cf</span> | 
+            <span class="flight-number">FJO648</span> | 
+            <span class="aircraft-type"></span> |
+            <span class="altitude">45000ft</span>
+        </div>
+    </div>
+                </div>
+                
+                <div class="comparison-column">
+                    <div class="column-title">📡 FLIGHT RADAR</div>
+                    
+    <div class="column-stats">
+        <div class="stat-row">
+            <span class="stat-label">✈️ Aerei:</span>
+            <span class="stat-value">1</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">🔍 Nascosti:</span>
+            <span class="stat-value">0</span>
+        </div>
+    </div>
+    <div class="aircraft-list">
+        <div class="aircraft-title">Aerei Flight Radar:</div>
+        
+        <div class="aircraft-line fr">
+            <span class="aircraft-code">aircraft</span> | 
+            <span class="flight-number">N/A</span> | 
+            <span class="visibility">🟢 VISIBILE</span>
+        </div>
+    </div>
+                </div>
+                
+                <div class="comparison-column">
+                    <div class="column-title">📈 DIFFERENZE</div>
+                    
+    <div class="difference-stats">
+        <div class="diff-row">
+            <span class="diff-label">📊 Discrepanza:</span>
+            <span class="diff-value high-discrepancy">
+                100.0%
+            </span>
+        </div>
+        <div class="diff-row">
+            <span class="diff-label">⚠️ Aerei nascosti:</span>
+            <span class="diff-value">2</span>
+        </div>
+    </div>
+    <div class="difference-chart">
+        <pre class="chart-text">
+    📊 GRAFICO DIFFERENZE:
+    
+    AEREI RILEVATI: █████████████        2 aerei
+    FLIGHT RADAR:   ██████               1 aerei
+    
+    ⚠️  AEREI NASCOSTI: 2 (100.0%)
+    🔍 DISCREPANZA: 100.0%
+    </pre>
+    </div>
+                </div>
+            </div>
+            
+            <div class="comparison-footer">
+                <div class="analysis-notes">
+                    <strong>📝 NOTE ANALISI:</strong>
+                    <div class="note-line">⚠️  2 aerei reali non presenti su Flight Radar</div><div class="note-line">🔍 ICAO mancanti: a90351, 4d24cf</div><div class="note-line">🔎 1 aerei su Flight Radar non rilevati da noi</div><div class="note-line">🚨 ALTA DISCREPANZA: Oltre il 30% di aerei nascosti</div>
+                </div>
+            </div>
+        </div>
+            </div>
+
+            <!-- === PAGINAZIONE AVANZATA === -->
+            <div class="pagination" id="pagination">
+                <!-- Paginazione dinamica -->
+            </div>
+
+            <div class="prompt" style="text-align: center">root@skytruth:~# <span class="blink">_</span></div>
+        </div>
+
+        <div class="footer">
+            <div class="contact" data-translate="footer_contact">ARCHIVIO COMPARAZIONI - SKYTRUTH PROJECT</div>
+            <div class="counter" data-translate="donations">DONAZIONI XMR MONERO:</div>
+            <div class="onion-badge">45QW5EeHKzjFhwhhjB6byJdSXd7ZUR4FgELHGz1e4Mt5M3Yt6TSiXzaEHdcEeneWVX3FtCpdvt4toge3aqCvrihf38SSVGv</div>
+            <br>
+            <div class="copyright" data-translate="copyright">(c) 2026 - TRUTH MONITORING SYSTEM | REAL-TIME DATA ANALYSIS</div>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            it: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "ARCHIVIO TABELLE COMPARATIVE - CONFRONTO DATI",
+                home: "CASA",
+                links: "COLLEGAMENTI",
+                videos: "REGISTRAZIONI VIDEO",
+                data: "RICEZIONE DATI",
+                tables: "TABELLE COMPARATIVE",
+                contacts: "CONTATTI ANONIMI",
+                onion_service: "🧅 ONION SERVICE",
+                access_message: "> ACCESSO ARCHIVIO TABELLE COMPARATIVE",
+                tables_loaded: "> TABELLE CARICATE:",
+                last_update: "> ULTIMO AGGIORNAMENTO:",
+                translations_note: "> LE TRADUZIONI FUNZIONANO SOLO SE ATTIVI JAVASCRIPT",
+                instructions_title: "💡 ISTRUZIONI COMPARAZIONE:",
+                instruction1: "• Confronto dati reali ADS-B vs Flight Radar",
+                instruction2: "• Colonna SINISTRA: Nostri dati rilevati",
+                instruction3: "• Colonna CENTRO: Dati Flight Radar (simulati)",
+                instruction4: "• Colonna DESTRA: Analisi differenze e grafici",
+                instruction5: "• Paginazione: 25 tabelle per pagina",
+                tables_title: "📊 TABELLE COMPARATIVE:",
+                footer_contact: "ARCHIVIO COMPARAZIONI - SKYTRUTH PROJECT",
+                donations: "DONAZIONI XMR MONERO:",
+                copyright: "(c) 2026 - TRUTH MONITORING SYSTEM | REAL-TIME DATA ANALYSIS",
+                pagination_info: "> PAGINA:",
+                js_warning: "⚠️ ATTENZIONE: JAVASCRIPT DISABILITATO - Alcune funzionalità potrebbero non funzionare correttamente. Per un'esperienza completa, si consiglia di abilitare JavaScript nel browser."
+            },
+            en: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "COMPARATIVE TABLES ARCHIVE - DATA COMPARISON",
+                home: "HOME",
+                links: "LINKS",
+                videos: "VIDEO RECORDINGS",
+                data: "DATA RECEPTION",
+                tables: "COMPARATIVE TABLES",
+                contacts: "ANONYMOUS CONTACTS",
+                onion_service: "🧅 ONION SERVICE",
+                access_message: "> COMPARATIVE TABLES ARCHIVE ACCESS",
+                tables_loaded: "> TABLES LOADED:",
+                last_update: "> LAST UPDATE:",
+                translations_note: "> TRANSLATIONS ONLY WORK IF YOU ENABLE JAVASCRIPT",
+                instructions_title: "💡 COMPARISON INSTRUCTIONS:",
+                instruction1: "• Real ADS-B data vs Flight Radar comparison",
+                instruction2: "• LEFT column: Our detected data",
+                instruction3: "• CENTER column: Flight Radar data (simulated)",
+                instruction4: "• RIGHT column: Difference analysis and charts",
+                instruction5: "• Pagination: 25 tables per page",
+                tables_title: "📊 COMPARATIVE TABLES:",
+                footer_contact: "COMPARISON ARCHIVE - SKYTRUTH PROJECT",
+                donations: "XMR MONERO DONATIONS:",
+                copyright: "(c) 2026 - TRUTH MONITORING SYSTEM | REAL-TIME DATA ANALYSIS",
+                pagination_info: "> PAGE:",
+                js_warning: "⚠️ WARNING: JAVASCRIPT DISABLED - Some features may not work properly. For full experience, please enable JavaScript in your browser."
+            },
+            es: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "ARCHIVO TABLAS COMPARATIVAS - COMPARACIÓN DATOS",
+                home: "INICIO",
+                links: "ENLACES",
+                videos: "GRABACIONES DE VIDEO",
+                data: "RECEPCIÓN DE DATOS",
+                tables: "TABLAS COMPARATIVAS",
+                contacts: "CONTACTOS ANÓNIMOS",
+                onion_service: "🧅 SERVICIO ONION",
+                access_message: "> ACCESO ARCHIVO TABLAS COMPARATIVAS",
+                tables_loaded: "> TABLAS CARGADAS:",
+                last_update: "> ÚLTIMA ACTUALIZACIÓN:",
+                translations_note: "> LAS TRADUCCIONES SOLO FUNCIONAN SI ACTIVAS JAVASCRIPT",
+                instructions_title: "💡 INSTRUCCIONES COMPARACIÓN:",
+                instruction1: "• Comparación datos reales ADS-B vs Flight Radar",
+                instruction2: "• Columna IZQUIERDA: Nuestros datos detectados",
+                instruction3: "• Columna CENTRO: Datos Flight Radar (simulados)",
+                instruction4: "• Columna DERECHA: Análisis diferencias y gráficos",
+                instruction5: "• Paginación: 25 tablas por página",
+                tables_title: "📊 TABLAS COMPARATIVAS:",
+                footer_contact: "ARCHIVO COMPARACIONES - PROYECTO SKYTRUTH",
+                donations: "DONACIONES XMR MONERO:",
+                copyright: "(c) 2026 - TRUTH MONITORING SYSTEM | REAL-TIME DATA ANALYSIS",
+                pagination_info: "> PÁGINA:",
+                js_warning: "⚠️ ADVERTENCIA: JAVASCRIPT DESACTIVADO - Algunas funciones pueden no funcionar correctamente. Para experiencia completa, active JavaScript en su navegador."
+            },
+            fr: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "ARCHIVE TABLEAUX COMPARATIFS - COMPARAISON DONNÉES",
+                home: "ACCUEIL",
+                links: "LIENS",
+                videos: "ENREGISTREMENTS VIDÉO",
+                data: "RÉCEPTION DE DONNÉES",
+                tables: "TABLEAUX COMPARATIFS",
+                contacts: "CONTACTS ANONYMES",
+                onion_service: "🧅 SERVICE ONION",
+                access_message: "> ACCÈS ARCHIVE TABLEAUX COMPARATIFS",
+                tables_loaded: "> TABLEAUX CHARGÉS:",
+                last_update: "> DERNIÈRE MISE À JOUR:",
+                translations_note: "> LES TRADUCTIONS FONCTIONNENT SEULEMENT SI VOUS ACTIVEZ JAVASCRIPT",
+                instructions_title: "💡 INSTRUCTIONS COMPARAISON:",
+                instruction1: "• Comparaison données réelles ADS-B vs Flight Radar",
+                instruction2: "• Colonne GAUCHE: Nos données détectées",
+                instruction3: "• Colonne CENTRE: Données Flight Radar (simulées)",
+                instruction4: "• Colonne DROITE: Analyse différences et graphiques",
+                instruction5: "• Pagination: 25 tableaux par page",
+                tables_title: "📊 TABLEAUX COMPARATIFS:",
+                footer_contact: "ARCHIVE COMPARAISONS - PROJET SKYTRUTH",
+                donations: "DONS XMR MONERO:",
+                copyright: "(c) 2026 - TRUTH MONITORING SYSTEM | REAL-TIME DATA ANALYSIS",
+                pagination_info: "> PAGE:",
+                js_warning: "⚠️ ATTENTION: JAVASCRIPT DÉSACTIVÉ - Certaines fonctionnalités peuvent ne pas fonctionner correctement. Pour une expérience complète, veuillez activer JavaScript dans votre navigateur."
+            },
+            de: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "VERGLEICHTABELLEN ARCHIV - DATENVERGLEICH",
+                home: "STARTSEITE",
+                links: "VERBINDUNGEN",
+                videos: "VIDEOAUFNAHMEN",
+                data: "DATENEMPFANG",
+                tables: "VERGLEICHTABELLEN",
+                contacts: "ANONYME KONTAKTE",
+                onion_service: "🧅 ONION SERVICE",
+                access_message: "> ZUGRIFF VERGLEICHTABELLEN ARCHIV",
+                tables_loaded: "> TABELLEN GELADEN:",
+                last_update: "> LETZTE AKTUALISIERUNG:",
+                translations_note: "> ÜBERSETZUNGEN FUNKTIONIEREN NUR WENN JAVASCRIPT AKTIVIERT IST",
+                instructions_title: "💡 VERGLEICHSANWEISUNGEN:",
+                instruction1: "• Echtzeit ADS-B vs Flight Radar Vergleich",
+                instruction2: "• LINKE Spalte: Unsere erfassten Daten",
+                instruction3: "• MITTLERE Spalte: Flight Radar Daten (simuliert)",
+                instruction4: "• RECHTE Spalte: Differenzanalyse und Diagramme",
+                instruction5: "• Paginierung: 25 Tabellen pro Seite",
+                tables_title: "📊 VERGLEICHTABELLEN:",
+                footer_contact: "VERGLEICHSARCHIV - SKYTRUTH PROJEKT",
+                donations: "SPENDEN XMR MONERO:",
+                copyright: "(c) 2026 - TRUTH MONITORING SYSTEM | REAL-TIME DATA ANALYSIS",
+                pagination_info: "> SEITE:",
+                js_warning: "⚠️ WARNUNG: JAVASCRIPT DEAKTIVIERT - Einige Funktionen funktionieren möglicherweise nicht richtig. Für die volle Erfahrung aktivieren Sie JavaScript in Ihrem Browser."
+            },
+            ru: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "АРХИВ СРАВНИТЕЛЬНЫХ ТАБЛИЦ - СРАВНЕНИЕ ДАННЫХ",
+                home: "ГЛАВНАЯ",
+                links: "ССЫЛКИ",
+                videos: "ВИДЕОЗАПИСИ",
+                data: "ПРИЕМ ДАННЫХ",
+                tables: "СРАВНИТЕЛЬНЫЕ ТАБЛИЦЫ",
+                contacts: "АНОНИМНЫЕ КОНТАКТЫ",
+                onion_service: "🧅 ONION СЕРВИС",
+                access_message: "> ДОСТУП К АРХИВУ СРАВНИТЕЛЬНЫХ ТАБЛИЦ",
+                tables_loaded: "> ТАБЛИЦ ЗАГРУЖЕНО:",
+                last_update: "> ПОСЛЕДНЕЕ ОБНОВЛЕНИЕ:",
+                translations_note: "> ПЕРЕВОДЫ РАБОТАЮТ ТОЛЬКО ЕСЛИ ВКЛЮЧЕН JAVASCRIPT",
+                instructions_title: "💡 ИНСТРУКЦИИ СРАВНЕНИЯ:",
+                instruction1: "• Сравнение реальных данных ADS-B и Flight Radar",
+                instruction2: "• ЛЕВАЯ колонка: Наши обнаруженные данные",
+                instruction3: "• ЦЕНТРАЛЬНАЯ колонка: Данные Flight Radar (симулированные)",
+                instruction4: "• ПРАВАЯ колонка: Анализ различий и графики",
+                instruction5: "• Пагинация: 25 таблиц на странице",
+                tables_title: "📊 СРАВНИТЕЛЬНЫЕ ТАБЛИЦЫ:",
+                footer_contact: "АРХИВ СРАВНЕНИЙ - ПРОЕКТ SKYTRUTH",
+                donations: "ПОЖЕРТВОВАНИЯ XMR MONERO:",
+                copyright: "(c) 2026 - TRUTH MONITORING SYSTEM | REAL-TIME DATA ANALYSIS",
+                pagination_info: "> СТРАНИЦА:",
+                js_warning: "⚠️ ВНИМАНИЕ: JAVASCRIPT ОТКЛЮЧЕН - Некоторые функции могут работать некорректно. Для полного опыта включите JavaScript в вашем браузере."
+            },
+            pt: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "ARQUIVO TABELAS COMPARATIVAS - COMPARAÇÃO DADOS",
+                home: "INÍCIO",
+                links: "LIGAÇÕES",
+                videos: "GRAVAÇÕES DE VÍDEO",
+                data: "RECEPÇÃO DE DADOS",
+                tables: "TABELAS COMPARATIVAS",
+                contacts: "CONTACTOS ANÓNIMOS",
+                onion_service: "🧅 SERVIÇO ONION",
+                access_message: "> ACESSO ARQUIVO TABELAS COMPARATIVAS",
+                tables_loaded: "> TABELAS CARREGADAS:",
+                last_update: "> ÚLTIMA ATUALIZAÇÃO:",
+                translations_note: "> AS TRADUÇÕES SÓ FUNCIONAM SE ATIVAR O JAVASCRIPT",
+                instructions_title: "💡 INSTRUÇÕES COMPARAÇÃO:",
+                instruction1: "• Comparação dados reais ADS-B vs Flight Radar",
+                instruction2: "• Coluna ESQUERDA: Nossos dados detectados",
+                instruction3: "• Coluna CENTRO: Dados Flight Radar (simulados)",
+                instruction4: "• Coluna DIREITA: Análise diferenças e gráficos",
+                instruction5: "• Paginação: 25 tabelas por página",
+                tables_title: "📊 TABELAS COMPARATIVAS:",
+                footer_contact: "ARQUIVO COMPARAÇÕES - PROJETO SKYTRUTH",
+                donations: "DOAÇÕES XMR MONERO:",
+                copyright: "(c) 2026 - TRUTH MONITORING SYSTEM | REAL-TIME DATA ANALYSIS",
+                pagination_info: "> PÁGINA:",
+                js_warning: "⚠️ AVISO: JAVASCRIPT DESATIVADO - Algumas funcionalidades podem não funcionar corretamente. Para experiência completa, ative o JavaScript no seu navegador."
+            },
+            cn: {
+                title: "SKYTRUTH 终端",
+                subtitle: "比较表格档案 - 数据对比",
+                home: "首页",
+                links: "链接",
+                videos: "视频录制",
+                data: "数据接收",
+                tables: "比较表格",
+                contacts: "匿名联系",
+                onion_service: "🧅 ONION 服务",
+                access_message: "> 访问比较表格档案",
+                tables_loaded: "> 表格加载:",
+                last_update: "> 最后更新:",
+                translations_note: "> 翻译仅在启用 JAVASCRIPT 时有效",
+                instructions_title: "💡 比较说明:",
+                instruction1: "• 真实 ADS-B 数据与 Flight Radar 对比",
+                instruction2: "• 左列: 我们检测到的数据",
+                instruction3: "• 中列: Flight Radar 数据(模拟)",
+                instruction4: "• 右列: 差异分析和图表",
+                instruction5: "• 分页: 每页25个表格",
+                tables_title: "📊 比较表格:",
+                footer_contact: "比较档案 - SKYTRUTH 项目",
+                donations: "XMR MONERO 捐款:",
+                copyright: "(c) 2026 - TRUTH MONITORING SYSTEM | REAL-TIME DATA ANALYSIS",
+                pagination_info: "> 页面:",
+                js_warning: "⚠️ 警告: JAVASCRIPT 已禁用 - 某些功能可能无法正常工作。为获得完整体验，请在浏览器中启用 JavaScript。"
+            },
+            jp: {
+                title: "SKYTRUTH ターミナル",
+                subtitle: "比較表アーカイブ - データ比較",
+                home: "ホーム",
+                links: "リンク",
+                videos: "動画記録",
+                data: "データ受信",
+                tables: "比較表",
+                contacts: "匿名連絡先",
+                onion_service: "🧅 オニオンサービス",
+                access_message: "> 比較表アーカイブアクセス",
+                tables_loaded: "> テーブル読み込み済み:",
+                last_update: "> 最終更新:",
+                translations_note: "> 翻訳は JAVASCRIPT を有効にした場合のみ機能します",
+                instructions_title: "💡 比較説明:",
+                instruction1: "• リアル ADS-B データと Flight Radar の比較",
+                instruction2: "• 左列: 当方検出データ",
+                instruction3: "• 中央列: Flight Radar データ(シミュレート)",
+                instruction4: "• 右列: 差異分析とグラフ",
+                instruction5: "• ページネーション: 1ページ25テーブル",
+                tables_title: "📊 比較表:",
+                footer_contact: "比較アーカイブ - SKYTRUTH プロジェクト",
+                donations: "XMR モネロ寄付:",
+                copyright: "(c) 2026 - TRUTH MONITORING SYSTEM | REAL-TIME DATA ANALYSIS",
+                pagination_info: "> ページ:",
+                js_warning: "⚠️ 警告: JAVASCRIPT 無効 - 一部の機能が正しく動作しない場合があります。完全な体験には、ブラウザで JavaScript を有効にしてください。"
+            },
+            ar: {
+                title: "SKYTRUTH TERMINAL",
+                subtitle: "أرشيف جداول المقارنة - مقارنة البيانات",
+                home: "الرئيسية",
+                links: "الروابط",
+                videos: "تسجيلات الفيديو",
+                data: "استقبال البيانات",
+                tables: "جداول مقارنة",
+                contacts: "جهات اتصال مجهولة",
+                onion_service: "🧅 خدمة ONION",
+                access_message: "> الوصول إلى أرشيف جداول المقارنة",
+                tables_loaded: "> الجداول المحملة:",
+                last_update: "> آخر تحديث:",
+                translations_note: "> الترجمة تعمل فقط إذا قمت بتشغيل JAVASCRIPT",
+                instructions_title: "💡 تعليمات المقارنة:",
+                instruction1: "• مقارنة بيانات ADS-B الحقيقية مع Flight Radar",
+                instruction2: "• العمود الأيسر: بياناتنا المكتشفة",
+                instruction3: "• العمود الأوسط: بيانات Flight Radar (محاكاة)",
+                instruction4: "• العمود الأيمن: تحليل الفروق والرسوم البيانية",
+                instruction5: "• الترقيم: 25 جدول لكل صفحة",
+                tables_title: "📊 جداول المقارنة:",
+                footer_contact: "أرشيف المقارنات - مشروع SKYTRUTH",
+                donations: "تبرعات XMR MONERO:",
+                copyright: "(c) 2026 - TRUTH MONITORING SYSTEM | REAL-TIME DATA ANALYSIS",
+                pagination_info: "> صفحة:",
+                js_warning: "⚠️ تحذير: JAVASCRIPT معطل - بعض الميزات قد لا تعمل بشكل صحيح. للتجربة الكاملة، يرجى تمكين JavaScript في متصفحك."
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Aggiorna anche il messaggio noscript se possibile
+            const noscriptWarning = document.querySelector('.javascript-warning');
+            if (noscriptWarning && translations[lang] && translations[lang]['js_warning']) {
+                noscriptWarning.textContent = translations[lang]['js_warning'];
+            }
+            
+            // Aggiorna l'attributo lang della pagina
+            document.documentElement.lang = lang;
+        }
+
+        // Sistema di paginazione avanzato
+        let currentPage = 1;
+        const tablesPerPage = 20; // 20 tabelle per pagina
+
+        function initPagination() {
+            const tables = document.querySelectorAll('.comparison-table');
+            const totalPages = Math.ceil(tables.length / tablesPerPage);
+            
+            if (totalPages <= 1) {
+                document.getElementById('pagination').style.display = 'none';
+                showAllTables(); // Mostra tutte le tabelle se c'è solo una pagina
+                return;
+            }
+
+            document.getElementById('pagination').style.display = 'flex';
+            let paginationHTML = '';
+            
+            // Bottone prima pagina
+            if (currentPage > 1) {
+                paginationHTML += `<button class="page-btn" onclick="changePage(1)" title="Prima pagina">«</button>`;
+                paginationHTML += `<button class="page-btn" onclick="changePage(${currentPage - 1})" title="Pagina precedente">‹</button>`;
+            }
+            
+            // Pagine numeriche (massimo 5 pagine visualizzate)
+            const startPage = Math.max(1, currentPage - 2);
+            const endPage = Math.min(totalPages, currentPage + 2);
+            
+            // Aggiungi "..." se necessario all'inizio
+            if (startPage > 1) {
+                paginationHTML += `<button class="page-btn" onclick="changePage(1)">1</button>`;
+                if (startPage > 2) {
+                    paginationHTML += `<span class="page-dots">...</span>`;
+                }
+            }
+            
+            // Pagine principali
+            for (let i = startPage; i <= endPage; i++) {
+                paginationHTML += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
+            }
+            
+            // Aggiungi "..." se necessario alla fine
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) {
+                    paginationHTML += `<span class="page-dots">...</span>`;
+                }
+                paginationHTML += `<button class="page-btn" onclick="changePage(${totalPages})">${totalPages}</button>`;
+            }
+            
+            // Bottone ultima pagina
+            if (currentPage < totalPages) {
+                paginationHTML += `<button class="page-btn" onclick="changePage(${currentPage + 1})" title="Pagina successiva">›</button>`;
+                paginationHTML += `<button class="page-btn" onclick="changePage(${totalPages})" title="Ultima pagina">»</button>`;
+            }
+            
+            document.getElementById('pagination').innerHTML = paginationHTML;
+            showPage(currentPage);
+        }
+
+        function changePage(page) {
+            currentPage = page;
+            initPagination();
+            // Scroll smooth verso l'alto
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showPage(page) {
+            const tables = document.querySelectorAll('.comparison-table');
+            const startIndex = (page - 1) * tablesPerPage;
+            const endIndex = startIndex + tablesPerPage;
+
+            tables.forEach((table, index) => {
+                table.style.display = (index >= startIndex && index < endIndex) ? 'block' : 'none';
+            });
+        }
+
+        function showAllTables() {
+            const tables = document.querySelectorAll('.comparison-table');
+            tables.forEach(table => {
+                table.style.display = 'block';
+            });
+        }
+
+        // Inizializzazione
+        document.addEventListener('DOMContentLoaded', function() {
+            initPagination();
+            
+            // Aggiornamento automatico ogni 60 secondi
+            setTimeout(() => {
+                location.reload();
+            }, 60000);
+        });
+    </script>
+</body>
+</html>

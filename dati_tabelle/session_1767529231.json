@@ -1,0 +1,35 @@
+{
+  "id": "session_1767529231",
+  "timestamp": "2026-01-04 13:20:31",
+  "aircraft_count": 2,
+  "message_count": 2,
+  "signal_quality": "\ud83d\udfe1 MEDIO-BASSA",
+  "signal_level": 40,
+  "avg_altitude": 35000,
+  "avg_speed": 458.0,
+  "top_airline": "4d2234",
+  "aircraft_details": {
+    "4d2234": {
+      "flight": "RYR7003",
+      "type": "",
+      "altitude": 37000,
+      "speed": 410.0,
+      "lat": 40.643738,
+      "lon": 15.621033,
+      "airline": "4d2234"
+    },
+    "a2b501": {
+      "flight": "UAL164",
+      "type": "",
+      "altitude": 33000,
+      "speed": 506.6,
+      "lat": 40.544765,
+      "lon": 15.696467,
+      "airline": "a2b501"
+    }
+  },
+  "duration": "VARIABILE",
+  "file_size": "3.3 MB",
+  "audio_file": "audio/recording_1767529231_adsb_messages.txt",
+  "fonte": "ARCHIVIO VOLI"
+}
