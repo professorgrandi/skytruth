@@ -200,13 +200,6 @@ SkyTruth welcomes contributions from researchers, developers, and aviation enthu
 ## 📡 Live Data Status
 The website features automated updates with the latest atmospheric monitoring data. Timelapse sequences refresh periodically based on observational schedules.
 
-## 🔒 Privacy & Ethics
-This project adheres to:
-- Collection of publicly available data only
-- No personal information tracking
-- Respect for aviation privacy regulations
-- Transparent data processing methods
-
 ## 📬 Contact
 
 **Professor Grandi**  
