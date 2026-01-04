@@ -8,7 +8,7 @@
 *Combining sky observation, ADS-B interception, and flight data correlation*
 
 [🌐 Website](https://professorgrandi.github.io/skytruth/) |  
-[🔧 Repository](https://github.com/professorgrandi/skytruth) | 
+[🔧 Repository](https://github.com/professorgrandi/skytruth) |  
 [📧 Contact](mailto:professor.grandi@protonmail.com)
 
 </div>
