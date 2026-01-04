@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /audio/
+Disallow: /dati_comparazioni/
+Disallow: /dati_tabelle/
+Disallow: /timelapse/
+
+Sitemap: https://professorgrandi.github.io/skytruth/sitemap.xml
