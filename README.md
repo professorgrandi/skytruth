@@ -208,13 +208,3 @@ The website features automated updates with the latest atmospheric monitoring da
 🐙 GitHub: [https://github.com/professorgrandi](https://github.com/professorgrandi)
 
 ---
-
-<div align="center">
-  
-**Last Updated**: January 2025  
-**Project Status**: Active Development  
-**License**: Open Source (Repository Specific)
-
-*"Monitoring the sky, preserving transparency"*
-
-</div>
