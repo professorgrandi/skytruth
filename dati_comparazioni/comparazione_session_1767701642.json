@@ -1,0 +1,140 @@
+{
+  "id": "comparazione_session_1767701642",
+  "timestamp": "2026-01-06 13:14:33",
+  "tabella_originale": "session_1767701642",
+  "dati_reali": {
+    "id": "session_1767701642",
+    "timestamp": "2026-01-06 13:14:02",
+    "aircraft_count": 8,
+    "message_count": 8,
+    "signal_quality": "🟢 ALTA",
+    "signal_level": 85,
+    "avg_altitude": 35612,
+    "avg_speed": 459.0,
+    "top_airline": "02009f",
+    "aircraft_details": {
+      "02009f": {
+        "flight": "RAM320",
+        "type": "",
+        "altitude": 37000,
+        "speed": 526.4,
+        "lat": 40.468002,
+        "lon": 15.826111,
+        "airline": "02009f"
+      },
+      "78107a": {
+        "flight": "CSC3896",
+        "type": "",
+        "altitude": 35000,
+        "speed": 499.1,
+        "lat": 40.680176,
+        "lon": 15.370972,
+        "airline": "78107a"
+      },
+      "0200fb": {
+        "flight": "RAM910T",
+        "type": "",
+        "altitude": 37000,
+        "speed": 517.9,
+        "lat": 40.492999,
+        "lon": 15.794033,
+        "airline": "0200fb"
+      },
+      "71007f": {
+        "flight": "SVA207",
+        "type": "",
+        "altitude": 36025,
+        "speed": 415.5,
+        "lat": 40.612747,
+        "lon": 15.724915,
+        "airline": "71007f"
+      },
+      "4081d7": {
+        "flight": "WUK5607",
+        "type": "",
+        "altitude": 33000,
+        "speed": 439.4,
+        "lat": 40.622955,
+        "lon": 15.600952,
+        "airline": "4081d7"
+      },
+      "440daf": {
+        "flight": "EJU42ZP",
+        "type": "",
+        "altitude": 37000,
+        "speed": 469.9,
+        "lat": 40.771288,
+        "lon": 15.960263,
+        "airline": "440daf"
+      },
+      "4baad3": {
+        "flight": "THY6BS",
+        "type": "",
+        "altitude": 36000,
+        "speed": 390.6,
+        "lat": 40.814026,
+        "lon": 15.959045,
+        "airline": "4baad3"
+      },
+      "4bb20b": {
+        "flight": "THY8NR",
+        "type": "",
+        "altitude": 33875,
+        "speed": 414.7,
+        "lat": 40.791259,
+        "lon": 15.953397,
+        "airline": "4bb20b"
+      }
+    },
+    "duration": "VARIABILE",
+    "file_size": "9.6 MB",
+    "audio_file": "audio/recording_1767701642_adsb_messages.txt",
+    "fonte": "ARCHIVIO VOLI"
+  },
+  "dati_flightradar": {
+    "timestamp": "2026-01-06 13:14:02",
+    "total_aircraft": 1,
+    "visible_aircraft": [
+      {
+        "icao": "aircraft",
+        "lat": 0,
+        "lon": 0,
+        "altitude": 0,
+        "speed": 0,
+        "flight": "N/A",
+        "type": "N/A",
+        "airline": "UNK",
+        "visible": true
+      }
+    ],
+    "hidden_aircraft": 0,
+    "source": "Flight Radar 24 (API Reale)"
+  },
+  "differenze": {
+    "aerei_reali_totali": 8,
+    "aerei_fr_totali": 1,
+    "aerei_mancanti_fr": 8,
+    "aerei_extra_fr": 1,
+    "discrepanza_percentuale": 100.0,
+    "aerei_mancanti_lista": [
+      "4baad3",
+      "4081d7",
+      "440daf",
+      "0200fb",
+      "4bb20b",
+      "71007f",
+      "78107a",
+      "02009f"
+    ],
+    "aerei_extra_lista": [
+      "aircraft"
+    ]
+  },
+  "grafico_differenze": "\n    📊 GRAFICO DIFFERENZE:\n    \n    AEREI RILEVATI: █████████████████    8 aerei\n    FLIGHT RADAR:   ██                   1 aerei\n    \n    ⚠️  AEREI NASCOSTI: 8 (100.0%)\n    🔍 DISCREPANZA: 100.0%\n    ",
+  "note_analisi": [
+    "⚠️  8 aerei reali non presenti su Flight Radar",
+    "🔍 ICAO mancanti: 4baad3, 4081d7, 440daf, 0200fb, 4bb20b, 71007f, 78107a, 02009f",
+    "🔎 1 aerei su Flight Radar non rilevati da noi",
+    "🚨 ALTA DISCREPANZA: Oltre il 30% di aerei nascosti"
+  ]
+}

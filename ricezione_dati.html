@@ -593,13 +593,13 @@
 <!--                     <div class="hardware-info">
                         <div class="prompt">📋 ULTIME RILEVAZIONI:</div> -->
                         <div class="data-card">
-    <div class="data-time">🕒 2026-01-04 13:21:08 | 🗄️ ARCHIVIO</div>
-    <div class="data-info">✈️ Aerei rilevati: <span class="aircraft-count">2</span></div>
-    <div class="data-info">📡 Messaggi totali: 0</div>
+    <div class="data-time">🕒 2026-01-06 13:14:16 | 🎯 LIVE</div>
+    <div class="data-info">✈️ Aerei rilevati: <span class="aircraft-count">1</span></div>
+    <div class="data-info">📡 Messaggi totali: 1</div>
     <div class="data-info">📊 Stato: <span class="status-active">ATTIVO</span></div>
     <div class="messages-preview">
         <strong>Ultimi rilevamenti:</strong>
-        <div class="message-line">4d2234 | RYR7003 | 37000ft | 410.0kt</div><div class="message-line">a2b501 | UAL164 | 33000ft | 506.6kt</div>
+        <div class="message-line">4bb20b | THY8NR | 34000ft | 413.6kt</div>
     </div>
 </div>
 <!--                     </div>  -->
@@ -619,28 +619,28 @@
            <div class="realtime-data">
                 <div class="realtime-title" data-translate="realtime_title">📊 DATI IN TEMPO REALE - TRASPONDER ADS-B</div>
                 <div data-translate="receiver_status">> Stato ricevitore: <span class="status-active" id="receiverStatus">CONNESSO</span></div>
-                <div data-translate="aircraft_detected">> Aerei rilevati: <span class="aircraft-count" id="aircraftCount">0</span></div>
+                <div data-translate="aircraft_detected">> Aerei rilevati: <span class="aircraft-count" id="aircraftCount">1</span></div>
                 <div class="signal-quality">
                     <span data-translate="signal_quality">> Qualità segnale: </span>
-                    <span class="%%SIGNAL_CSS_CLASS%%" id="signalText">📡 BASSA</span>
+                    <span class="%%SIGNAL_CSS_CLASS%%" id="signalText">📡 ALTA</span>
                 </div>
-                <div data-translate="last_update">> Ultimo aggiornamento: <span id="currentTime">2026-01-04 13:21:04</span></div>
+                <div data-translate="last_update">> Ultimo aggiornamento: <span id="currentTime">2026-01-06 13:14:16</span></div>
                 <div data-translate="messages_second">> Messaggi/secondo: <span id="messagesPerSecond">0</span></div>
             </div> 
 
             <h3 data-translate="recent_detections">📋 ULTIME RILEVAZIONI:</h3>
             <div class="data-card">
-    <div class="data-time">🕒 2026-01-04 13:21:08 | 🗄️ ARCHIVIO</div>
-    <div class="data-info">✈️ Aerei rilevati: <span class="aircraft-count">2</span></div>
-    <div class="data-info">📡 Messaggi totali: 0</div>
+    <div class="data-time">🕒 2026-01-06 13:14:16 | 🎯 LIVE</div>
+    <div class="data-info">✈️ Aerei rilevati: <span class="aircraft-count">1</span></div>
+    <div class="data-info">📡 Messaggi totali: 1</div>
     <div class="data-info">📊 Stato: <span class="status-active">ATTIVO</span></div>
     <div class="messages-preview">
         <strong>Ultimi rilevamenti:</strong>
-        <div class="message-line">4d2234 | RYR7003 | 37000ft | 410.0kt</div><div class="message-line">a2b501 | UAL164 | 33000ft | 506.6kt</div>
+        <div class="message-line">4bb20b | THY8NR | 34000ft | 413.6kt</div>
     </div>
 </div>
 -->
-            <h3 data-translate="detection_tables">📊 TABELLE RILEVAZIONI (5 totali):</h3>
+            <h3 data-translate="detection_tables">📊 TABELLE RILEVAZIONI (6 totali):</h3>
             
             <input type="hidden" id="currentPage" value="1">
             <input type="hidden" id="totalPages" value="1">
@@ -650,6 +650,103 @@
         <div class="table-card">
             <div class="table-header">
                 <div class="table-title">📊 RILEVAZIONE #1</div>
+                <div class="table-date">🕒 2026-01-06 13:14:02</div>
+                <div class="table-source" style="color: #00ffff; font-size: 0.8em;">🔍 ARCHIVIO VOLI</div>
+            </div>
+            
+            <div class="table-stats">
+                <div class="stat-row">
+                    <span class="stat-label">✈️ Aerei:</span>
+                    <span class="stat-value">8</span>
+                    <span class="stat-label">📨 Messaggi:</span>
+                    <span class="stat-value">8</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">📡 Segnale:</span>
+                    <span class="stat-value alta">🟢 ALTA</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">📊 Altitudine media:</span>
+                    <span class="stat-value">35612ft</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">💨 Velocità media:</span>
+                    <span class="stat-value">459.0kt</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">🏆 ICAO più frequente:</span>
+                    <span class="stat-value">02009f</span>
+                </div>
+            </div>
+            
+            <div class="aircraft-list">
+                <div class="aircraft-title">🛫 Aerei rilevati:</div>
+                
+            <div class="aircraft-line">
+                <span class="aircraft-code">02009f</span> | 
+                <span class="flight-number">RAM320</span> | 
+                <span class="aircraft-type"></span> | 
+                <span class="altitude">37000ft</span>
+            </div>
+            <div class="aircraft-line">
+                <span class="aircraft-code">78107a</span> | 
+                <span class="flight-number">CSC3896</span> | 
+                <span class="aircraft-type"></span> | 
+                <span class="altitude">35000ft</span>
+            </div>
+            <div class="aircraft-line">
+                <span class="aircraft-code">0200fb</span> | 
+                <span class="flight-number">RAM910T</span> | 
+                <span class="aircraft-type"></span> | 
+                <span class="altitude">37000ft</span>
+            </div>
+            <div class="aircraft-line">
+                <span class="aircraft-code">71007f</span> | 
+                <span class="flight-number">SVA207</span> | 
+                <span class="aircraft-type"></span> | 
+                <span class="altitude">36025ft</span>
+            </div>
+            <div class="aircraft-line">
+                <span class="aircraft-code">4081d7</span> | 
+                <span class="flight-number">WUK5607</span> | 
+                <span class="aircraft-type"></span> | 
+                <span class="altitude">33000ft</span>
+            </div>
+            <div class="aircraft-line">
+                <span class="aircraft-code">440daf</span> | 
+                <span class="flight-number">EJU42ZP</span> | 
+                <span class="aircraft-type"></span> | 
+                <span class="altitude">37000ft</span>
+            </div>
+            <div class="aircraft-line">
+                <span class="aircraft-code">4baad3</span> | 
+                <span class="flight-number">THY6BS</span> | 
+                <span class="aircraft-type"></span> | 
+                <span class="altitude">36000ft</span>
+            </div>
+            <div class="aircraft-line">
+                <span class="aircraft-code">4bb20b</span> | 
+                <span class="flight-number">THY8NR</span> | 
+                <span class="aircraft-type"></span> | 
+                <span class="altitude">33875ft</span>
+            </div>
+            </div>
+            
+            <div class="table-footer">
+                <div class="file-info">
+                    <span class="duration">⏱️ VARIABILE</span>
+                    <span class="file-size">💾 9.6 MB</span>
+                </div>
+                <div class="download-links">
+                    <!-- <a href="audio/session_1767701642_full.zip" class="download-btn" download>🎵 SCARICA AUDIO (ZIP)</a> -->
+                    <a href="dati_tabelle/session_1767701642.json" class="download-btn" download>📊 SCARICA DATI</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-card">
+            <div class="table-header">
+                <div class="table-title">📊 RILEVAZIONE #2</div>
                 <div class="table-date">🕒 2026-01-04 13:20:31</div>
                 <div class="table-source" style="color: #00ffff; font-size: 0.8em;">🔍 ARCHIVIO VOLI</div>
             </div>
@@ -710,7 +807,7 @@
 
         <div class="table-card">
             <div class="table-header">
-                <div class="table-title">📊 RILEVAZIONE #2</div>
+                <div class="table-title">📊 RILEVAZIONE #3</div>
                 <div class="table-date">🕒 2026-01-03 15:36:51</div>
                 <div class="table-source" style="color: #00ffff; font-size: 0.8em;">🔍 ARCHIVIO VOLI</div>
             </div>
@@ -765,7 +862,7 @@
 
         <div class="table-card">
             <div class="table-header">
-                <div class="table-title">📊 RILEVAZIONE #3</div>
+                <div class="table-title">📊 RILEVAZIONE #4</div>
                 <div class="table-date">🕒 2026-01-01 13:54:30</div>
                 <div class="table-source" style="color: #00ffff; font-size: 0.8em;">🔍 ARCHIVIO VOLI</div>
             </div>
@@ -838,7 +935,7 @@
 
         <div class="table-card">
             <div class="table-header">
-                <div class="table-title">📊 RILEVAZIONE #4</div>
+                <div class="table-title">📊 RILEVAZIONE #5</div>
                 <div class="table-date">🕒 2025-12-31 13:54:59</div>
                 <div class="table-source" style="color: #00ffff; font-size: 0.8em;">🔍 ARCHIVIO VOLI</div>
             </div>
@@ -923,7 +1020,7 @@
 
         <div class="table-card">
             <div class="table-header">
-                <div class="table-title">📊 RILEVAZIONE #5</div>
+                <div class="table-title">📊 RILEVAZIONE #6</div>
                 <div class="table-date">🕒 2025-12-30 15:14:43</div>
                 <div class="table-source" style="color: #00ffff; font-size: 0.8em;">🔍 ARCHIVIO VOLI</div>
             </div>
@@ -995,10 +1092,10 @@
             </div>
 <!--            <div class="hardware-info">
                 <div class="prompt" data-translate="daily_stats">📈 STATISTICHE GIORNALIERE:</div>
-                <div class="data-info" data-translate="today_aircraft">📊 Aerei totali rilevati oggi: <span class="aircraft-count">0</span></div>
-                <div class="data-info" data-translate="today_messages">📨 Messaggi totali: <span class="aircraft-count">0</span></div>
+                <div class="data-info" data-translate="today_aircraft">📊 Aerei totali rilevati oggi: <span class="aircraft-count">1</span></div>
+                <div class="data-info" data-translate="today_messages">📨 Messaggi totali: <span class="aircraft-count">1</span></div>
                 <div class="data-info" data-translate="uptime">⏱️ Tempo di attività: 0h 00m</div>
-                <div class="data-info" data-translate="peak_signal">📡 Picco segnale: 40%</div>
+                <div class="data-info" data-translate="peak_signal">📡 Picco segnale: 85%</div>
             </div> -->
 
             <br>
