@@ -1,0 +1,53 @@
+{
+  "id": "session_1768310294",
+  "timestamp": "2026-01-13 14:18:14",
+  "aircraft_count": 4,
+  "message_count": 4,
+  "signal_quality": "\ud83d\udfe2 MEDIA",
+  "signal_level": 65,
+  "avg_altitude": 35506,
+  "avg_speed": 448.0,
+  "top_airline": "4bb06c",
+  "aircraft_details": {
+    "4bb06c": {
+      "flight": "THY6BS",
+      "type": "",
+      "altitude": 36000,
+      "speed": 394.1,
+      "lat": 40.688553,
+      "lon": 15.957642,
+      "airline": "4bb06c"
+    },
+    "4bb5d6": {
+      "flight": "MNB1246",
+      "type": "",
+      "altitude": 34000,
+      "speed": 409.5,
+      "lat": 40.753551,
+      "lon": 15.994783,
+      "airline": "4bb5d6"
+    },
+    "4bb295": {
+      "flight": "TKJ51D",
+      "type": "",
+      "altitude": 37025,
+      "speed": 499.6,
+      "lat": 40.834808,
+      "lon": 15.845886,
+      "airline": "4bb295"
+    },
+    "4baa92": {
+      "flight": "THY7CT",
+      "type": "",
+      "altitude": 35000,
+      "speed": 490.0,
+      "lat": 40.628906,
+      "lon": 15.965881,
+      "airline": "4baa92"
+    }
+  },
+  "duration": "VARIABILE",
+  "file_size": "15.0 MB",
+  "audio_file": "audio/recording_1768310294_adsb_messages.txt",
+  "fonte": "ARCHIVIO VOLI"
+}
