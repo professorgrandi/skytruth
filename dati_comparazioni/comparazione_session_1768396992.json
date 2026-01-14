@@ -1,0 +1,160 @@
+{
+  "id": "comparazione_session_1768396992",
+  "timestamp": "2026-01-14 14:23:50",
+  "tabella_originale": "session_1768396992",
+  "dati_reali": {
+    "id": "session_1768396992",
+    "timestamp": "2026-01-14 14:23:12",
+    "aircraft_count": 10,
+    "message_count": 10,
+    "signal_quality": "🟢 ALTA",
+    "signal_level": 85,
+    "avg_altitude": 37097,
+    "avg_speed": 454.0,
+    "top_airline": "4bb47a",
+    "aircraft_details": {
+      "4bb47a": {
+        "flight": "MNB8021",
+        "type": "",
+        "altitude": 38000,
+        "speed": 434.1,
+        "lat": 40.685211,
+        "lon": 15.871033,
+        "airline": "4bb47a"
+      },
+      "4bab46": {
+        "flight": "THY7CT",
+        "type": "",
+        "altitude": 38975,
+        "speed": 461.0,
+        "lat": 40.663706,
+        "lon": 15.475616,
+        "airline": "4bab46"
+      },
+      "4ba8f9": {
+        "flight": "TKJ51D",
+        "type": "",
+        "altitude": 37000,
+        "speed": 466.9,
+        "lat": 40.816816,
+        "lon": 15.540224,
+        "airline": "4ba8f9"
+      },
+      "4bab47": {
+        "flight": "THY7GS",
+        "type": "",
+        "altitude": 36000,
+        "speed": 428.0,
+        "lat": 40.748012,
+        "lon": 15.989852,
+        "airline": "4bab47"
+      },
+      "4ba934": {
+        "flight": "THY1SQ",
+        "type": "",
+        "altitude": 41000,
+        "speed": 488.1,
+        "lat": 40.689697,
+        "lon": 15.826416,
+        "airline": "4ba934"
+      },
+      "4bb0e4": {
+        "flight": "THY903",
+        "type": "",
+        "altitude": 34000,
+        "speed": 469.7,
+        "lat": 40.795395,
+        "lon": 15.518555,
+        "airline": "4bb0e4"
+      },
+      "78112c": {
+        "flight": "CSC3804",
+        "type": "",
+        "altitude": 35000,
+        "speed": 482.6,
+        "lat": 40.732603,
+        "lon": 15.51101,
+        "airline": "78112c"
+      },
+      "4bb06f": {
+        "flight": "THY1RL",
+        "type": "",
+        "altitude": 39000,
+        "speed": 471.4,
+        "lat": 40.771195,
+        "lon": 15.556453,
+        "airline": "4bb06f"
+      },
+      "4bb066": {
+        "flight": "THY2LZ",
+        "type": "",
+        "altitude": 36000,
+        "speed": 426.0,
+        "lat": 40.662123,
+        "lon": 15.967005,
+        "airline": "4bb066"
+      },
+      "4d206c": {
+        "flight": "WZZ9LQ",
+        "type": "",
+        "altitude": 36000,
+        "speed": 419.6,
+        "lat": 40.778457,
+        "lon": 15.87874,
+        "airline": "4d206c"
+      }
+    },
+    "duration": "VARIABILE",
+    "file_size": "5.9 MB",
+    "audio_file": "audio/recording_1768396992_adsb_messages.txt",
+    "fonte": "ARCHIVIO VOLI"
+  },
+  "dati_flightradar": {
+    "timestamp": "2026-01-14 14:23:12",
+    "total_aircraft": 1,
+    "visible_aircraft": [
+      {
+        "icao": "aircraft",
+        "lat": 0,
+        "lon": 0,
+        "altitude": 0,
+        "speed": 0,
+        "flight": "N/A",
+        "type": "N/A",
+        "airline": "UNK",
+        "visible": true
+      }
+    ],
+    "hidden_aircraft": 0,
+    "source": "Flight Radar 24 (API Reale)"
+  },
+  "differenze": {
+    "aerei_reali_totali": 10,
+    "aerei_fr_totali": 1,
+    "aerei_mancanti_fr": 10,
+    "aerei_extra_fr": 1,
+    "discrepanza_percentuale": 100.0,
+    "aerei_mancanti_lista": [
+      "78112c",
+      "4bab47",
+      "4bb47a",
+      "4ba934",
+      "4bb0e4",
+      "4ba8f9",
+      "4bb06f",
+      "4bab46",
+      "4d206c",
+      "4bb066"
+    ],
+    "aerei_extra_lista": [
+      "aircraft"
+    ]
+  },
+  "grafico_differenze": "\n    📊 GRAFICO DIFFERENZE:\n    \n    AEREI RILEVATI: ██████████████████   10 aerei\n    FLIGHT RADAR:   █                    1 aerei\n    \n    ⚠️  AEREI NASCOSTI: 10 (100.0%)\n    🔍 DISCREPANZA: 100.0%\n    ",
+  "note_analisi": [
+    "⚠️  10 aerei reali non presenti su Flight Radar",
+    "🔍 ICAO mancanti: 78112c, 4bab47, 4bb47a, 4ba934, 4bb0e4, 4ba8f9, 4bb06f, 4bab46, 4d206c, 4bb066",
+    "🔎 1 aerei su Flight Radar non rilevati da noi",
+    "🚨 ALTA DISCREPANZA: Oltre il 30% di aerei nascosti"
+  ]
+}
