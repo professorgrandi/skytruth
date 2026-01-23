@@ -1,0 +1,53 @@
+{
+  "id": "session_1769175158",
+  "timestamp": "2026-01-23 14:32:38",
+  "aircraft_count": 4,
+  "message_count": 4,
+  "signal_quality": "\ud83d\udfe2 MEDIA",
+  "signal_level": 65,
+  "avg_altitude": 24293,
+  "avg_speed": 348.0,
+  "top_airline": "4ba88f",
+  "aircraft_details": {
+    "4ba88f": {
+      "flight": "THY6416",
+      "type": "",
+      "altitude": 39000,
+      "speed": 507.0,
+      "lat": 40.668314,
+      "lon": 15.896093,
+      "airline": "4ba88f"
+    },
+    "3009bf": {
+      "flight": "IMIOR",
+      "type": "",
+      "altitude": 4050,
+      "speed": 125.9,
+      "lat": 40.574844,
+      "lon": 15.781616,
+      "airline": "3009bf"
+    },
+    "4bb26b": {
+      "flight": "THY2BH",
+      "type": "",
+      "altitude": 34000,
+      "speed": 412.6,
+      "lat": 40.790095,
+      "lon": 15.649213,
+      "airline": "4bb26b"
+    },
+    "440c38": {
+      "flight": "EJU85BF",
+      "type": "",
+      "altitude": 20125,
+      "speed": 0,
+      "lat": 40.965271,
+      "lon": 15.611572,
+      "airline": "440c38"
+    }
+  },
+  "duration": "VARIABILE",
+  "file_size": "1.2 MB",
+  "audio_file": "audio/recording_1769175158_adsb_messages.txt",
+  "fonte": "ARCHIVIO VOLI"
+}

@@ -1,0 +1,100 @@
+{
+  "id": "comparazione_session_1769175158",
+  "timestamp": "2026-01-23 14:33:18",
+  "tabella_originale": "session_1769175158",
+  "dati_reali": {
+    "id": "session_1769175158",
+    "timestamp": "2026-01-23 14:32:38",
+    "aircraft_count": 4,
+    "message_count": 4,
+    "signal_quality": "🟢 MEDIA",
+    "signal_level": 65,
+    "avg_altitude": 24293,
+    "avg_speed": 348.0,
+    "top_airline": "4ba88f",
+    "aircraft_details": {
+      "4ba88f": {
+        "flight": "THY6416",
+        "type": "",
+        "altitude": 39000,
+        "speed": 507.0,
+        "lat": 40.668314,
+        "lon": 15.896093,
+        "airline": "4ba88f"
+      },
+      "3009bf": {
+        "flight": "IMIOR",
+        "type": "",
+        "altitude": 4050,
+        "speed": 125.9,
+        "lat": 40.574844,
+        "lon": 15.781616,
+        "airline": "3009bf"
+      },
+      "4bb26b": {
+        "flight": "THY2BH",
+        "type": "",
+        "altitude": 34000,
+        "speed": 412.6,
+        "lat": 40.790095,
+        "lon": 15.649213,
+        "airline": "4bb26b"
+      },
+      "440c38": {
+        "flight": "EJU85BF",
+        "type": "",
+        "altitude": 20125,
+        "speed": 0,
+        "lat": 40.965271,
+        "lon": 15.611572,
+        "airline": "440c38"
+      }
+    },
+    "duration": "VARIABILE",
+    "file_size": "1.2 MB",
+    "audio_file": "audio/recording_1769175158_adsb_messages.txt",
+    "fonte": "ARCHIVIO VOLI"
+  },
+  "dati_flightradar": {
+    "timestamp": "2026-01-23 14:32:38",
+    "total_aircraft": 1,
+    "visible_aircraft": [
+      {
+        "icao": "aircraft",
+        "lat": 0,
+        "lon": 0,
+        "altitude": 0,
+        "speed": 0,
+        "flight": "N/A",
+        "type": "N/A",
+        "airline": "UNK",
+        "visible": true
+      }
+    ],
+    "hidden_aircraft": 0,
+    "source": "Flight Radar 24 (API Reale)"
+  },
+  "differenze": {
+    "aerei_reali_totali": 4,
+    "aerei_fr_totali": 1,
+    "aerei_mancanti_fr": 4,
+    "aerei_extra_fr": 1,
+    "discrepanza_percentuale": 100.0,
+    "aerei_mancanti_lista": [
+      "3009bf",
+      "440c38",
+      "4bb26b",
+      "4ba88f"
+    ],
+    "aerei_extra_lista": [
+      "aircraft"
+    ]
+  },
+  "grafico_differenze": "\n    📊 GRAFICO DIFFERENZE:\n    \n    AEREI RILEVATI: ████████████████     4 aerei\n    FLIGHT RADAR:   ████                 1 aerei\n    \n    ⚠️  AEREI NASCOSTI: 4 (100.0%)\n    🔍 DISCREPANZA: 100.0%\n    ",
+  "note_analisi": [
+    "⚠️  4 aerei reali non presenti su Flight Radar",
+    "🔍 ICAO mancanti: 3009bf, 440c38, 4bb26b, 4ba88f",
+    "🔎 1 aerei su Flight Radar non rilevati da noi",
+    "🚨 ALTA DISCREPANZA: Oltre il 30% di aerei nascosti"
+  ]
+}
